@@ -476,7 +476,7 @@ function getVehicleByPlate(platetext)
 	end
 	return false
 end
-
+--[[
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(5)
@@ -497,7 +497,7 @@ Citizen.CreateThread(function()
 
     end
 end)
-
+]]
 --[[Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)

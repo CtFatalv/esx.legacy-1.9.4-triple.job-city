@@ -185,15 +185,13 @@ $(document).ready(function() {
     });
 
     var app = '<main id="customextra" style="padding:10px;display:block;">\
-    <header style="text-align:center;padding:5px;"><button onclick="choosecolor(`primary`)" class="confirm_out" style="background:#414244;color:#fff !important;border-radius: 10px;width: 30%;background: #414244;color: #fff !important;border-radius: 10px;width: 30%;/* padding-right: 20px; */height: 20px;font-size: 10px;margin-top: 1px !important;height: 100%;margin-right: 20px;">primary</button><button onclick="choosecolor(`secondary`)" class="confirm_out" style="background:#414244;color:#fff !important;border-radius: 10px;width: 30%;/* padding-right: 20px; */height: 20px;font-size: 10px;margin-top: 1px;height: 100%;">Secondary</button></header>\
-    <div class="colors" style="height:170px;overflow-x:hidden;"></div>\
     <header style="text-align: center;\
     padding: 6px;\
     font-size: 15px;\
     color: #fff;\
     padding-bottom: 0;\
     height: 20px;\
-}"> Liveries </header>\
+}"> Autocollant </header>\
     <header style="text-align:center;padding: 6px;"><button onclick="livery(false)" class="confirm_out" style="background:#414244;color:#fff !important;border-radius: 10px;width: 30%;background: #414244;color: #fff !important;border-radius: 10px;width: 30%;/* padding-right: 20px; */height: 20px;font-size: 10px;margin-top: -10px !important;height: 100%;margin-right: 20px;"><i style="display:contents;" class="fas fa-arrow-left"></i></button><button onclick="livery(true)" class="confirm_out" style="background:#414244;color:#fff !important;border-radius: 10px;width: 30%;/* padding-right: 20px; */height: 20px;font-size: 10px;margin-top: -10px;height: 100%;"> <i style="display:contents;" class="fas fa-arrow-right"></i></button></header>\
   </main>\
   <div class="container">\

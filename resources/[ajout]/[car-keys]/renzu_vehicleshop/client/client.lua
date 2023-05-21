@@ -14,8 +14,6 @@ playerLoaded = false
 jobcar = false
 local type = 'car'
 local vehiclesdb = {}
-presetprimarycolor = {}
-presetsecondarycolor = {}
 livery = nil
 shopcoords = {}
 brand = nil
@@ -484,8 +482,6 @@ end
 function SetVehicleProp(vehicle, props)
     -- https://github.com/esx-framework/es_extended/tree/v1-final COPYRIGHT
     if DoesEntityExist(vehicle) then
-		local colorPrimary, colorSecondary = GetVehicleColours(vehicle)
-		local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)
 		SetVehicleModKit(vehicle, 0)
 		if props.plate then SetVehicleNumberPlateText(vehicle, props.plate) end
 		if props.plateIndex then SetVehicleNumberPlateTextIndex(vehicle, props.plateIndex) end
@@ -493,10 +489,6 @@ function SetVehicleProp(vehicle, props)
 		if props.engineHealth then SetVehicleEngineHealth(vehicle, props.engineHealth + 0.0) end
 		if props.tankHealth then SetVehiclePetrolTankHealth(vehicle, props.tankHealth + 0.0) end
 		if props.dirtLevel then SetVehicleDirtLevel(vehicle, props.dirtLevel + 0.0) end
-		if props.rgb then SetVehicleCustomPrimaryColour(vehicle, props.rgb[1], props.rgb[2], props.rgb[3]) end
-		if props.rgb2 then SetVehicleCustomSecondaryColour(vehicle, props.rgb2[1], props.rgb2[2], props.rgb2[3]) end
-		if props.color1 then SetVehicleColours(vehicle, props.color1, colorSecondary) end
-		if props.color2 then SetVehicleColours(vehicle, props.color1 or colorPrimary, props.color2) end
 		if props.pearlescentColor then SetVehicleExtraColours(vehicle, props.pearlescentColor, wheelColor) end
 		if props.wheelColor then SetVehicleExtraColours(vehicle, props.pearlescentColor or pearlescentColor, props.wheelColor) end
 		if props.wheels then SetVehicleWheelType(vehicle, props.wheels) end
@@ -587,7 +579,6 @@ end
 function GetVehicleProperties(vehicle)
     -- https://github.com/esx-framework/es_extended/tree/v1-final COPYRIGHT
     if DoesEntityExist(vehicle) then
-        local colorPrimary, colorSecondary = GetVehicleColours(vehicle)
         local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)
         local extras = {}
         for extraId=0, 12 do
@@ -612,10 +603,6 @@ function GetVehicleProperties(vehicle)
 
             fuelLevel         = MathRound(GetVehicleFuelLevel(vehicle), 1),
             dirtLevel         = MathRound(GetVehicleDirtLevel(vehicle), 1),
-            color1            = colorPrimary,
-            color2            = colorSecondary,
-            rgb				  = table.pack(GetVehicleCustomPrimaryColour(vehicle)),
-            rgb2				  = table.pack(GetVehicleCustomSecondaryColour(vehicle)),
             pearlescentColor  = pearlescentColor,
             wheelColor        = wheelColor,
 
@@ -688,26 +675,6 @@ function GetVehicleProperties(vehicle)
         return
     end
 end
-
-local owned_veh = {}
-colortype = 'primary'
-RegisterNUICallback("selectcolortype", function(data, cb)
-    colortype = data.type
-end)
-
-RegisterNUICallback("choosecolor", function(data, cb)
-    if colortype == 'primary' then
-        presetprimarycolor = {r = data.r, g = data.g, b = data.b}
-        if LastVehicleFromGarage then
-            SetVehicleCustomPrimaryColour(LastVehicleFromGarage,tonumber(presetprimarycolor.r),tonumber(presetprimarycolor.g),tonumber(presetprimarycolor.b))
-        end
-    else
-        presetsecondarycolor = {r = data.r, g = data.g, b = data.b}
-        if LastVehicleFromGarage then
-            SetVehicleCustomSecondaryColour(LastVehicleFromGarage,tonumber(presetsecondarycolor.r),tonumber(presetsecondarycolor.g),tonumber(presetsecondarycolor.b))
-        end
-    end
-end)
 
 RegisterNUICallback("setlivery", function(data, cb)
     local vehicle = LastVehicleFromGarage
@@ -1438,12 +1405,6 @@ function BuyVehicle(data,notregister)
         veh = v
         while not DoesEntityExist(veh) do Wait(10) end
         SetVehicleNumberPlateText(v,string.gsub(tostring(plate), '^%s*(.-)%s*$', '%1'))
-        if presetprimarycolor ~= nil and presetprimarycolor.r ~= nil then
-            SetVehicleCustomPrimaryColour(v,tonumber(presetprimarycolor.r),tonumber(presetprimarycolor.g),tonumber(presetprimarycolor.b))
-        end
-        if presetsecondarycolor ~= nil and presetsecondarycolor.r ~= nil then
-            SetVehicleCustomSecondaryColour(v,tonumber(presetsecondarycolor.r),tonumber(presetsecondarycolor.g),tonumber(presetsecondarycolor.b))
-        end
         if GetVehicleLiveryCount(vehicle) ~= -1 and livery ~= nil then
             SetVehicleLivery(v,livery)
         elseif livery ~= nil then
@@ -1490,8 +1451,6 @@ function BuyVehicle(data,notregister)
                 {
                 type = "cleanup"
                 })
-                presetsecondarycolor = {}
-                presetprimarycolor = {}
                 livery = nil
                 SetVehicleDirtLevel(veh, 0.0)
             else
@@ -1558,12 +1517,6 @@ RegisterNUICallback(
                 v = CreateVehicle(tonumber(data.modelcar), vec.x,vec.y,vec.z, vec.w, 1, 1)
                 veh = v
                 while not DoesEntityExist(v) do Wait(1) end
-                if presetprimarycolor ~= nil and presetprimarycolor.r ~= nil then
-                    SetVehicleCustomPrimaryColour(v,tonumber(presetprimarycolor.r),tonumber(presetprimarycolor.g),tonumber(presetprimarycolor.b))
-                end
-                if presetsecondarycolor ~= nil and presetsecondarycolor.r ~= nil then
-                    SetVehicleCustomSecondaryColour(v,tonumber(presetsecondarycolor.r),tonumber(presetsecondarycolor.g),tonumber(presetsecondarycolor.b))
-                end
                 if GetVehicleLiveryCount(vehicle) ~= -1 and livery ~= nil then
                     SetVehicleLivery(v,livery)
                 elseif livery ~= nil then
@@ -1631,8 +1584,6 @@ RegisterNUICallback(
                 while not HasCollisionLoadedAroundEntity(PlayerPedId()) do Wait(0) end
                 FreezeEntityPosition(PlayerPedId(),false)
                 testdrive = false
-                presetsecondarycolor = {}
-                presetprimarycolor = {}
                 livery = nil
             end)
         else
@@ -1699,8 +1650,6 @@ function CloseNui()
     indist = false
     FreezeEntityPosition(PlayerPedId(),false)
     if not testdrive then
-        presetsecondarycolor = {}
-        presetprimarycolor = {}
         livery = nil
     end
 end
