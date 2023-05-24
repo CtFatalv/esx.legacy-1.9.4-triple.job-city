@@ -784,7 +784,7 @@ Config.Outfits = {
             }
         }
     },
-    ["realestate"] = {
+    ["taxi"] = {
         ["Male"] = {
             {
                 -- Outfits
