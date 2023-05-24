@@ -8,6 +8,143 @@ AddEventHandler('esx:playerLoaded', function()
     end)
 end)
 
+-- spawn du player
+AddEventHandler('playerSpawned', function()
+	id = GetPlayerServerId(PlayerId())
+    Player(id).state:set('mecanojobin', false, true)
+end)
+
+-- Création polyzone 
+-- LS1
+CreateThread(function ()
+	Zone = PolyZone:Create({
+  vector2(-348.02337646484, -139.94610595704),
+  vector2(-341.4411315918, -121.67359161376),
+  vector2(-318.22814941406, -131.05165100098),
+  vector2(-324.5476989746, -148.30767822266)
+}, {
+  name="Zone",
+	debugPoly = false,
+	--minZ = 30.07371520996,
+	--maxZ = 31.074838638306
+})
+
+-- Condition entrée et sortie de zone
+Zone:onPlayerInOut(function (isPointInside)
+    if isPointInside then
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', true, true)
+    else
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', false, true)
+    end
+    end)
+end)
+
+-- LS2
+CreateThread(function ()
+	Zone = PolyZone:Create({
+  vector2(-1152.841796875, -1995.2600097656),
+  vector2(-1140.2818603516, -2008.2623291016),
+  vector2(-1158.164428711, -2027.4395751954),
+  vector2(-1171.5521240234, -2013.995727539)
+}, {
+  name="Zone",
+	debugPoly = false,
+	--minZ = 30.07371520996,
+	--maxZ = 31.074838638306
+})
+
+-- Condition entrée et sortie de zone
+Zone:onPlayerInOut(function (isPointInside)
+    if isPointInside then
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', true, true)
+    else
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', false, true)
+    end
+    end)
+end)
+
+-- LS3
+CreateThread(function ()
+	Zone = PolyZone:Create({
+  vector2(724.19262695312, -1092.3201904296),
+  vector2(738.52606201172, -1094.8264160156),
+  vector2(738.32598876954, -1068.7570800782),
+  vector2(725.46807861328, -1064.607421875)
+}, {
+  name="Zone",
+	debugPoly = false,
+	--minZ = 30.07371520996,
+	--maxZ = 31.074838638306
+})
+
+-- Condition entrée et sortie de zone
+Zone:onPlayerInOut(function (isPointInside)
+    if isPointInside then
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', true, true)
+    else
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', false, true)
+    end
+    end)
+end)
+
+-- LS4
+CreateThread(function ()
+	Zone = PolyZone:Create({
+  vector2(1171.6817626954, 2645.0356445312),
+  vector2(1171.3643798828, 2635.4621582032),
+  vector2(1189.1496582032, 2635.2526855468),
+  vector2(1190.1730957032, 2644.6518554688)
+}, {
+  name="Zone",
+	debugPoly = false,
+	--minZ = 30.07371520996,
+	--maxZ = 31.074838638306
+})
+
+-- Condition entrée et sortie de zone
+Zone:onPlayerInOut(function (isPointInside)
+    if isPointInside then
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', true, true)
+    else
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', false, true)
+    end
+    end)
+end)
+
+-- LS5
+CreateThread(function ()
+	Zone = PolyZone:Create({
+  vector2(96.389060974122, 6619.7353515625),
+  vector2(102.8916015625, 6612.93359375),
+  vector2(116.41460418702, 6625.5390625),
+  vector2(109.39988708496, 6633.1669921875)
+}, {
+  name="Zone",
+	debugPoly = true,
+	--minZ = 30.07371520996,
+	--maxZ = 31.074838638306
+})
+
+-- Condition entrée et sortie de zone
+Zone:onPlayerInOut(function (isPointInside)
+    if isPointInside then
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', true, true)
+    else
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('mecanojobin', false, true)
+    end
+    end)
+end)
+
 RegisterNetEvent('esx_lscustom:installMod')
 AddEventHandler('esx_lscustom:installMod', function()
     local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
@@ -508,9 +645,7 @@ CreateThread(function()
     end
 end)
 
--- Activate menu when player is inside marker
-CreateThread(function()
-    while true do
+AddEventHandler('esx_mechanicjob:vehicleinteraction', function()
         local Sleep = 1500
         local Near = false
         local playerPed = PlayerPedId()
@@ -518,19 +653,19 @@ CreateThread(function()
         if IsPedInAnyVehicle(playerPed, false) then
             local coords = GetEntityCoords(playerPed)
             local currentZone, zone, lastZone
-
             if (ESX.PlayerData.job and ESX.PlayerData.job.name == 'mechanic') or not Config.IsMechanicJobOnly then
                 for k, v in pairs(Config.Zones) do
                     local zonePos = vector3(v.Pos.x, v.Pos.y, v.Pos.z)
-                    if #(coords - zonePos) < 10.0 then
+                    if #(coords - zonePos) < 20.0 then
                         Near = true
                         Sleep = 0
+                        if Player(id).state.mecanojobin then
                         if not lsMenuIsShowed then
-                            if not HintDisplayed then
-                                HintDisplayed = true
-                                ESX.TextUI(v.Hint)
-                            end
-                            if IsControlJustReleased(0, 38) then
+                            --if not HintDisplayed then
+                                --HintDisplayed = false
+                                --ESX.TextUI(v.Hint)
+                            --end
+                           -- if IsControlJustReleased(0, 38) then
                                 lsMenuIsShowed = true
 
                                 local vehicle = GetVehiclePedIsIn(playerPed, false)
@@ -563,8 +698,9 @@ CreateThread(function()
                                         Wait(Sleep)
                                     end
                                 end)
-                            end
+                        --    end
                         end
+                    end
                     end
                 end
                 if not Near and HintDisplayed then
@@ -574,5 +710,4 @@ CreateThread(function()
             end
         end
         Wait(Sleep)
-    end
 end)

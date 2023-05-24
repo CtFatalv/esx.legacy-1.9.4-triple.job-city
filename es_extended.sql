@@ -597,7 +597,7 @@ CREATE TABLE `owned_vehicles` (
   `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'car',
   `job` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stored` tinyint(1) DEFAULT NULL,
-  `parking` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parking` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'SandyShores',
   `peopleWithKeys` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '[]',
   `pound` varchar(60) DEFAULT NULL,
   `mileage` float DEFAULT 0,

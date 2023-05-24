@@ -303,3 +303,4 @@ ESX.RegisterServerCallback('esx_mechanicjob:getPlayerInventory', function(source
 
 	cb({items = items})
 end)
+

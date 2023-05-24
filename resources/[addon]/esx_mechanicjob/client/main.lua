@@ -51,7 +51,7 @@ function StopNPCJob(cancel)
 		--TriggerServerEvent('esx_mechanicjob:onNPCJobCompleted')
 	end
 end
-
+--[[
 function OpenMechanicActionsMenu()
 	local elements = {
 		{unselectable = true, icon = "fas fa-gear", title = TranslateCap('mechanic')},
@@ -222,13 +222,13 @@ function OpenMechanicCraftMenu()
 		ESX.ShowNotification(TranslateCap('not_experienced_enough'))
 	end
 end
-
+]]
 function OpenMobileMechanicActionsMenu()
 	local elements = {
 		{unselectable = true, icon = "fas fa-gear", title = TranslateCap('mechanic')},
 		{icon = "fas fa-gear", title = TranslateCap('billing'),       value = 'billing'},
 		{icon = "fas fa-gear", title = TranslateCap('hijack'),        value = 'hijack_vehicle'},
-		{icon = "fas fa-gear", title = TranslateCap('repair'),        value = 'fix_vehicle'},
+		--{icon = "fas fa-gear", title = TranslateCap('repair'),        value = 'fix_vehicle'},
 		{icon = "fas fa-gear", title = TranslateCap('clean'),         value = 'clean_vehicle'},
 		{icon = "fas fa-gear", title = TranslateCap('imp_veh'),       value = 'del_vehicle'},
 		{icon = "fas fa-gear", title = TranslateCap('flat_bed'),      value = 'dep_vehicle'},
@@ -461,7 +461,7 @@ function OpenMobileMechanicActionsMenu()
 		end
 	end)
 end
-
+--[[
 function OpenGetStocksMenu()
 	ESX.TriggerServerCallback('esx_mechanicjob:getStockItems', function(items)
 		local elements = {
@@ -546,7 +546,7 @@ function OpenPutStocksMenu()
 		end)
 	end)
 end
-
+]]
 RegisterNetEvent('esx_mechanicjob:onHijack')
 AddEventHandler('esx_mechanicjob:onHijack', function()
 	local playerPed = PlayerPedId()
@@ -587,7 +587,7 @@ AddEventHandler('esx_mechanicjob:onHijack', function()
 		end
 	end
 end)
-
+--[[
 RegisterNetEvent('esx_mechanicjob:onCarokit')
 AddEventHandler('esx_mechanicjob:onCarokit', function()
 	local playerPed = PlayerPedId()
@@ -615,6 +615,7 @@ AddEventHandler('esx_mechanicjob:onCarokit', function()
 	end
 end)
 
+]]
 RegisterNetEvent('esx_mechanicjob:onFixkit')
 AddEventHandler('esx_mechanicjob:onFixkit', function()
 	local playerPed = PlayerPedId()
@@ -659,7 +660,7 @@ AddEventHandler('esx_mechanicjob:hasEnteredMarker', function(zone)
 
 	elseif zone =='VehicleDelivery' then
 		NPCTargetDeleterZone = true
-	elseif zone == 'MechanicActions' then
+	--[[elseif zone == 'MechanicActions' then
 		CurrentAction     = 'mechanic_actions_menu'
 		CurrentActionMsg  = TranslateCap('open_actions')
 		CurrentActionData = {}
@@ -670,7 +671,7 @@ AddEventHandler('esx_mechanicjob:hasEnteredMarker', function(zone)
 	elseif zone == 'Craft' then
 		CurrentAction     = 'mechanic_craft_menu'
 		CurrentActionMsg  = TranslateCap('craft_menu')
-		CurrentActionData = {}
+		CurrentActionData = {}]]
 	elseif zone == 'VehicleDeleter' then
 		local playerPed = PlayerPedId()
 
@@ -687,14 +688,14 @@ end)
 AddEventHandler('esx_mechanicjob:hasExitedMarker', function(zone)
 	if zone =='VehicleDelivery' then
 		NPCTargetDeleterZone = false
-	elseif zone == 'Craft' then
+--[[	elseif zone == 'Craft' then
 		TriggerServerEvent('esx_mechanicjob:stopCraft')
 		TriggerServerEvent('esx_mechanicjob:stopCraft2')
 		TriggerServerEvent('esx_mechanicjob:stopCraft3')
 	elseif zone == 'Garage' then
 		TriggerServerEvent('esx_mechanicjob:stopHarvest')
 		TriggerServerEvent('esx_mechanicjob:stopHarvest2')
-		TriggerServerEvent('esx_mechanicjob:stopHarvest3')
+		TriggerServerEvent('esx_mechanicjob:stopHarvest3')]]
 	end
 
 	CurrentAction = nil
@@ -791,7 +792,7 @@ CreateThread(function()
 			for k,v in pairs(Config.Zones) do
 				if v.Type ~= -1 and #(coords - v.Pos) < Config.DrawDistance then
 					Sleep = 0
-					DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, true, true, 2, true, nil, nil, false)
+					--DrawMarker(v.Type, v.Pos.x, v.Pos.y, v.Pos.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, v.Size.x, v.Size.y, v.Size.z, v.Color.r, v.Color.g, v.Color.b, 100, true, true, 2, true, nil, nil, false)
 					letSleep = false
 				end
 			end
@@ -799,7 +800,6 @@ CreateThread(function()
 	Wait(Sleep)
 	end
 end)
-
 -- Enter / Exit marker events
 CreateThread(function()
 	while true do
@@ -876,7 +876,7 @@ CreateThread(function()
 		end
 	end
 end)
-
+--[[
 -- Key Controls
 CreateThread(function()
 	while true do
@@ -915,14 +915,16 @@ CreateThread(function()
 		Wait(sleep)
 	end
 end)
+]]
+--[[
 RegisterCommand('mechanicMenu', function()
 		if ESX.PlayerData.job and ESX.PlayerData.job.name == 'mechanic' then
 			OpenMobileMechanicActionsMenu()
 		end
 end, false)
+]]
 
-
-
+--[[
 RegisterCommand('mechanicjob', function()
 	local playerPed = PlayerPedId()
 		if ESX.PlayerData.job and ESX.PlayerData.job.name == 'mechanic' then
@@ -942,9 +944,55 @@ RegisterCommand('mechanicjob', function()
 			end
 		end
 end, false)
-
-RegisterKeyMapping('mechanicMenu', 'Open Mechanic Menu', 'keyboard', 'F6')
-RegisterKeyMapping('mechanicjob', 'Togggle NPC Job', 'keyboard', 'F6')
+]]
+--RegisterKeyMapping('mechanicMenu', 'Open Mechanic Menu', 'keyboard', 'F6')
+--RegisterKeyMapping('mechanicjob', 'Togggle NPC Job', 'keyboard', 'F6')
 
 AddEventHandler('esx:onPlayerDeath', function(data) isDead = true end)
 AddEventHandler('esx:onPlayerSpawn', function(spawn) isDead = false end)
+
+local options = {
+    {
+        name = 'Achat',
+        event = 'necro:shop01',
+        icon = 'fa-solid fa-road',
+        label = 'Achat',
+		distance = 1.6,
+    },
+}label = 'Gestion',
+exports.ox_target:addLocalEntity(UwU, options)
+
+exports.ox_target:addBoxZone({
+    coords =  vector3(-345.9, -122.87, 39.01),
+    size = vec3(1.2, 0.2, 2.4),
+    rotation = 251,
+    debug = false,
+    options = {
+        {
+            name = 'Gestion',
+            event = 'esx_mechanicjob:bossmecano',
+            icon = 'fa-solid fa-computer',
+            label = 'Gestion',
+			distance = 1.5,
+        }
+    }
+})
+
+AddEventHandler('esx_mechanicjob:bossmecano', function()	
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'mechanic' then
+	TriggerEvent('esx_society:openBossMenu', 'mechanic', function(data, menu)
+	end, {wash = false})
+	end
+end)
+
+AddEventHandler('esx_mechanicjob:mechanicinteraction', function()	
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'mechanic' then
+		OpenMobileMechanicActionsMenu()
+	end
+end)
+
+AddEventHandler('esx_mechanicjob:Jobinteraction', function()	
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'mechanic' then
+		StartNPCJob()
+	end
+end)

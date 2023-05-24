@@ -10,6 +10,11 @@ legacyversion '1.9.1'
 shared_script '@es_extended/imports.lua'
 
 client_scripts {
+	'@PolyZone/client.lua',
+    '@PolyZone/BoxZone.lua',
+    '@PolyZone/EntityZone.lua',
+    '@PolyZone/CircleZone.lua',
+    '@PolyZone/ComboZone.lua',
 	'@es_extended/locale.lua',
 	'locales/*.lua',
 	'config.lua',
