@@ -709,3 +709,96 @@ RegisterCommand('taximenu', function()
 end, false)
 
 RegisterKeyMapping('taximenu', 'Open Taxi Menu', 'keyboard', 'f6')
+
+
+exports.ox_target:addBoxZone({
+    coords =  vector3(907.42, -153.37, 83.19),
+    size = vec3(0.6, 1.0, 0.1),
+    rotation = 252,
+    debug = false,
+    options = {
+        {
+            name = 'Gestion',
+            event = 'esx_taxijob:bosstaxi',
+            icon = 'fa-solid fa-computer',
+            label = 'Gestion',
+			distance = 1.5,
+        }
+    }
+})
+
+AddEventHandler('esx_taxijob:bosstaxi', function()	
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
+	TriggerEvent('esx_society:openBossMenu', 'taxi', function(data, menu)
+	end, {wash = true})
+	end
+end)
+
+AddEventHandler('esx_taxijob:facturetaxi', function()	
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
+local elements = {
+    {unselectable = true, icon = "fas fa-taxi", title = TranslateCap('taxi')},
+    {icon = "fas fa-scroll", title = TranslateCap('billing'), value = "billing"},
+}
+ESX.OpenContext("right", elements, function(menu,element)
+    if element.value == "billing" then
+        local elements2 = {
+            {unselectable = true, icon = "fas fa-taxi", title = element.title},
+            {title = "Amount", input = true, inputType = "number", inputMin = 1, inputMax = 200000, inputPlaceholder = "Amount to bill.."},
+            {icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
+        }
+
+        ESX.OpenContext("right", elements2, function(menu2,element2)
+            local amount = tonumber(menu2.eles[2].inputValue)
+            if amount == nil then
+                ESX.ShowNotification(TranslateCap('amount_invalid'))
+            else
+                ESX.CloseContext()
+                local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+                if closestPlayer == -1 or closestDistance > 3.0 then
+                    ESX.ShowNotification(TranslateCap('no_players_near'))
+                else
+                    TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_taxi',
+                        'Taxi', amount)
+                    ESX.ShowNotification(TranslateCap('billing_sent'))
+                end
+            end
+        end)
+    end
+end)
+end
+end)
+
+AddEventHandler('esx_taxijob:jobmoldutaxi', function()	
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'taxi' then
+ if OnJob then
+                ESX.CloseContext()
+                StopTaxiJob()
+            else
+                if ESX.PlayerData.job ~= nil and ESX.PlayerData.job.name == 'taxi' then
+                    local playerPed = PlayerPedId()
+                    local vehicle = GetVehiclePedIsIn(playerPed, false)
+
+                    if IsPedInAnyVehicle(playerPed, false) and GetPedInVehicleSeat(vehicle, -1) == playerPed then
+                        if tonumber(ESX.PlayerData.job.grade) >= 3 then
+                            ESX.CloseContext()
+                            StartTaxiJob()
+                        else
+                            if IsInAuthorizedVehicle() then
+                                ESX.CloseContext()
+                                StartTaxiJob()
+                            else
+                                ESX.ShowNotification(TranslateCap('must_in_taxi'))
+                            end
+                        end
+                    else
+                        if tonumber(ESX.PlayerData.job.grade) >= 3 then
+                            ESX.ShowNotification(TranslateCap('must_in_vehicle'))
+                        else
+                            ESX.ShowNotification(TranslateCap('must_in_taxi'))
+                        end
+                    end
+                end
+            end
+	end
+end)

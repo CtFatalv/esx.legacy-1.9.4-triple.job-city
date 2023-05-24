@@ -573,11 +573,24 @@ Config.ClothingRooms = {
     }
 }
 
+Config.ClothingRooms = {
+    {
+        job = "taxi",
+        coords = vector4(897.44, -162.66, 81.60, 331.22),
+        size = vector3(4, 4, 4),
+        rotation = 45,
+        usePoly = false,
+        points = {
+            vector3(897.44, -162.66, 81.60)
+        }
+    }
+}
 
+--[[
 Config.PlayerOutfitRooms = {
     -- Sample outfit room config
     {
-        job = "",
+        job = "dzdzdz",
         coords = vector4(287.28, -573.41, 43.16, 79.61),
         size = vector3(4, 4, 4),
         rotation = 45,
@@ -593,6 +606,7 @@ Config.PlayerOutfitRooms = {
         }
     }
 }
+]]
 
 Config.Outfits = {
     ["police"] = {

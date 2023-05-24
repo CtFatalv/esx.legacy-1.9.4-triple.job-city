@@ -128,7 +128,7 @@ CreateThread(function ()
   vector2(109.39988708496, 6633.1669921875)
 }, {
   name="Zone",
-	debugPoly = true,
+	debugPoly = false,
 	--minZ = 30.07371520996,
 	--maxZ = 31.074838638306
 })
