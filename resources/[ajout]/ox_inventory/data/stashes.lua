@@ -49,4 +49,23 @@ return {
 		weight = 70000,
 		groups = {['ambulance'] = 0}
 	},
+
+	{
+		coords = vec3(902.35, -153.59, 82.5),
+		target = {
+			loc = vec3(902.35, -153.59, 82.5),
+			length = 3.2,
+			width = 1.0,
+			heading = 329,
+            minZ=81.45,
+            maxZ=82.45,
+			label = 'Coffre Taxi'
+		},
+		name = 'taxilocker',
+		label = 'Coffre Taxi',
+		owner = true,
+		slots = 70,
+		weight = 70000,
+		groups = {['taxi'] = 4}
+	},
 }
