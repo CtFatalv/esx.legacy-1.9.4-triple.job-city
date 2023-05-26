@@ -283,6 +283,28 @@ Config.Garages = { -- Garages Config
       { Pos = vector3(-794.04, -1501.16, 0.40)},
     }
   },
+  
+  Taxi = {
+    Label = 'Taxi',
+    Type = 'car',
+    Blip = false,
+    NotFree = true,
+    Coords = vector3(506.13, -2751.85, 3.07), 
+    PedHeading = 108.14,
+    Players = {
+      
+    },
+    Groups = {
+      
+    },
+    SpawnPoint = {
+      { Pos = vector3(915.82, -170.75, 74.00), Heading = 100.00 },
+      { Pos = vector3(918.04, -167.19, 74.18), Heading = 100.00 },
+    },
+    DeletePoint = {
+      { Pos = vector3(908.89, -174.21, 74.17)},
+    }
+  },
 
 }
 

@@ -60,7 +60,7 @@ VehicleShop = {
         title = "Police Vehicle Shop",
         icon = 'https://i.imgur.com/t1OPuVL.png',
         job = 'police',
-        type = 'carshop',
+        type = 'car',
         default_garage = 'Police Garage',
         Dist = 3, -- distance (DEPRECATED)
         Blip = {color = 38, sprite = 662, scale = 0.9},

@@ -205,6 +205,31 @@ Zone:onPlayerInOut(function (isPointInside)
     end)
 end)
 
+-- Taxi
+CreateThread(function ()
+	Zone = PolyZone:Create({
+  vector2(914.71258544922, -153.12001037598),
+  vector2(927.0532836914, -160.02151489258),
+  vector2(904.66235351562, -194.68992614746),
+  vector2(893.24865722656, -186.45512390136)
+}, {
+  name="Zone",
+	debugPoly = false,
+	--minZ = 30.07371520996,
+	--maxZ = 31.074838638306
+})
+
+Zone:onPlayerInOut(function (isPointInside)
+    if isPointInside then
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('garagein', true, true)
+    else
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('garagein', false, true)
+    end
+    end)
+end)
+
 -- Thread
 CreateThread(function() -- Framework
 	while ESX == nil do
