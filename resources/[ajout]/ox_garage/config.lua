@@ -289,8 +289,8 @@ Config.Garages = { -- Garages Config
     Type = 'car',
     Blip = false,
     NotFree = true,
-    Coords = vector3(506.13, -2751.85, 3.07), 
-    PedHeading = 108.14,
+    Coords = vector3(903.65, -166.28, 74.0), 
+    PedHeading = 237.73,
     Players = {
       
     },
