@@ -1,3 +1,5 @@
+ESX = exports['es_extended']:getSharedObject()
+
 if not lib then return end
 
 if GetConvar('inventory:versioncheck', 'true') == 'true' then
