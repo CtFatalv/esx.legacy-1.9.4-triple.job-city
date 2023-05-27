@@ -1,5 +1,3 @@
-ESX = exports["es_extended"]:getSharedObject()
-
 if not lib then return end
 
 local Items = require 'modules.items.shared' --[[@as table<string, OxClientItem>]]
@@ -332,7 +330,7 @@ end)
 
 -----------------------------------------------------------------------------------------------
 
-exports('Items', getItem)
-exports('ItemList', getItem)
+exports('Items', function(item) return getItem(nil, item) end)
+exports('ItemList', function(item) return getItem(nil, item) end)
 
 return Items
