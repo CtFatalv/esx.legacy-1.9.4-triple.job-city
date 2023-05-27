@@ -570,11 +570,8 @@ Config.ClothingRooms = {
             vector3(454.35513305664, -988.46459960938, 30.69),
             vector3(460.4231262207, -987.94573974609, 30.69)
         }
-    }
-}
-
-Config.ClothingRooms = {
-    {
+    },
+	{
         job = "taxi",
         coords = vector4(897.44, -162.66, 81.60, 331.22),
         size = vector3(4, 4, 4),
@@ -582,6 +579,16 @@ Config.ClothingRooms = {
         usePoly = false,
         points = {
             vector3(897.44, -162.66, 81.60)
+        }
+    },
+    {
+        job = "ambulance",
+        coords = vector4(266.91, -1362.16, 24.54, 232.05),
+        size = vector3(4, 4, 4),
+        rotation = 232,
+        usePoly = false,
+        points = {
+            vector3(266.91, -1362.16, 24.54)
         }
     }
 }

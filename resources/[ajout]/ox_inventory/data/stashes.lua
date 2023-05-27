@@ -51,6 +51,44 @@ return {
 	},
 
 	{
+		coords = vec3(237.31, -1360.42, 39.54),
+		target = {
+			loc = vec3(237.31, -1360.42, 39.54),
+			length = 7.0,
+			width = 2.8,
+			heading = 320,
+            minZ=33.34,
+            maxZ=41.74,
+			label = 'Coffre Patron'
+		},
+		name = 'emspatronlocker',
+		label = 'Coffre Patron',
+		owner = true,
+		slots = 70,
+		weight = 70000,
+		groups = {['ambulance'] = 3}
+	},
+
+	{
+		coords = vec3(270.84, -1363.89, 24.54),
+		target = {
+			loc = vec3(270.84, -1363.89, 24.54),
+			length = 2.4,
+			width = 1.2,
+			heading = 320,
+          minZ=23.54,
+          maxZ=25.54,
+			label = 'Coffre personnel'
+		},
+		name = 'emspersonnellocker',
+		label = 'Coffre personnel',
+		owner = true,
+		slots = 30,
+		weight = 70000,
+		groups = {['ambulance'] = 0}
+	},
+
+	{
 		coords = vec3(902.35, -153.59, 82.5),
 		target = {
 			loc = vec3(902.35, -153.59, 82.5),

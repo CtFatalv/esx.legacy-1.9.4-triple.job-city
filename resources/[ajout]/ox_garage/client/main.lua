@@ -230,6 +230,58 @@ Zone:onPlayerInOut(function (isPointInside)
     end)
 end)
 
+-- EMS1
+CreateThread(function ()
+	Zone = PolyZone:Create({
+  vector2(329.32946777344, -1463.3383789062),
+  vector2(343.54052734375, -1475.2907714844),
+  vector2(332.51345825196, -1481.7353515625),
+  vector2(326.25424194336, -1484.8408203125),
+  vector2(319.16177368164, -1482.685546875),
+  vector2(316.20797729492, -1478.9173583984)
+}, {
+  name="Zone",
+	debugPoly = false,
+  minZ=28.42,
+  maxZ=35.62
+})
+
+Zone:onPlayerInOut(function (isPointInside)
+    if isPointInside then
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('garagein', true, true)
+    else
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('garagein', false, true)
+    end
+    end)
+end)
+
+-- EMS2
+CreateThread(function ()
+	Zone = PolyZone:Create({
+  vector2(315.16018676758, -1478.386352539),
+  vector2(327.35888671875, -1462.862915039),
+  vector2(290.76263427734, -1433.0769042968),
+  vector2(278.17166137696, -1447.7524414062)
+}, {
+  name="Zone",
+	debugPoly = false,
+  minZ=45.51,
+  maxZ=50.31
+})
+
+Zone:onPlayerInOut(function (isPointInside)
+    if isPointInside then
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('garagein', true, true)
+    else
+        id = GetPlayerServerId(PlayerId())
+        Player(id).state:set('garagein', false, true)
+    end
+    end)
+end)
+
 -- Thread
 CreateThread(function() -- Framework
 	while ESX == nil do

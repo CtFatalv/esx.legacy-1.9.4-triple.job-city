@@ -535,7 +535,17 @@ Config.JobInteractions = {
             event = 'esx_taxijob:facturetaxi',
             shouldClose = true
 		   },
-        }
+        },
+    ["ambulance"] = {
+        {
+            id = 'emsinteraction',
+            title = 'Job EMS',
+            icon = 'list',
+            type = 'client',
+            event = 'esx_ambulancejob:actionMenu',
+            shouldClose = true
+           },
+        },
     -- ["hotdog"] = {
     --     {
     --         id = 'togglesell',

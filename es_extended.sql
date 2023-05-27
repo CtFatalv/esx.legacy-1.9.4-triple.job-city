@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : sam. 20 mai 2023 à 17:06
--- Version du serveur : 10.11.2-MariaDB-1:10.11.2+maria~ubu2204
+-- Généré le : sam. 27 mai 2023 à 18:17
+-- Version du serveur : 10.11.3-MariaDB-1:10.11.3+maria~ubu2204
 -- Version de PHP : 8.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `test`
+-- Base de données : `s155_Mime`
 --
 
 -- --------------------------------------------------------
@@ -55,6 +55,16 @@ INSERT INTO `addon_account` (`name`, `label`, `shared`) VALUES
 ('society_shop08', 'Shop08', 1),
 ('society_shop09', 'Shop09', 1),
 ('society_shop10', 'Shop10', 1),
+('society_shop11', 'Shop11', 1),
+('society_shop12', 'Shop12', 1),
+('society_shop13', 'Shop13', 1),
+('society_shop14', 'Shop14', 1),
+('society_shop15', 'Shop15', 1),
+('society_shop16', 'Shop16', 1),
+('society_shop17', 'Shop17', 1),
+('society_shop18', 'Shop18', 1),
+('society_shop19', 'Shop19', 1),
+('society_shop20', 'Shop20', 1),
 ('society_taxi', 'Taxi', 1);
 
 -- --------------------------------------------------------
@@ -101,6 +111,16 @@ INSERT INTO `addon_inventory` (`name`, `label`, `shared`) VALUES
 ('society_shop08', 'Shop08', 1),
 ('society_shop09', 'Shop09', 1),
 ('society_shop10', 'Shop10', 1),
+('society_shop11', 'Shop11', 1),
+('society_shop12', 'Shop12', 1),
+('society_shop13', 'Shop13', 1),
+('society_shop14', 'Shop14', 1),
+('society_shop15', 'Shop15', 1),
+('society_shop16', 'Shop16', 1),
+('society_shop17', 'Shop17', 1),
+('society_shop18', 'Shop18', 1),
+('society_shop19', 'Shop19', 1),
+('society_shop20', 'Shop20', 1),
 ('society_taxi', 'Taxi', 1);
 
 -- --------------------------------------------------------
@@ -240,6 +260,16 @@ INSERT INTO `datastore` (`name`, `label`, `shared`) VALUES
 ('society_shop08', 'Shop08', 1),
 ('society_shop09', 'Shop09', 1),
 ('society_shop10', 'Shop10', 1),
+('society_shop11', 'Shop11', 1),
+('society_shop12', 'Shop12', 1),
+('society_shop13', 'Shop13', 1),
+('society_shop14', 'Shop14', 1),
+('society_shop15', 'Shop15', 1),
+('society_shop16', 'Shop16', 1),
+('society_shop17', 'Shop17', 1),
+('society_shop18', 'Shop18', 1),
+('society_shop19', 'Shop19', 1),
+('society_shop20', 'Shop20', 1),
 ('society_taxi', 'Taxi', 1),
 ('user_ears', 'Ears', 0),
 ('user_glasses', 'Glasses', 0),
@@ -258,101 +288,6 @@ CREATE TABLE `datastore_data` (
   `owner` varchar(46) DEFAULT NULL,
   `data` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `datastore_data`
---
-
-INSERT INTO `datastore_data` (`id`, `name`, `owner`, `data`) VALUES
-(1, 'society_ambulance', NULL, '\'{}\''),
-(2, 'society_mechanic', NULL, '\'{}\''),
-(3, 'society_police', NULL, '\'{}\''),
-(4, 'society_shop01', NULL, '\'{}\''),
-(5, 'society_shop02', NULL, '\'{}\''),
-(6, 'society_shop03', NULL, '\'{}\''),
-(7, 'society_shop04', NULL, '\'{}\''),
-(8, 'society_shop05', NULL, '\'{}\''),
-(9, 'society_shop06', NULL, '\'{}\''),
-(10, 'society_shop07', NULL, '\'{}\''),
-(11, 'society_shop08', NULL, '\'{}\''),
-(12, 'society_shop09', NULL, '\'{}\''),
-(13, 'society_shop10', NULL, '\'{}\''),
-(14, 'society_taxi', NULL, '\'{}\''),
-(15, 'property', NULL, '{}'),
-(16, 'property', NULL, '{}'),
-(17, 'user_ears', 'char1:3069bd0212b6d515f7464a32ee0084ee0222d130', '{}'),
-(18, 'user_mask', 'char1:3069bd0212b6d515f7464a32ee0084ee0222d130', '{}'),
-(19, 'user_helmet', 'char1:3069bd0212b6d515f7464a32ee0084ee0222d130', '{}'),
-(20, 'user_glasses', 'char1:3069bd0212b6d515f7464a32ee0084ee0222d130', '{}'),
-(21, 'property', 'char1:3069bd0212b6d515f7464a32ee0084ee0222d130', '{}'),
-(22, 'property', NULL, '{}'),
-(23, 'property', NULL, '{}'),
-(24, 'property', NULL, '{}'),
-(25, 'property', NULL, '{}'),
-(26, 'property', NULL, '{}'),
-(27, 'property', NULL, '{}'),
-(28, 'property', NULL, '{}'),
-(29, 'property', NULL, '{}'),
-(30, 'property', NULL, '{}'),
-(31, 'property', NULL, '{}'),
-(32, 'property', NULL, '{}'),
-(33, 'property', NULL, '{}'),
-(34, 'property', NULL, '{}'),
-(35, 'property', NULL, '{}'),
-(36, 'property', NULL, '{}'),
-(37, 'property', NULL, '{}'),
-(38, 'property', NULL, '{}'),
-(39, 'property', NULL, '{}'),
-(40, 'property', NULL, '{}'),
-(41, 'property', NULL, '{}'),
-(42, 'property', NULL, '{}'),
-(43, 'property', NULL, '{}'),
-(44, 'property', NULL, '{}'),
-(45, 'property', NULL, '{}'),
-(46, 'property', NULL, '{}'),
-(47, 'property', NULL, '{}'),
-(48, 'property', NULL, '{}'),
-(49, 'property', NULL, '{}'),
-(50, 'property', NULL, '{}'),
-(51, 'property', NULL, '{}'),
-(52, 'property', NULL, '{}'),
-(53, 'property', NULL, '{}'),
-(54, 'property', NULL, '{}'),
-(55, 'property', NULL, '{}'),
-(56, 'property', NULL, '{}'),
-(57, 'property', NULL, '{}'),
-(58, 'property', NULL, '{}'),
-(59, 'property', NULL, '{}'),
-(60, 'property', NULL, '{}'),
-(61, 'property', NULL, '{}'),
-(62, 'property', NULL, '{}'),
-(63, 'property', NULL, '{}'),
-(64, 'property', NULL, '{}'),
-(65, 'property', NULL, '{}'),
-(66, 'property', NULL, '{}'),
-(67, 'property', NULL, '{}'),
-(68, 'property', NULL, '{}'),
-(69, 'property', NULL, '{}'),
-(70, 'property', NULL, '{}'),
-(71, 'property', NULL, '{}'),
-(72, 'property', NULL, '{}'),
-(73, 'property', NULL, '{}'),
-(74, 'property', NULL, '{}'),
-(75, 'user_mask', 'char1:cad1f8b3b912fb6a61e9a9451d29099419310b10', '{}'),
-(76, 'property', 'char1:cad1f8b3b912fb6a61e9a9451d29099419310b10', '{}'),
-(77, 'user_glasses', 'char1:cad1f8b3b912fb6a61e9a9451d29099419310b10', '{}'),
-(78, 'user_ears', 'char1:cad1f8b3b912fb6a61e9a9451d29099419310b10', '{}'),
-(79, 'user_helmet', 'char1:cad1f8b3b912fb6a61e9a9451d29099419310b10', '{}'),
-(80, 'property', NULL, '{}'),
-(81, 'property', NULL, '{}'),
-(82, 'property', NULL, '{}'),
-(83, 'property', NULL, '{}'),
-(84, 'property', NULL, '{}'),
-(85, 'property', NULL, '{}'),
-(86, 'property', NULL, '{}'),
-(87, 'property', NULL, '{}'),
-(88, 'property', NULL, '{}'),
-(89, 'property', NULL, '{}');
 
 -- --------------------------------------------------------
 
@@ -462,6 +397,16 @@ INSERT INTO `jobs` (`name`, `label`, `whitelisted`) VALUES
 ('shop08', 'Shop08', 1),
 ('shop09', 'Shop09', 1),
 ('shop10', 'Shop10', 1),
+('shop11', 'Shop11', 1),
+('shop12', 'Shop12', 1),
+('shop13', 'Shop13', 1),
+('shop14', 'Shop14', 1),
+('shop15', 'Shop15', 1),
+('shop16', 'Shop16', 1),
+('shop17', 'Shop17', 1),
+('shop18', 'Shop18', 1),
+('shop19', 'Shop19', 1),
+('shop20', 'Shop20', 1),
 ('slaughterer', 'Boucher', 0),
 ('tailor', 'Tailleur', 0),
 ('taxi', 'Taxi', 1),
@@ -548,7 +493,27 @@ INSERT INTO `job_grades` (`id`, `job_name`, `grade`, `name`, `label`, `salary`, 
 (55, 'shop09', 0, 'employee', 'Employé', 0, '{}', '{}'),
 (56, 'shop09', 1, 'boss', 'Patron', 0, '{}', '{}'),
 (57, 'shop10', 0, 'employee', 'Employé', 0, '{}', '{}'),
-(58, 'shop10', 1, 'boss', 'Patron', 0, '{}', '{}');
+(58, 'shop10', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(59, 'shop11', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(60, 'shop11', 1, 'boss', 'Patron', 1, '{}', '{}'),
+(61, 'shop12', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(62, 'shop12', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(63, 'shop13', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(64, 'shop13', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(65, 'shop14', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(66, 'shop14', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(67, 'shop15', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(68, 'shop15', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(69, 'shop16', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(70, 'shop16', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(71, 'shop17', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(72, 'shop17', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(73, 'shop18', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(74, 'shop18', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(75, 'shop19', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(76, 'shop19', 1, 'boss', 'Patron', 0, '{}', '{}'),
+(77, 'shop20', 0, 'employee', 'Employé', 0, '{}', '{}'),
+(78, 'shop20', 1, 'boss', 'Patron', 0, '{}', '{}');
 
 -- --------------------------------------------------------
 
@@ -671,6 +636,13 @@ CREATE TABLE `player_outfit_codes` (
   `outfitid` int(11) NOT NULL,
   `code` varchar(50) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `player_outfit_codes`
+--
+
+INSERT INTO `player_outfit_codes` (`id`, `outfitid`, `code`) VALUES
+(1, 1, 'PSoGvpvC3D');
 
 -- --------------------------------------------------------
 
@@ -1295,7 +1267,7 @@ ALTER TABLE `billing`
 -- AUTO_INCREMENT pour la table `datastore_data`
 --
 ALTER TABLE `datastore_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `fine_types`
@@ -1307,7 +1279,7 @@ ALTER TABLE `fine_types`
 -- AUTO_INCREMENT pour la table `job_grades`
 --
 ALTER TABLE `job_grades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT pour la table `ox_doorlock`
@@ -1331,7 +1303,7 @@ ALTER TABLE `player_outfits`
 -- AUTO_INCREMENT pour la table `player_outfit_codes`
 --
 ALTER TABLE `player_outfit_codes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `society_moneywash`

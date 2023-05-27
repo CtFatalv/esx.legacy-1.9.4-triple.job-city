@@ -305,6 +305,52 @@ Config.Garages = { -- Garages Config
       { Pos = vector3(908.89, -174.21, 74.17)},
     }
   },
+  
+  Ems1 = {
+    Label = 'EMS',
+    Type = 'car',
+    Blip = false,
+    NotFree = true,
+    Coords = vector3(316.91, -1479.11, 29.80), 
+    PedHeading = 270.78,
+    Players = {
+      
+    },
+    Groups = {
+       {'ambulance'}
+    },
+    SpawnPoint = {
+      { Pos = vector3(331.37, -1468.44, 29.47), Heading = 229.73 },
+      { Pos = vector3(328.47, -1471.86, 29.53), Heading = 230.43 },
+      { Pos = vector3(325.64, -1475.27, 29.58), Heading = 229.84 },
+      { Pos = vector3(322.68, -1478.83, 29.58), Heading = 230.67 },
+    },
+    DeletePoint = {
+      { Pos = vector3(349.17, -1507.70, 29.44)},
+    }
+  },
+  
+  Ems2 = {
+    Label = 'EMS',
+    Type = 'air',
+    Blip = false,
+    NotFree = true,
+    Coords = vector3(314.54, -1450.51, 46.51), 
+    PedHeading = 274.96,
+    Players = {
+      
+    },
+    Groups = {
+       {'ambulance'}      
+    },
+    SpawnPoint = {
+      { Pos = vector3(299.43, -1453.30, 46.90), Heading = 319.81 },
+      { Pos = vector3(313.63, -1464.89, 46.90), Heading = 320.30 },
+    },
+    DeletePoint = {
+      { Pos = vector3(290.69, -1442.49, 46.94)},
+    }
+  },
 
 }
 

@@ -63,6 +63,12 @@ return {
 		}
 	},
 
+	['medikit'] = {
+		label = 'Medikit',
+		stack = true,
+		weight = 10,
+	},
+
 	['black_money'] = {
 		label = 'Dirty Money',
 	},
@@ -378,6 +384,66 @@ return {
     
     ['shop10'] = {
       label = 'Epicerie N°10',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop11'] = {
+      label = 'Epicerie N°11',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop12'] = {
+      label = 'Epicerie N°12',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop13'] = {
+      label = 'Epicerie N°13',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop14'] = {
+      label = 'Epicerie N°14',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop15'] = {
+      label = 'Epicerie N°15',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop16'] = {
+      label = 'Epicerie N°16',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop17'] = {
+      label = 'Epicerie N°17',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop18'] = {
+      label = 'Epicerie N°18',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop19'] = {
+      label = 'Epicerie N°19',
+		stack = false,
+		weight = 0,
+    },
+    
+    ['shop20'] = {
+      label = 'Epicerie N°20',
 		stack = false,
 		weight = 0,
     },
