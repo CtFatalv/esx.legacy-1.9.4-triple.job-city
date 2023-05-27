@@ -142,6 +142,96 @@ Item('shop10', function(data, slot)
 	end)
 end)
 
+Item('shop11', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop11')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°11", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop12', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop12')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°12", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop13', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop13')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°13", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop14', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop14')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°14", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop15', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop15')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°15", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop16', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop16')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°16", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop17', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop17')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°17", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop18', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop18')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°18", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop19', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop19')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°19", "info", 3000)        
+        end
+	end)
+end)
+
+Item('shop20', function(data, slot)
+	ox_inventory:useItem(data, function(data)
+		if data then   
+			TriggerServerEvent('oxshops:addshop20')
+            ESX.ShowNotification("Vous êtes maintenat propriétaire du shop N°20", "info", 3000)        
+        end
+	end)
+end)
+
 Item('bandage', function(data, slot)
 	local maxHealth = GetEntityMaxHealth(cache.ped)
 	local health = GetEntityHealth(cache.ped)
