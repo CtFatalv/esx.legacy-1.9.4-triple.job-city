@@ -1,10 +1,10 @@
 {
-  "language": "English",
+  "language": "Türkçe",
   "ui": {
-    "cancel": "Cancel",
-    "close": "Close",
-    "confirm": "Confirm",
-    "more": "More..."
+    "cancel": "İptal",
+    "close": "Kapat",
+    "confirm": "Onayla",
+    "more": "Daha Fazla..."
   },
   "txadmin_announcement": "Server announcement by %s",
   "txadmin_dm": "Direct Message from %s",

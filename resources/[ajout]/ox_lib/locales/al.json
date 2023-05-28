@@ -1,9 +1,9 @@
 {
-  "language": "English",
+  "language": "Shqip",
   "ui": {
     "cancel": "Cancel",
-    "close": "Close",
-    "confirm": "Confirm",
+    "close": "Mbylle",
+    "confirm": "Konfirmo",
     "more": "More..."
   },
   "txadmin_announcement": "Server announcement by %s",

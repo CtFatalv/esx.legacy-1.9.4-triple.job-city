@@ -1,10 +1,10 @@
 {
-  "language": "English",
+  "language": "Deutsch",
   "ui": {
-    "cancel": "Cancel",
-    "close": "Close",
-    "confirm": "Confirm",
-    "more": "More..."
+    "cancel": "Abbrechen",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "more": "Mehr..."
   },
   "txadmin_announcement": "Server announcement by %s",
   "txadmin_dm": "Direct Message from %s",
