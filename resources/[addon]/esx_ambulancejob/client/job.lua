@@ -271,6 +271,41 @@ AddEventHandler('esx_ambulancejob:PlayerDistressed', function(Player)
 	end
 end)
 
+AddEventHandler('esx_ambulancejob:factureems', function()	
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'ambulance' then
+local elements = {
+    {unselectable = true, icon = "fas fa-scroll", title = TranslateCap('ambulance')},
+    {icon = "fas fa-scroll", title = TranslateCap('billing'), value = "billing"},
+}
+ESX.OpenContext("right", elements, function(menu,element)
+    if element.value == "billing" then
+        local elements2 = {
+            {unselectable = true, icon = "fas fa-scroll", title = element.title},
+            {title = "Amount", input = true, inputType = "number", inputMin = 1, inputMax = 200000, inputPlaceholder = "Amount to bill.."},
+            {icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
+        }
+
+        ESX.OpenContext("right", elements2, function(menu2,element2)
+            local amount = tonumber(menu2.eles[2].inputValue)
+            if amount == nil then
+                ESX.ShowNotification(TranslateCap('amount_invalid'))
+            else
+                ESX.CloseContext()
+                local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+                if closestPlayer == -1 or closestDistance > 3.0 then
+                    ESX.ShowNotification(TranslateCap('no_players_near'))
+                else
+                    TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_ambulance',
+                        'ambulance', amount)
+                    ESX.ShowNotification(TranslateCap('billing_sent'))
+                end
+            end
+        end)
+    end
+end)
+end
+end)
+
 exports.ox_target:addBoxZone({
     coords =  vector3(231.61, -1368.27, 39.43),
     size = vec3(0.6, 0.2, 0.1),

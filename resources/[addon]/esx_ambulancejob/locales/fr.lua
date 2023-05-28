@@ -82,4 +82,9 @@ Locales['fr'] = {
   -- Blips
   ['blip_hospital'] = 'hôpital',
   ['blip_dead'] = 'joueur inconscient',
+  -- Facture
+  ['billing'] = 'facturation',
+  ['billing_sent'] = 'la facture a bien été enregistrée!',
+  ['invoice_amount'] = 'montant de la facture',
+  ['no_players_near'] = 'aucun joueur à proximité',
 }

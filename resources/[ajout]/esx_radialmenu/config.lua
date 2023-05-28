@@ -544,7 +544,14 @@ Config.JobInteractions = {
             type = 'client',
             event = 'esx_ambulancejob:actionMenu',
             shouldClose = true
-           },
+        } ,{
+            id = 'emsfacturation',
+            title = 'Facturation',
+            icon = 'list',
+            type = 'client',
+            event = 'esx_ambulancejob:factureems',
+            shouldClose = true
+		   },
         },
     -- ["hotdog"] = {
     --     {
