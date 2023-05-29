@@ -327,6 +327,12 @@ return {
 		weight = 10,
 	},
 
+	['medikit'] = {
+		label = 'Kit de soin',
+		stack = true,
+		weight = 10,
+	},
+
     -- SHOP PLAYER
     ['shop01'] = {
       label = 'Epicerie N°1',
