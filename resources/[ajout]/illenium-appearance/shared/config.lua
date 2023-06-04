@@ -14,7 +14,7 @@ Config.RCoreTattoosCompatibility = false
 
 Config.AsynchronousLoading = false -- Change this to false if you want the NUI data to load before displaying the appearance UI
 
-Config.UseTarget = true
+Config.UseTarget = false
 
 Config.TextUIOptions = {
     position = "left-center"
@@ -37,12 +37,16 @@ Config.EnablePedMenu = true
 Config.PedMenuGroup = "group.admin"
 
 Config.ShowNearestShopOnly = false
-Config.HideRadar = true -- Hides the minimap while the appearance menu is open
+Config.HideRadar = false -- Hides the minimap while the appearance menu is open
 Config.NearestShopBlipUpdateDelay = 10000
 
 Config.InvincibleDuringCustomization = true
 
 Config.PreventTrackerRemoval = true -- Disables "Scarf and Chains" section if the player has tracker
+Config.TrackerClothingOptions = {
+    drawable = 13,
+    texture = 0
+}
 
 Config.NewCharacterSections = {
     Ped = true,
@@ -58,7 +62,7 @@ Config.GenderBasedOnPed = true
 
 Config.AlwaysKeepProps = false
 
-Config.PersistUniforms = true -- Keeps Job / Gang Outfits on player reconnects / logout
+Config.PersistUniforms = false -- Keeps Job / Gang Outfits on player reconnects / logout
 Config.OnDutyOnlyClothingRooms = false -- Set to `true` to make the clothing rooms accessible only to players who are On Duty
 
 Config.BossManagedOutfits = false -- Allows Job / Gang bosses to manage their own job / gang outfits
@@ -76,12 +80,12 @@ Config.DisableComponents = {
     Masks = false,
     UpperBody = false,
     LowerBody = false,
-    Bags = true,
+    Bags = false,
     Shoes = false,
     ScarfAndChains = false,
-    BodyArmor = true,
+    BodyArmor = false,
     Shirts = false,
-    Decals = true,
+    Decals = false,
     Jackets = false
 }
 
@@ -114,14 +118,14 @@ Config.Blips = {
         Color = 4,
         Scale = 0.7,
         Name = "Tattoo Shop",
-    }
---[[    ["surgeon"] = {
+    },
+    ["surgeon"] = {
         Show = true,
         Sprite = 102,
         Color = 4,
         Scale = 0.7,
         Name = "Plastic Surgeon",
-    }]]
+    }
 }
 
 Config.TargetConfig = {
@@ -146,13 +150,13 @@ Config.TargetConfig = {
         label = "Open Tattoo Shop",
         distance = 3
     },
---[[    ["surgeon"] = {
+    ["surgeon"] = {
         model = "s_m_m_doctor_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
         icon = "fas fa-scalpel",
         label = "Open Surgeon",
         distance = 3
-    },]]
+    },
     ["clothingroom"] = {
         model = "mp_g_m_pros_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
@@ -536,8 +540,8 @@ Config.Stores = {
             vector3(-298.23013305664, 6199.2451171875, 31.49),
             vector3(-294.1501159668, 6203.2700195312, 31.49)
         }
-    }
---[[    {
+    },
+    {
         type = "surgeon",
         coords = vector4(298.78, -572.81, 43.26, 114.27),
         size = vector3(4, 4, 4),
@@ -549,7 +553,7 @@ Config.Stores = {
             vector3(293.56317138672, -572.60675048828, 43.26),
             vector3(296.28656005859, -570.330078125, 43.26)
         }
-    }]]
+    }
 }
 
 
@@ -570,34 +574,14 @@ Config.ClothingRooms = {
             vector3(454.35513305664, -988.46459960938, 30.69),
             vector3(460.4231262207, -987.94573974609, 30.69)
         }
-    },
-	{
-        job = "taxi",
-        coords = vector4(897.44, -162.66, 81.60, 331.22),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        points = {
-            vector3(897.44, -162.66, 81.60)
-        }
-    },
-    {
-        job = "ambulance",
-        coords = vector4(266.91, -1362.16, 24.54, 232.05),
-        size = vector3(4, 4, 4),
-        rotation = 232,
-        usePoly = false,
-        points = {
-            vector3(266.91, -1362.16, 24.54)
-        }
     }
 }
 
---[[
+
 Config.PlayerOutfitRooms = {
     -- Sample outfit room config
-    {
-        job = "dzdzdz",
+--[[    {
+        job = "police",
         coords = vector4(287.28, -573.41, 43.16, 79.61),
         size = vector3(4, 4, 4),
         rotation = 45,
@@ -609,11 +593,10 @@ Config.PlayerOutfitRooms = {
             vector3(289.0, -574.75, 43.16)
         },
         citizenIDs = {
-            --"char1:3069bd0212b6d515f7464a32ee0084ee0222d130"
+            "BHH65156"
         }
-    }
+    }]]--
 }
-]]
 
 Config.Outfits = {
     ["police"] = {
@@ -791,7 +774,7 @@ Config.Outfits = {
             }
         }
     },
-    ["taxi"] = {
+    ["realestate"] = {
         ["Male"] = {
             {
                 -- Outfits

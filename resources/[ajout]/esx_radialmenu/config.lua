@@ -4,7 +4,7 @@ Config.MenuItems = {
     [1] = {
         id = 'citizen',
         --title = 'Citizen',
-		title = 'A venir',
+		title = 'Activitées',
         icon = 'user',
         items = {
             -- {
@@ -16,6 +16,17 @@ Config.MenuItems = {
             --     shouldClose = true
             -- },
             {
+                id = 'handsup',
+          --      title = 'Hands Up',
+		title = 'Plongé sous-marine',
+                id = 'escort554',
+                title = 'plongee',
+                icon = 'child',
+                type = 'client',
+                event = 'esxoceansalvage:startplongee',
+                shouldClose = true
+            },
+          --[[  {
                 id = 'handsup',
           --      title = 'Hands Up',
 		title = 'A venir',
@@ -71,14 +82,14 @@ Config.MenuItems = {
                         shouldClose = true
                     }, {
                         id = 'escort554',
-                        title = 'Hostage',
+                        title = 'plongee',
                         icon = 'child',
-                        type = 'cmd',
-                        event = 'TakeHostage',
+                        type = 'client',
+                        event = 'carry',
                         shouldClose = true
                     }
                 }
-            }
+            }]]
         }
     },
     [2] = {

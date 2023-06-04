@@ -327,12 +327,117 @@ return {
 		weight = 10,
 	},
 
-	['medikit'] = {
-		label = 'Kit de soin',
-		stack = true,
-		weight = 10,
+	['chalumeau'] = {
+		label = 'Chalumeau',
+		weight = 450,
+		stack = false,
+		close = false,
 	},
 
+	['petitcoffre'] = {
+		label = 'Petit coffre rempli d\'or',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['piecedor'] = {
+		label = 'piece en or',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['rhumancien'] = {
+		label = 'Vielle bouteille de rhum',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['tenue_plongee'] = {
+		label = 'Combinaison de plongée',
+		weight = 450,
+		stack = false,
+		close = false,
+	},
+
+	['bouteilleplongee'] = {
+		label = 'Bouteille de Plongée',
+		weight = 450,
+		stack = false,
+		close = false,
+	},
+
+	['bouteilleplongeevide'] = {
+		label = 'Bouteille de Plongée vide',
+		weight = 450,
+		stack = false,
+		close = false,
+	},
+
+	['compresseur'] = {
+		label = 'Compresseur',
+		weight = 450,
+		stack = false,
+		close = false,
+	},
+
+   	['copper'] = {
+		label = 'Copper',
+		weight = 750,
+		stack = true,
+		close = false,
+	},
+
+	['diamond'] = {
+		label = 'Diamond',
+		weight = 105,
+		stack = true,
+		close = false,
+	},
+
+	['gold'] = {
+		label = 'Gold Bar',
+		weight = 950,
+		stack = false,
+		close = false,
+	},
+
+	['iron'] = {
+		label = 'Iron',
+		weight = 750,
+		stack = true,
+		close = false,
+	},
+
+	['steel'] = {
+		label = 'Steel',
+		weight = 610,
+		stack = true,
+		close = false,
+	},
+
+	['emerald'] = {
+		label = 'Emerald',
+		weight = 105,
+		stack = true,
+		close = false,
+	},
+
+	['pickaxe'] = {
+		label = 'Pickaxe',
+		weight = 450,
+		stack = false,
+		close = false,
+	},
+
+	['clevoiture'] = {
+		label = 'Clé de voiture',
+		weight = 450,
+		stack = false,
+		close = false,
+	},
     -- SHOP PLAYER
     ['shop01'] = {
       label = 'Epicerie N°1',
