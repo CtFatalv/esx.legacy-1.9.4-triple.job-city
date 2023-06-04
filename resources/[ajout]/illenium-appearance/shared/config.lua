@@ -76,12 +76,12 @@ Config.DisableComponents = {
     Masks = false,
     UpperBody = false,
     LowerBody = false,
-    Bags = true,
+    Bags = false,
     Shoes = false,
     ScarfAndChains = false,
-    BodyArmor = true,
+    BodyArmor = false,
     Shirts = false,
-    Decals = true,
+    Decals = false,
     Jackets = false
 }
 
@@ -170,6 +170,22 @@ Config.TargetConfig = {
 }
 
 Config.Stores = {
+    {
+        type = "clothing",
+        coords = vector3(-1610.52, 5256.97, 3.97),
+        size = vector3(4, 4, 4),
+        rotation = 45,
+        usePoly = false, -- false => uses the size + rotation to create the zone | true => uses points to create the zone
+        showBlip = true, -- overrides the blip visibilty configured above for the group
+        --targetModel = "s_m_m_doctor_01", -- overrides the target ped configured for the group
+        --targetScenario = "" -- overrides the target scenario configure for the group
+        points = {
+            vector3(1686.9018554688, 4829.8330078125, 42.07),
+            vector3(1698.8566894531, 4831.4604492188, 42.07),
+            vector3(1700.2448730469, 4817.7734375, 42.07),
+            vector3(1688.3682861328, 4816.2954101562, 42.07)
+        }
+    },
     {
         type = "clothing",
         coords = vector4(1693.2, 4828.11, 42.07, 188.66),
@@ -556,43 +572,9 @@ Config.Stores = {
 Config.ClothingRooms = {
     {
         job = "police",
-        coords = vector4(463.41, -999.34, 30.69, 71.81),
+        coords = vector4(454.91, -990.89, 30.69, 193.4),
         size = vector3(4, 4, 4),
         rotation = 45,
-        usePoly = false,
-        points = {
-            vector3(460.41918945312, -993.11444091797, 30.69),
-            vector3(449.39508056641, -993.60614013672, 30.69),
-            vector3(449.88696289062, -990.23779296875, 30.69),
-            vector3(450.97882080078, -989.71411132812, 30.69),
-            vector3(451.0325012207, -987.89904785156, 30.69),
-            vector3(453.47863769531, -987.76928710938, 30.69),
-            vector3(454.35513305664, -988.46459960938, 30.69),
-            vector3(460.4231262207, -987.94573974609, 30.69)
-        }
-    },
-    {
-        job = "ambulance",
-        coords = vector4(1231.75, -1492.32, 34.69, 90.04),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        points = {
-            vector3(460.41918945312, -993.11444091797, 30.69),
-            vector3(449.39508056641, -993.60614013672, 30.69),
-            vector3(449.88696289062, -990.23779296875, 30.69),
-            vector3(450.97882080078, -989.71411132812, 30.69),
-            vector3(451.0325012207, -987.89904785156, 30.69),
-            vector3(453.47863769531, -987.76928710938, 30.69),
-            vector3(454.35513305664, -988.46459960938, 30.69),
-            vector3(460.4231262207, -987.94573974609, 30.69)
-        }
-    },
-    {
-        job = "ambulance",
-        coords = vector4(298.46, -599.38, 43.28, 325.36),
-        size = vector3(4, 4, 4),
-        rotation = 325.36,
         usePoly = false,
         points = {
             vector3(460.41918945312, -993.11444091797, 30.69),
@@ -607,12 +589,22 @@ Config.ClothingRooms = {
     },
 	{
         job = "taxi",
-        coords = vector4(893.96, -172.76, 74.68, 304.73),
+        coords = vector4(897.44, -162.66, 81.60, 331.22),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
         points = {
-            vector3(893.96, -172.76, 74.68)
+            vector3(897.44, -162.66, 81.60)
+        }
+    },
+    {
+        job = "ambulance",
+        coords = vector4(266.91, -1362.16, 24.54, 232.05),
+        size = vector3(4, 4, 4),
+        rotation = 232,
+        usePoly = false,
+        points = {
+            vector3(266.91, -1362.16, 24.54)
         }
     }
 }
