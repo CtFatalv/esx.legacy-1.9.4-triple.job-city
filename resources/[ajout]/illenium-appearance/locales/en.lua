@@ -2,356 +2,356 @@ Locales["en"] = {
     UI = {
         modal = {
             save = {
-                title = "Enregistrer",
-                description = "tu resteras moche"
+                title = "Save customization",
+                description = "You will remain ugly"
             },
             exit = {
-                title = "Quitter",
-                description = "Aucun changement ne sera enregistré"
+                title = "Exit customization",
+                description = "No changes will be saved"
             },
-            accept = "Oui",
-            decline = "Non"
+            accept = "Yes",
+            decline = "No"
         },
         ped = {
             title = "Ped",
-            model = "Modèle"
+            model = "Model"
         },
         headBlend = {
-            title = "Héritage",
+            title = "Inheritance",
             shape = {
-                title = "Visage",
-                firstOption = "Père",
-                secondOption = "Mère",
+                title = "Face",
+                firstOption = "Father",
+                secondOption = "Mother",
                 mix = "Mix"
             },
             skin = {
-                title = "Peau",
-                firstOption = "Père",
-                secondOption = "Mère",
+                title = "Skin",
+                firstOption = "Father",
+                secondOption = "Mother",
                 mix = "Mix"
             },
             race = {
                 title = "Race",
-                shape = "Visage",
-                skin = "Peau",
+                shape = "Shape",
+                skin = "Skin",
                 mix = "Mix"
             }
         },
         faceFeatures = {
-            title = "Caractéristiques du visage",
+            title = "Face Features",
             nose = {
-                title = "Nez",
-                width = "Largeur",
-                height = "Hauteur",
-                size = "Taille",
-                boneHeight = "Hauteur",
-                boneTwist = "Torsion",
-                peakHeight = "Hauteur maximale"
+                title = "Nose",
+                width = "Width",
+                height = "Height",
+                size = "Size",
+                boneHeight = "Bone height",
+                boneTwist = "Bone twist",
+                peakHeight = "Peak height"
             },
             eyebrows = {
-                title = "Sourcils",
-                height = "Hauteur",
-                depth = "Profondeur"
+                title = "Eyebrows",
+                height = "Height",
+                depth = "Depth"
             },
             cheeks = {
-                title = "Joues",
-                boneHeight = "Hauteur",
-                boneWidth = "Largeur 1",
-                width = "Largeur 2"
+                title = "Cheeks",
+                boneHeight = "Bone height",
+                boneWidth = "Bone width",
+                width = "Width"
             },
             eyesAndMouth = {
-                title = "Yeux et bouche",
-                eyesOpening = "Ouverture des yeux",
-                lipsThickness = "Épaisseur des lèvres"
+                title = "Eyes and Mouth",
+                eyesOpening = "Eyes opening",
+                lipsThickness = "Lip thickness"
             },
             jaw = {
-                title = "Mâchoire",
-                width = "Largeur",
-                size = "Taille"
+                title = "Jaw",
+                width = "Width",
+                size = "Size"
             },
             chin = {
-                title = "Menton",
-                lowering = "Abaissement",
-                length = "Longueur",
-                size = "Taille",
-                hole = "Taille du Creux"
+                title = "Chin",
+                lowering = "Lowering",
+                length = "Length",
+                size = "Size",
+                hole = "Hole size"
             },
             neck = {
-                title = "Cou",
-                thickness = "Épaisseur"
+                title = "Neck",
+                thickness = "Thickness"
             }
         },
         headOverlays = {
-            title = "Apparence",
+            title = "Appearance",
             hair = {
-                title = "Cheveux",
+                title = "Hair",
                 style = "Style",
-                color = "Couleur",
+                color = "Color",
                 highlight = "Highlight",
                 texture = "Texture",
                 fade = "Fade"
             },
-            opacity = "Opacité",
+            opacity = "Opacity",
             style = "Style",
-            color = "Couleur",
-            secondColor = "Couleur de base",
-            blemishes = "Imperfections",
-            beard = "Barbe",
-            eyebrows = "Sourcils",
-            ageing = "Vieillissement",
-            makeUp = "Maquillage",
+            color = "Color",
+            secondColor = "Secondary Color",
+            blemishes = "Blemishes",
+            beard = "Beard",
+            eyebrows = "Eyebrows",
+            ageing = "Ageing",
+            makeUp = "Make up",
             blush = "Blush",
             complexion = "Complexion",
-            sunDamage = "Dégâts du soleil",
+            sunDamage = "Sun damage",
             lipstick = "Lipstick",
-            moleAndFreckles = "Taches de rousseur",
-            chestHair = "Poils du torse",
-            bodyBlemishes = "Imperfections corporelles",
-            eyeColor = "Couleur des yeux"
+            moleAndFreckles = "Mole and Freckles",
+            chestHair = "Chest hair",
+            bodyBlemishes = "Body blemishes",
+            eyeColor = "Eye color"
         },
         components = {
-            title = "Vêtements",
+            title = "Clothes",
             drawable = "Drawable",
             texture = "Texture",
-            mask = "Masque",
-            upperBody = "Haut du Corps",
-            lowerBody = "Bas du Corps",
-            bags = "Sacs et parachute",
-            shoes = "Chaussures",
-            scarfAndChains = "Écharpe et chaînes",
-            shirt = "T-Shirt",
+            mask = "Mask",
+            upperBody = "Hands",
+            lowerBody = "Legs",
+            bags = "Bags and parachute",
+            shoes = "Shoes",
+            scarfAndChains = "Scarf and chains",
+            shirt = "Shirt",
             bodyArmor = "Body armor",
             decals = "Decals",
-            jackets = "Vestes",
-            head = "Tête"
+            jackets = "Jackets",
+            head = "Head"
         },
         props = {
             title = "Props",
             drawable = "Drawable",
             texture = "Texture",
-            hats = "Chapeaux et casques",
-            glasses = "Lunettes",
-            ear = "Accessoires d'oreille",
-            watches = "Montres",
+            hats = "Hats and helmets",
+            glasses = "Glasses",
+            ear = "Ear",
+            watches = "Watches",
             bracelets = "Bracelets"
         },
         tattoos = {
             title = "Tattoos",
             items = {
                 ZONE_TORSO = "Torso",
-                ZONE_HEAD = "Tête",
-                ZONE_LEFT_ARM = "Bras gauche",
-                ZONE_RIGHT_ARM = "Bras droit",
-                ZONE_LEFT_LEG = "Jambe gauche",
-                ZONE_RIGHT_LEG = "Jambe droite"
+                ZONE_HEAD = "Head",
+                ZONE_LEFT_ARM = "Left arm",
+                ZONE_RIGHT_ARM = "Right arm",
+                ZONE_LEFT_LEG = "Left leg",
+                ZONE_RIGHT_LEG = "Right leg"
             },
-            apply = "Appliquer",
-            delete = "Supprimer",
-            deleteAll = "Supprimer tous les tatouages",
-            opacity = "Opacité"
+            apply = "Apply",
+            delete = "Remove",
+            deleteAll = "Remove all Tattoos",
+            opacity = "Opacity"
         }
     },
     outfitManagement = {
-        title = "Gestion de tenues",
-        jobText = "Gérer les tenues pour le travail",
-        gangText = "Gérer les tenues pour le gang"
+        title = "Outfit Management",
+        jobText = "Manage outfits for Job",
+        gangText = "Manage outfits for Gang"
     },
     cancelled = {
-        title = "Personnalisation annulée",
-        description = "Personnalisation non enregistrée"
+        title = "Cancelled Customization",
+        description = "Customization not saved"
     },
     outfits = {
         import = {
-            title = "Entrer le code de la tenue",
-            menuTitle = "Importer la tenue",
-            description = "Importer une tenue à partir d'un code de partage",
+            title = "Enter outfit code",
+            menuTitle = "Import Outfit",
+            description = "Import an outfit from a sharing code",
             name = {
-                label = "Nom de la tenue",
-                placeholder = "Une belle tenue",
-                default = "Tenue importée"
+                label = "Name the Outfit",
+                placeholder = "A nice outfit",
+                default = "Imported Outfit"
             },
             code = {
-                label = "Code de la tenue"
+                label = "Outfit Code"
             },
             success = {
-                title = "Tenue importée",
-                description = "Vous pouvez maintenant changer de tenue en utilisant le menu des tenues"
+                title = "Outfit Imported",
+                description = "You can now change to the outfit using the outfit menu"
             },
             failure = {
-                title = "Échec de l'importation",
-                description = "Code de tenue non valide"
+                title = "Import Failure",
+                description = "Invalid outfit code"
             }
         },
         generate = {
-            title = "Générer un code de tenue",
-            description = "Générer un code de tenue pour le partage",
+            title = "Generate Outfit Code",
+            description = "Generate an outfit code for sharing",
             failure = {
-                title = "Quelque chose s'est mal passé",
-                description = "La génération du code a échoué pour la tenue"
+                title = "Something went wrong",
+                description = "Code generation failed for the outfit"
             },
             success = {
-                title = "Code de tenue généré",
-                description = "Voici votre code de tenue"
+                title = "Outfit Code Generated",
+                description = "Here is your outfit code"
             }
         },
         save = {
-            menuTitle = "Enregistrer la tenue actuelle",
-            menuDescription = "Enregistrer votre tenue actuelle en tant que tenue %s",
-            description = "Enregistrer votre tenue actuelle",
-            title = "Nommez votre tenue",
-            managementTitle = "Détails de gestion des tenues",
+            menuTitle = "Save current Outfit",
+            menuDescription = "Save your current outfit as %s outfit",
+            description = "Save your current outfit",
+            title = "Name your outfit",
+            managementTitle = "Management Outfit Details",
             name = {
-                label = "Nom de la tenue",
-                placeholder = "Tenue très cool"
+                label = "Outfit Name",
+                placeholder = "Very cool outfit"
             },
             gender = {
-                label = "Genre",
-                male = "Homme",
-                female = "Femme"
+                label = "Gender",
+                male = "Male",
+                female = "Female"
             },
             rank = {
-                label = "Rang minimum"
+                label = "Minimum Rank"
             },
             failure = {
-                title = "Échec de l'enregistrement",
-                description = "Une tenue avec ce nom existe déjà"
+                title = "Save Failed",
+                description = "Outfit with this name already exists"
             },
             success = {
-                title = "Succès",
-                description = "Tenue %s enregistrée"
+                title = "Success",
+                description = "Outfit %s has been saved"
             }
         },
         update = {
-            title = "Mettre à jour la tenue",
-            description = "Enregistrer vos vêtements actuels dans une tenue existante",
+            title = "Update Outfit",
+            description = "Save your current clothing to an existing outfit",
             failure = {
-                title = "Échec de la mise à jour",
-                description = "Cette tenue n'existe pas"
+                title = "Update Failed",
+                description = "That outfit does not exist"
             },
             success = {
-                title = "Succès",
-                description = "La tenue %s a été mise à jour"
+                title = "Success",
+                description = "Outfit %s has been updated"
             }
         },
         change = {
-            title = "Changer de tenue",
-            description = "Choisissez parmi toutes vos tenues %s enregistrées",
-            pDescription = "Choisissez parmi toutes vos tenues enregistrées",
+            title = "Change Outfit",
+            description = "Pick from any of your currently saved %s outfits",
+            pDescription = "Pick from any of your currently saved outfits",
             failure = {
-                title = "Quelque chose s'est mal passé",
-                description = "La tenue que vous essayez de changer n'a pas d'apparence de base",
+                title = "Something went wrong",
+                description = "The outfit that you're trying to change to, does not have a base appearance",
             }
         },
         delete = {
-            title = "Supprimer la tenue",
-            description = "Supprimer une tenue enregistrée %s",
-            mDescription = "Supprimer n'importe laquelle de vos tenues enregistrées",
+            title = "Delete Outfit",
+            description = "Delete a saved %s outfit",
+            mDescription = "Delete any of your saved outfits",
             item = {
-                title = 'Supprimer "%s"',
-                description = "Modèle : %s%s"
+                title = 'Delete "%s"',
+                description = "Model: %s%s"
             },
             success = {
-                title = "Succès",
-                description = "Tenue supprimée"
+                title = "Success",
+                description = "Outfit Deleted"
             }
         },
         manage = {
-            title = "👔 | Gérer les tenues %s"
+            title = "👔 | Manage %s Outfits"
         }
     },
     jobOutfits = {
-        title = "Tenues de travail",
-        description = "Choisissez parmi toutes vos tenues de travail"
+        title = "Work Outfits",
+        description = "Pick from any of your work outfits"
     },
     menu = {
-        returnTitle = "Retour",
-        title = "Chambre de vêtements",
-        outfitsTitle = "Tenues du joueur",
-        clothingShopTitle = "Magasin de vêtements",
-        barberShopTitle = "Salon de coiffure",
-        tattooShopTitle = "Salon de tatouage",
-        surgeonShopTitle = "Chirurgien esthétique"
+        returnTitle = "Return",
+        title = "Clothing Room",
+        outfitsTitle = "Player Outfits",
+        clothingShopTitle = "Clothing Shop",
+        barberShopTitle = "Barber Shop",
+        tattooShopTitle = "Tattoo Shop",
+        surgeonShopTitle = "Surgeon Shop"
     },
     clothing = {
-        title = "Acheter des vêtements - %d $",
-        titleNoPrice = "Changer de vêtements",
+        title = "Buy Clothing - $%d",
+        titleNoPrice = "Change Clothing",
         options = {
-            title = "👔 | Options de magasin de vêtements",
-            description = "Choisissez parmi une large gamme d'articles à porter"
+            title = "👔 | Clothing Store Options",
+            description = "Pick from a wide range of items to wear"
         },
         outfits = {
-            title = "👔 | Options de tenue",
+            title = "👔 | Outfit Options",
             civilian = {
-                title = "Tenue civile",
-                description = "Mettre vos vêtements"
+                title = "Civilian Outfit",
+                description = "Put on your clothes"
             }
         }
     },
     commands = {
         reloadskin = {
-            title = "Recharger votre personnage",
+            title = "Reloads your character",
             failure = {
-                title = "Erreur",
-                description = "Vous ne pouvez pas utiliser reloadskin pour le moment"
+                title = "Error",
+                description = "You cannot use reloadskin right now"
             }
         },
         clearstuckprops = {
-            title = "Supprimer tous les accessoires attachés à l'entité",
+            title = "Removes all the props attached to the entity",
             failure = {
-                title = "Erreur",
-                description = "Vous ne pouvez pas utiliser clearstuckprops pour le moment"
+                title = "Error",
+                description = "You cannot use clearstuckprops right now"
             }
         },
         pedmenu = {
-            title = "Ouvrir / Donner le menu de vêtements",
+            title = "Open / Give Clothing Menu",
             failure = {
-                title = "Erreur",
-                description = "Joueur non connecté"
+                title = "Error",
+                description = "Player not online"
             }
         }
     },
     textUI = {
-        clothing = "Magasin de vêtements - Prix : %s $",
-        barber = "Barbier - Prix : %s $",
-        tattoo = "Boutique de tatouages - Prix : %s $",
-        surgeon = "Chirurgien plasticien - Prix : %s $",
-        clothingRoom = "Chambre d'habillage",
-        playerOutfitRoom = "Tenues"
+        clothing = "Clothing Store - Price: $%d",
+        barber = "Barber - Price: $%d",
+        tattoo = "Tattoo Shop - Price: $%d",
+        surgeon = "Plastic Surgeon - Price: $%d",
+        clothingRoom = "Clothing Room",
+        playerOutfitRoom = "Outfits"
     },
     migrate = {
         success = {
-            title = "Succès",
-            description = "%s skins ont été migrées",
-            descriptionSingle = "Skin migré"
+            title = "Success",
+            description = "Migration finished. %s skins migrated",
+            descriptionSingle = "Migrated Skin"
         },
         skip = {
             title = "Information",
-            description = "Skin ignoré"
+            description = "Skipped skin"
         },
         typeError = {
-            title = "Erreur",
-            description = "Type invalide"
+            title = "Error",
+            description = "Invalid type"
         }
     },
     purchase = {
         tattoo = {
             success = {
-                title = "Succès",
-                description = "Tatouage %s acheté pour %s$"
+                title = "Success",
+                description = "Purchased %s tattoo for %s$"
             },
             failure = {
-                title = "Échec de l'application du tatouage",
-                description = "Vous n'avez pas assez d'argent !"
+                title = "Tattoo apply failed",
+                description = "You don't have enough money!"
             }
         },
         store = {
             success = {
-                title = "Succès",
-                description = "Don de %s$ à %s !"
+                title = "Success",
+                description = "Gave $%s to %s!"
             },
             failure = {
-                title = "Exploitation !",
-                description = "Vous n'avez pas assez d'argent ! Vous avez essayé d'exploiter le système !"
+                title = "Exploit!",
+                description = "You didn't have enough money! Tried to exploit the system!"
             }
         }
     }

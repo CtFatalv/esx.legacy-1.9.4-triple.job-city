@@ -1,7 +1,7 @@
-if not Radial.IsQBX() and not Radial.IsQB() then return end
+if not Radial.IsQB() then return end
 
 function Radial.Add(title, event)
-    exports[Radial.ResourceName]:AddOption({
+    exports["qbx-radialmenu"]:AddOption({
         id = Radial.MenuID,
         title = title,
         icon = "shirt",
@@ -12,5 +12,5 @@ function Radial.Add(title, event)
 end
 
 function Radial.Remove()
-    exports[Radial.ResourceName]:RemoveOption(Radial.MenuID)
+    exports["qbx-radialmenu"]:RemoveOption(Radial.MenuID)
 end
