@@ -2,13 +2,41 @@ return {
 	{
 		items = {
 			{
-				name = 'lockpick',
+				name = 'gazbottle',
+				ingredients = {
+					scrapmetal = 3,
+					WEAPON_HAMMER = 0.05
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'chalumeau',
+				ingredients = {
+                    gazbottle = 1,
+					scrapmetal = 2,
+					WEAPON_HAMMER = 0.05
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'fixtool',
 				ingredients = {
 					scrapmetal = 5,
 					WEAPON_HAMMER = 0.05
 				},
 				duration = 5000,
-				count = 2,
+				count = 1,
+			},
+			{
+				name = 'fixkit',
+				ingredients = {
+					scrapmetal = 5,
+					WEAPON_HAMMER = 0.05
+				},
+				duration = 5000,
+				count = 1,
 			},
 		},
 		points = {
