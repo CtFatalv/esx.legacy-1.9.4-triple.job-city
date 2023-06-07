@@ -31,7 +31,6 @@ server_scripts {
 
 	'common/modules/*.lua',
 	'common/functions.lua',
-	'server/modules/advanced.lua',
 	'server/modules/actions.lua',
 	'server/modules/npwd.lua'
 }
