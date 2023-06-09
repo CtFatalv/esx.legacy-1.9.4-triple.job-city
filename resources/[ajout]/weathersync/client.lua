@@ -11,6 +11,7 @@ local adminUiIsOpen = false
 local currentTime
 local currentTimescale = Config.timescale
 
+local blackout = false
 RegisterNetEvent("weathersync:changeWeather")
 RegisterNetEvent("weathersync:changeTime")
 RegisterNetEvent("weathersync:changeTimescale")
@@ -517,6 +518,17 @@ Citizen.CreateThread(function()
 	})
 
 	TriggerServerEvent("weathersync:init")
+end)
+
+RegisterNetEvent('weathersync:blackout')
+AddEventHandler("weathersync:blackout", function()
+    if not blackout then
+		SetArtificialLightsState(true)
+        blackout = true
+    else
+        SetArtificialLightsState(false)
+        blackout = false    
+    end
 end)
 
 if not Config.isRDR then

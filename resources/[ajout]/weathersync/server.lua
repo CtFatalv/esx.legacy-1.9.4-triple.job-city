@@ -380,6 +380,10 @@ RegisterCommand("weathersync", function(source, args, raw)
 	TriggerClientEvent("weathersync:toggleSync", source)
 end, true)
 
+RegisterCommand("blackout", function(source, args, raw)
+	TriggerClientEvent("weathersync:blackout", source)
+end, true)
+
 RegisterCommand("mytime", function(source, args, raw)
 	local h = (args[1] and tonumber(args[1]) or 0)
 	local m = (args[2] and tonumber(args[2]) or 0)

@@ -650,6 +650,18 @@ function menuAdmin()
                         end)
                     end
                 end)
+                
+               	RageUI.ButtonWithStyle("Halloween", "Mettre Halloween", { RightLabel = "→→" }, not cooldown, function(Hovered, Active, Selected)
+                    if Selected then
+                        ExecuteCommand('weather halloween 0 0')
+                        ExecuteCommand('time 00 00 00 3000 0')
+                        TriggerServerEvent("rxwMenuAdmin:Soleil", "Mettre Halloween")
+                        cooldown = true
+                        Citizen.SetTimeout(10000, function()
+                            cooldown = false
+                        end)
+                    end
+                end)
 				RageUI.ButtonWithStyle("Freeze le temps en soleil", "Bloquer le temps sur soleil", { RightLabel = "→→" }, not cooldown, function(Hovered, Active, Selected)
                     if Selected then
                         ExecuteCommand('weather extrasunny 0 1')
@@ -690,6 +702,16 @@ function menuAdmin()
                         ExecuteCommand('time 00 00 00 3000 0')
                         TriggerServerEvent("rxwMenuAdmin:Soleil", "L'horloge est avancé à ~r~minuit")
                         cooldown = true
+                        Citizen.SetTimeout(10000, function()
+                            cooldown = false
+                        end)
+                    end
+                end)
+                RageUI.ButtonWithStyle("Blackout", "Activer/Desactiver le Blackout", { RightLabel = "→→" }, not cooldown, function(Hovered, Active, Selected)
+                    if Selected then
+                        ExecuteCommand('blackout')
+                        TriggerServerEvent("rxwMenuAdmin:Soleil", "Vous avez mis un ~r~Blackout")
+                        cooldown = false
                         Citizen.SetTimeout(10000, function()
                             cooldown = false
                         end)
