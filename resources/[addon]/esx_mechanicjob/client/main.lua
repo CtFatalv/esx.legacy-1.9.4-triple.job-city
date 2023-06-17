@@ -241,22 +241,23 @@ function OpenMobileMechanicActionsMenu()
 		if element.value == "billing" then
 			local elements2 = {
 				{unselectable = true, icon = "fas fa-scroll", title = element.title},
-				{title = "Amount", input = true, inputType = "number", inputMin = 1, inputMax = 250000, inputPlaceholder = "Amount to bill.."},
+				{title = "Amount", input = true, inputType = "number", inputMin = 1, inputMax = 200000, inputPlaceholder = "Amount to bill.."},
 				{icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
 			}
-
+	
 			ESX.OpenContext("right", elements2, function(menu2,element2)
 				local amount = tonumber(menu2.eles[2].inputValue)
-
-				if amount == nil or amount < 0 then
-					ESX.ShowNotification(TranslateCap('amount_invalid'), "error")
+				if amount == nil then
+					ESX.ShowNotification(TranslateCap('amount_invalid'))
 				else
+					ESX.CloseContext()
 					local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 					if closestPlayer == -1 or closestDistance > 3.0 then
-						ESX.ShowNotification(TranslateCap('no_players_nearby'), "error")
+						ESX.ShowNotification(TranslateCap('no_players_near'))
 					else
-						menu.close()
-						TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_mechanic', TranslateCap('mechanic'), amount)
+						TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_mechanic',
+							'mechanic', amount)
+						ESX.ShowNotification(TranslateCap('billing_sent'))
 					end
 				end
 			end)

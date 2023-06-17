@@ -1,4 +1,5 @@
 Locales['fr'] = {
+  ['billing_sent']              = 'Facture envoyé',  
   ['mechanic']                  = 'mécano',
   ['drive_to_indicated']        = 'Conduisez jusqu\'à l\'endroit indiqué',
   ['mission_canceled']          = 'Mission ~r~annulée',
