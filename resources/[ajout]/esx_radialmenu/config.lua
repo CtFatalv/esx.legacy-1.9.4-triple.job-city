@@ -163,6 +163,15 @@ Config.MenuItems = {
             --         }
             --     }
             -- },
+			{
+                id = 'voirmagasin',
+                title = 'Voir les magasins',
+                icon = 'home',
+                type = 'client',
+                event = 'ox_shops:voirmagasin',
+                shouldClose = true,
+                items = {}
+            },
             {
                 id = 'clothesmenu',
                 title = 'Clothing',
