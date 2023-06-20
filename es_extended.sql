@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : sam. 27 mai 2023 à 18:17
--- Version du serveur : 10.11.3-MariaDB-1:10.11.3+maria~ubu2204
+-- Généré le : mar. 20 juin 2023 à 07:36
+-- Version du serveur : 10.11.4-MariaDB-1:10.11.4+maria~ubu2204
 -- Version de PHP : 8.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `s155_Mime`
+-- Base de données : `es_extended`
 --
 
 -- --------------------------------------------------------
@@ -552,6 +552,44 @@ CREATE TABLE `multicharacter_slots` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `owned_shops`
+--
+
+CREATE TABLE `owned_shops` (
+  `identifier` varchar(46) DEFAULT NULL,
+  `ShopNumber` int(11) NOT NULL,
+  `ShopName` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Déchargement des données de la table `owned_shops`
+--
+
+INSERT INTO `owned_shops` (`identifier`, `ShopNumber`, `ShopName`) VALUES
+('0', 1, '0'),
+('0', 2, '0'),
+('0', 3, '0'),
+('0', 4, '0'),
+('0', 5, '0'),
+('0', 6, '0'),
+('0', 7, '0'),
+('0', 8, '0'),
+('0', 9, '0'),
+('0', 10, '0'),
+('0', 11, '0'),
+('0', 12, '0'),
+('0', 13, '0'),
+('0', 14, '0'),
+('0', 15, '0'),
+('0', 16, '0'),
+('0', 17, '0'),
+('0', 18, '0'),
+('0', 19, '0'),
+('0', 20, '0');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `owned_vehicles`
 --
 
@@ -582,6 +620,23 @@ CREATE TABLE `ox_doorlock` (
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `ox_doorlock`
+--
+
+INSERT INTO `ox_doorlock` (`id`, `name`, `data`) VALUES
+(1, 'mrpd locker rooms', '{\"maxDistance\":2,\"heading\":90,\"coords\":{\"x\":450.1041259765625,\"y\":-985.7384033203125,\"z\":30.83930206298828},\"groups\":{\"police\":0},\"state\":1,\"model\":1557126584,\"hideUi\":false}'),
+(2, 'mrpd cells/briefing', '{\"maxDistance\":2,\"coords\":{\"x\":444.7078552246094,\"y\":-989.4454345703125,\"z\":30.83930206298828},\"doors\":[{\"model\":185711165,\"coords\":{\"x\":446.0079345703125,\"y\":-989.4454345703125,\"z\":30.83930206298828},\"heading\":0},{\"model\":185711165,\"coords\":{\"x\":443.40777587890627,\"y\":-989.4454345703125,\"z\":30.83930206298828},\"heading\":180}],\"groups\":{\"police\":0},\"state\":1,\"hideUi\":false}'),
+(3, 'mrpd cell 3', '{\"maxDistance\":2,\"heading\":90,\"coords\":{\"x\":461.8065185546875,\"y\":-1001.9515380859375,\"z\":25.06442832946777},\"lockSound\":\"metal-locker\",\"groups\":{\"police\":0},\"state\":1,\"unlockSound\":\"metallic-creak\",\"model\":631614199,\"hideUi\":false}'),
+(4, 'mrpd back entrance', '{\"maxDistance\":2,\"coords\":{\"x\":468.6697692871094,\"y\":-1014.4520263671875,\"z\":26.5362319946289},\"doors\":[{\"model\":-2023754432,\"coords\":{\"x\":467.37164306640627,\"y\":-1014.4520263671875,\"z\":26.5362319946289},\"heading\":0},{\"model\":-2023754432,\"coords\":{\"x\":469.9678955078125,\"y\":-1014.4520263671875,\"z\":26.5362319946289},\"heading\":180}],\"groups\":{\"police\":0},\"state\":1,\"hideUi\":false}'),
+(5, 'mrpd cells security door', '{\"maxDistance\":2,\"heading\":0,\"coords\":{\"x\":464.1282958984375,\"y\":-1003.5386962890625,\"z\":25.00598907470703},\"autolock\":5,\"groups\":{\"police\":0},\"state\":1,\"model\":-1033001619,\"hideUi\":false}'),
+(6, 'mrpd cell 2', '{\"maxDistance\":2,\"heading\":90,\"coords\":{\"x\":461.8064880371094,\"y\":-998.3082885742188,\"z\":25.06442832946777},\"lockSound\":\"metal-locker\",\"groups\":{\"police\":0},\"state\":1,\"unlockSound\":\"metallic-creak\",\"model\":631614199,\"hideUi\":false}'),
+(7, 'mrpd captain\'s office', '{\"maxDistance\":2,\"heading\":180,\"coords\":{\"x\":446.57281494140627,\"y\":-980.0105590820313,\"z\":30.83930206298828},\"groups\":{\"police\":0},\"state\":1,\"model\":-1320876379,\"hideUi\":false}'),
+(8, 'mrpd gate', '{\"maxDistance\":6,\"heading\":90,\"coords\":{\"x\":488.894775390625,\"y\":-1017.2102661132813,\"z\":27.14714050292968},\"groups\":{\"police\":0},\"auto\":true,\"state\":1,\"model\":-1603817716,\"hideUi\":false}'),
+(9, 'mrpd cell 1', '{\"maxDistance\":2,\"heading\":270,\"coords\":{\"x\":461.8065185546875,\"y\":-993.7586059570313,\"z\":25.06442832946777},\"lockSound\":\"metal-locker\",\"groups\":{\"police\":0},\"state\":1,\"unlockSound\":\"metallic-creak\",\"model\":631614199,\"hideUi\":false}'),
+(10, 'mrpd cells main', '{\"maxDistance\":2,\"heading\":360,\"coords\":{\"x\":463.92010498046877,\"y\":-992.6640625,\"z\":25.06442832946777},\"lockSound\":\"metal-locker\",\"groups\":{\"police\":0},\"state\":1,\"unlockSound\":\"metallic-creak\",\"model\":631614199,\"hideUi\":false}'),
+(11, 'mrpd armoury', '{\"maxDistance\":2,\"heading\":270,\"coords\":{\"x\":453.08428955078127,\"y\":-982.5794677734375,\"z\":30.81926536560058},\"autolock\":5,\"groups\":{\"police\":0},\"state\":1,\"model\":749848321,\"hideUi\":false}');
 
 -- --------------------------------------------------------
 
@@ -1138,6 +1193,12 @@ ALTER TABLE `multicharacter_slots`
   ADD KEY `slots` (`slots`) USING BTREE;
 
 --
+-- Index pour la table `owned_shops`
+--
+ALTER TABLE `owned_shops`
+  ADD PRIMARY KEY (`ShopNumber`);
+
+--
 -- Index pour la table `owned_vehicles`
 --
 ALTER TABLE `owned_vehicles`
@@ -1285,7 +1346,7 @@ ALTER TABLE `job_grades`
 -- AUTO_INCREMENT pour la table `ox_doorlock`
 --
 ALTER TABLE `ox_doorlock`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `playerskins`

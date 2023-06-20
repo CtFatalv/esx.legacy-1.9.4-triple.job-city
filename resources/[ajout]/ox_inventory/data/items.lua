@@ -1,57 +1,4 @@
 return {
-	['testburger'] = {
-		label = 'Test Burger',
-		weight = 220,
-		degrade = 60,
-		client = {
-			status = { hunger = 200000 },
-			anim = 'eating',
-			prop = 'burger',
-			usetime = 2500,
-			export = 'ox_inventory_examples.testburger'
-		},
-		server = {
-			export = 'ox_inventory_examples.testburger',
-			test = 'what an amazingly delicious burger, amirite?'
-		},
-		buttons = {
-			{
-				label = 'Lick it',
-				action = function(slot)
-					print('You licked the burger')
-				end
-			},
-			{
-				label = 'Squeeze it',
-				action = function(slot)
-					print('You squeezed the burger :(')
-				end
-			},
-			{
-				label = 'What do you call a vegan burger?',
-				group = 'Hamburger Puns',
-				action = function(slot)
-					print('A misteak.')
-				end
-			},
-			{
-				label = 'What do frogs like to eat with their hamburgers?',
-				group = 'Hamburger Puns',
-				action = function(slot)
-					print('French flies.')
-				end
-			},
-			{
-				label = 'Why were the burger and fries running?',
-				group = 'Hamburger Puns',
-				action = function(slot)
-					print('Because they\'re fast food.')
-				end
-			}
-		},
-		consume = 0.3
-	},
-
 	['bandage'] = {
 		label = 'Bandage',
 		weight = 115,
@@ -70,11 +17,11 @@ return {
 	},
 
 	['black_money'] = {
-		label = 'Dirty Money',
+		label = 'Argent sale',
 	},
 
 	['burger'] = {
-		label = 'Burger',
+		label = 'Hamburger',
 		weight = 220,
 		client = {
 			status = { hunger = 200000 },
@@ -108,31 +55,7 @@ return {
 	},
 
 	['garbage'] = {
-		label = 'Garbage',
-	},
-
-	['paperbag'] = {
-		label = 'Paper Bag',
-		weight = 1,
-		stack = false,
-		close = false,
-		consume = 0
-	},
-
-	['identification'] = {
-		label = 'Identification',
-	},
-
-	['panties'] = {
-		label = 'Knickers',
-		weight = 10,
-		consume = 0,
-		client = {
-			status = { thirst = -100000, stress = -25000 },
-			anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-			prop = { model = `prop_cs_panties_02`, pos = vec3(0.03, 0.0, 0.02), rot = vec3(0.0, -13.5, -1.5) },
-			usetime = 2500,
-		}
+		label = 'Déchet',
 	},
 
 	['lockpick'] = {
@@ -326,7 +249,27 @@ return {
 		stack = true,
 		weight = 10,
 	},
-
+    -- Mecano
+   	['gazbottle'] = {
+		label = 'Bouteille de Gaz',
+		weight = 160,
+	},
+    
+   	['fixtool'] = {
+		label = 'Outil de réparation',
+		weight = 160,
+	},
+    
+   	['fixkit'] = {
+		label = 'Kit de Réparation',
+		weight = 160,
+	},
+    
+   	['blowpipe'] = {
+		label = 'Chalumeau',
+		weight = 160,
+	},
+    
 	['chalumeau'] = {
 		label = 'Chalumeau',
 		weight = 450,
@@ -364,14 +307,14 @@ return {
 
 	['bouteilleplongee'] = {
 		label = 'Bouteille de Plongée',
-		weight = 450,
+		weight = 16000,
 		stack = false,
 		close = false,
 	},
 
 	['bouteilleplongeevide'] = {
 		label = 'Bouteille de Plongée vide',
-		weight = 450,
+		weight = 16000,
 		stack = false,
 		close = false,
 	},
@@ -383,60 +326,310 @@ return {
 		close = false,
 	},
 
-   	['copper'] = {
-		label = 'Copper',
-		weight = 750,
-		stack = true,
-		close = false,
-	},
-
-	['diamond'] = {
-		label = 'Diamond',
-		weight = 105,
-		stack = true,
-		close = false,
-	},
-
-	['gold'] = {
-		label = 'Gold Bar',
-		weight = 950,
+    ['secateur'] = {
+		label = 'Sécateur',
 		stack = false,
-		close = false,
+		weight = 10,
 	},
 
-	['iron'] = {
-		label = 'Iron',
-		weight = 750,
+    ['grapperaisin'] = {
+		label = 'Grappe de raisin',
+		stack = true,
+		weight = 10,
+	},
+
+    ['pomme'] = {
+		label = 'Pomme',
+		stack = true,
+		weight = 10,
+	},
+
+    ['orange'] = {
+		label = 'Orange',
+		stack = true,
+		weight = 10,
+	},
+
+    ['jusorange'] = {
+		label = 'Jus d\'orange',
+		stack = true,
+		weight = 10,
+	},
+
+    ['jusraisin'] = {
+		label = 'Jus de raisin',
+		stack = true,
+		weight = 10,
+	},
+
+    ['juspomme'] = {
+		label = 'Jus de pomme',
+		stack = true,
+		weight = 10,
+	},
+
+    ['jusfruit'] = {
+		label = 'Jus de fruits',
+		stack = true,
+		weight = 10,
+	},
+
+    ['vin'] = {
+		label = 'Vin',
+		stack = true,
+		weight = 10,
+	},
+
+
+    ['champagne'] = {
+		label = 'Champagne',
+		stack = true,
+		weight = 10,
+	},
+
+	['gobelet'] = {
+		label = 'Gobelet',
+		stack = true,
+		weight = 10,
+	},
+
+    ['bouteillevide'] = {
+		label = 'Bouteille vide',
+		stack = true,
+		weight = 10,
+	},
+
+	['poulet'] = {
+		label = 'Poulet',
+		stack = true,
+		weight = 10,
+	},
+
+	['filetdepoulet'] = {
+		label = 'Filet de poulet',
+		stack = true,
+		weight = 10,
+	},
+
+	['bucketvide'] = {
+		label = 'Bucket vide',
+		stack = true,
+		weight = 10,
+	},
+
+	['chickenbucket'] = {
+		label = 'Chicken Bucket',
+		stack = true,
+		weight = 10,
+	},
+
+   	['m_cuivre'] = {
+		label = 'Minerai de cuivre',
+		weight = 450,
 		stack = true,
 		close = false,
 	},
 
-	['steel'] = {
-		label = 'Steel',
-		weight = 610,
+	['m_fer'] = {
+		label = 'Minerai de Fer',
+		weight = 450,
 		stack = true,
 		close = false,
 	},
 
-	['emerald'] = {
-		label = 'Emerald',
-		weight = 105,
+	['m_titane'] = {
+		label = 'Minerai de titane',
+		weight = 450,
 		stack = true,
 		close = false,
 	},
 
-	['pickaxe'] = {
-		label = 'Pickaxe',
+	['m_pepiteor'] = {
+		label = 'Pépite d\'or',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['m_pepdiam'] = {
+		label = 'Pépite de diamant',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['m_lithium'] = {
+		label = 'Minerai de Lithium',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['marteaup'] = {
+		label = 'Marteau piqueur',
 		weight = 450,
 		stack = false,
 		close = false,
 	},
 
-	['clevoiture'] = {
-		label = 'Clé de voiture',
+	['meche_casse'] = {
+		label = 'Mêche cassé',
 		weight = 450,
-		stack = false,
+		stack = true,
 		close = false,
+	},
+
+	['meche_titane_casser'] = {
+		label = 'Mêche cassé en titane',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['meche_fer'] = {
+		label = 'Mêche en fer',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['meche_titane'] = {
+		label = 'Mêche en titane',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['lingotcuivre'] = {
+		label = 'Lingot en cuivre',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['lingotfer'] = {
+		label = 'Lingot en fer',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['lingottitane'] = {
+		label = 'Lingot en titane',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['lingotlithium'] = {
+		label = 'Lingot en lithium',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['lingotor'] = {
+		label = 'Lingot en or',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['diamant'] = {
+		label = 'Diamant',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['oeuf'] = {
+		label = 'Oeuf',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['lait'] = {
+		label = 'Lait',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['ble'] = {
+		label = 'Epi de blé',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['cacao'] = {
+		label = 'Fève de cacao',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['poudrecacao'] = {
+		label = 'Poudre de cacao',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['farine'] = {
+		label = 'Farine',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['pate'] = {
+		label = 'Pâte',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['baguette'] = {
+		label = 'Baguette',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['croissant'] = {
+		label = 'Croissant',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['painchoc'] = {
+		label = 'Pain aux chocolatines',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['painraisin'] = {
+		label = 'Pain aux raisins',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['tartepomme'] = {
+		label = 'Tarte aux pommes',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['beer'] = {
+		label = 'Bière',
+		stack = true,
+		weight = 10,
 	},
     -- SHOP PLAYER
     ['shop01'] = {
