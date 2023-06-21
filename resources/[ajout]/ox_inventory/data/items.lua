@@ -129,43 +129,6 @@ return {
 		}
 	},
 
-	['clothing'] = {
-		label = 'Clothing',
-		consume = 0,
-	},
-
-	['mastercard'] = {
-		label = 'Mastercard',
-		stack = false,
-		weight = 10,
-	},
-
-	['scrapmetal'] = {
-		label = 'Scrap Metal',
-		weight = 80,
-	},
-    
-    ['handcuffs'] = {
-      label = 'Handcuffs',
-      weight = 100,
-      stack = true,
-      allowArmed = true
-    },
-    
-    ['menotte'] = {
-      label = 'Menotte',
-      weight = 100,
-      stack = true,
-      allowArmed = true
-    },
-
-    ['rope'] = {
-      label = 'Rope',
-      weight = 100,
-      stack = true,
-      allowArmed = true
-    },
-
 	['weed'] = {
 		label = 'Weed',
 		stack = true,
@@ -293,6 +256,20 @@ return {
 
 	['rhumancien'] = {
 		label = 'Vielle bouteille de rhum',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['statuette'] = {
+		label = 'Statuette en bronze',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+	['collierperle'] = {
+		label = 'Collier de perle',
 		weight = 450,
 		stack = true,
 		close = false,
