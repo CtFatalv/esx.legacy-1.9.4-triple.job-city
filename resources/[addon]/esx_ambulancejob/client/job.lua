@@ -323,7 +323,7 @@ exports.ox_target:addBoxZone({
 })
 
 AddEventHandler('esx_ambulancejob:bossMenu', function()
-    if ESX.PlayerData.job and ESX.PlayerData.jobn.ame == 'ambulance' then
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'ambulance' then
     TriggerEvent('esx_society:openBossMenu', 'ambulance', function(data, menu)
     end, {wash = false})
 	end

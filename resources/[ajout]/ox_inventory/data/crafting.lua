@@ -4,7 +4,7 @@ return {
 			{
 				name = 'gazbottle',
 				ingredients = {
-					scrapmetal = 3,
+					lingotfer = 2,
 					WEAPON_HAMMER = 0.05
 				},
 				duration = 5000,
@@ -14,7 +14,7 @@ return {
 				name = 'chalumeau',
 				ingredients = {
                     gazbottle = 1,
-					scrapmetal = 2,
+					lingotfer = 1,
 					WEAPON_HAMMER = 0.05
 				},
 				duration = 5000,
@@ -23,7 +23,7 @@ return {
 			{
 				name = 'fixtool',
 				ingredients = {
-					scrapmetal = 5,
+					lingotfer = 2,
 					WEAPON_HAMMER = 0.05
 				},
 				duration = 5000,
@@ -32,7 +32,7 @@ return {
 			{
 				name = 'fixkit',
 				ingredients = {
-					scrapmetal = 5,
+					lingotfer = 2,
 					WEAPON_HAMMER = 0.05
 				},
 				duration = 5000,
