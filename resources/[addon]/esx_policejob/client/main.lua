@@ -38,11 +38,11 @@ function OpenPoliceActionsMenu()
 			local elements2 = {
 				{unselectable = true, icon = "fas fa-user", title = element.title},
 				{icon = "fas fa-idkyet", title = TranslateCap('id_card'), value = 'identity_card'},
-				{icon = "fas fa-idkyet", title = TranslateCap('search'), value = 'search'},
-				{icon = "fas fa-idkyet", title = TranslateCap('handcuff'), value = 'handcuff'},
-				{icon = "fas fa-idkyet", title = TranslateCap('drag'), value = 'drag'},
-				{icon = "fas fa-idkyet", title = TranslateCap('put_in_vehicle'), value = 'put_in_vehicle'},
-				{icon = "fas fa-idkyet", title = TranslateCap('out_the_vehicle'), value = 'out_the_vehicle'},
+				--{icon = "fas fa-idkyet", title = TranslateCap('search'), value = 'search'},
+				--{icon = "fas fa-idkyet", title = TranslateCap('handcuff'), value = 'handcuff'},
+				--{icon = "fas fa-idkyet", title = TranslateCap('drag'), value = 'drag'},
+				--{icon = "fas fa-idkyet", title = TranslateCap('put_in_vehicle'), value = 'put_in_vehicle'},
+				--{icon = "fas fa-idkyet", title = TranslateCap('out_the_vehicle'), value = 'out_the_vehicle'},
 				{icon = "fas fa-idkyet", title = TranslateCap('fine'), value = 'fine'},
 				{icon = "fas fa-idkyet", title = TranslateCap('unpaid_bills'), value = 'unpaid_bills'}
 			}
@@ -95,8 +95,8 @@ function OpenPoliceActionsMenu()
 
 			if DoesEntityExist(vehicle) then
 				elements3[#elements3+1] = {icon = "fas fa-car", title = TranslateCap('vehicle_info'), value = 'vehicle_infos'}
-				elements3[#elements3+1] = {icon = "fas fa-car", title = TranslateCap('pick_lock'), value = 'hijack_vehicle'}
-				elements3[#elements3+1] = {icon = "fas fa-car", title = TranslateCap('impound'), value = 'impound'}
+				--elements3[#elements3+1] = {icon = "fas fa-car", title = TranslateCap('pick_lock'), value = 'hijack_vehicle'}
+				--elements3[#elements3+1] = {icon = "fas fa-car", title = TranslateCap('impound'), value = 'impound'}
 			end
 
 			elements3[#elements3+1] = {
@@ -725,20 +725,6 @@ CreateThread(function()
 	end
 end)
 
-ESX.RegisterInput("police:quickactions", "(ESX PoliceJob) Quick Actions", "keyboard", "F6", function()
-	if not ESX.PlayerData.job or (ESX.PlayerData.job.name ~= 'police') or isDead then
-		return
-	end
-
-	if not Config.EnableESXService then
-		OpenPoliceActionsMenu()
-	elseif playerInService then
-		OpenPoliceActionsMenu()
-	else
-		ESX.ShowNotification(TranslateCap('service_not'))
-	end
-end)
-
 CreateThread(function()
 	while true do
 		local Sleep = 1000
@@ -890,3 +876,109 @@ end)
 AddEventHandler('esx_policejob:policeaction', function()
     OpenPoliceActionsMenu()
 end)
+
+AddEventHandler('esx_policejob:vehicleinfo', function()
+	vehicle = ESX.Game.GetVehicleInDirection()
+    local vehicleData = ESX.Game.GetVehicleProperties(vehicle)
+    OpenVehicleInfosMenu(vehicleData)
+end)
+
+AddEventHandler('esx_policejob:vehicleinfoplate', function(elementF)
+	local elements = {
+		{unselectable = true, icon = "fas fa-car", title = 'Recherche par plaque'},
+		{title = "Entrer la plaque", input = true, inputType = "text", inputPlaceholder = "ABC 123"},
+		{icon = "fas fa-check-double", title = "Vérifier la plque Plate", value = "lookup"}
+	}
+
+	ESX.OpenContext("right", elements, function(menu,element)
+		local data = {value = menu.eles[2].inputValue}
+		local length = string.len(data.value)
+		if not data.value or length < 2 or length > 8 then
+			ESX.ShowNotification(TranslateCap('search_database_error_invalid'))
+		else
+			ESX.TriggerServerCallback('esx_policejob:getVehicleInfos', function(retrivedInfo)
+				local elements = {
+					{unselectable = true, icon = "fas fa-car", title = element.title},
+					{unselectable = true, icon = "fas fa-car", title = TranslateCap('plate', retrivedInfo.plate)}			
+				}
+
+				if not retrivedInfo.owner then
+					elements[#elements+1] = {unselectable = true, icon = "fas fa-user", title = TranslateCap('owner_unknown')}
+				else
+					elements[#elements+1] = {unselectable = true, icon = "fas fa-user", title = TranslateCap('owner', retrivedInfo.owner)}
+				end
+
+				ESX.OpenContext("right", elements, nil, function(menu)
+					OpenPoliceActionsMenu()
+				end)
+			end, data.value)
+		end
+	end)
+end)
+
+AddEventHandler('esx_policejob:vehicleopen', function()
+	local playerPed = PlayerPedId()
+	local vehicle = ESX.Game.GetVehicleInDirection()
+	local coords  = GetEntityCoords(playerPed)
+	if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 3.0) then
+		TaskStartScenarioInPlace(playerPed, 'WORLD_HUMAN_WELDING', 0, true)
+		Wait(20000)
+		ClearPedTasksImmediately(playerPed)
+
+		SetVehicleDoorsLocked(vehicle, 1)
+		SetVehicleDoorsLockedForAllPlayers(vehicle, false)
+		ESX.ShowNotification(TranslateCap('vehicle_unlocked'))
+	end
+end)
+
+AddEventHandler('esx_policejob:vehicleimpound', function()
+	local playerPed = PlayerPedId()
+	local vehicle = ESX.Game.GetVehicleInDirection()
+	local coords  = GetEntityCoords(playerPed)
+	if currentTask.busy then
+		return
+	end
+		--ESX.ShowNotification(TranslateCap('impound_prompt'))
+		TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+
+		currentTask.busy = true
+		currentTask.task = ESX.SetTimeout(10000, function()
+		ClearPedTasks(playerPed)
+		ImpoundVehicle(vehicle)
+		Wait(100)
+	end)
+	CreateThread(function()
+		while currentTask.busy do
+			Wait(1000)
+			vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 3.0, 0, 71)
+            if not DoesEntityExist(vehicle) and currentTask.busy then
+                ESX.ShowNotification(TranslateCap('impound_canceled_moved'))
+                ESX.ClearTimeout(currentTask.task)
+                ClearPedTasks(playerPed)
+                currentTask.busy = false
+            	break
+            end
+		end
+	end)
+end)
+
+AddEventHandler('esx_policejob:voirfacture', function(player)
+	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+		OpenPoliceActionsMenu2(closestPlayer)
+end)
+
+function OpenPoliceActionsMenu2(player)
+	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+	OpenUnpaidBillsMenu(closestPlayer)
+end 
+
+AddEventHandler('esx_policejob:mettreamende', function(player)
+	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+		OpenPoliceActionsMenu3(closestPlayer)
+
+end)
+
+function OpenPoliceActionsMenu3(player)
+	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+	OpenFineMenu(closestPlayer)
+end 

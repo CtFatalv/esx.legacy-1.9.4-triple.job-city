@@ -5,20 +5,63 @@ dragStatus.isDragged =  false
 
 AddEventHandler('handcuff', function(data)
 	local handcuffs = exports.ox_inventory:Search('count', 'menotte')
-	local rope = exports.ox_inventory:Search('count', 'clemenotte')
-	--if ESX.PlayerData.job and ESX.PlayerData.job.name == 'police' and handcuffs >= 1 or rope >= 1 and IsEntityPlayingAnim(data.entity, "missminuteman_1ig_2", "handsup_base", 3) then
+	local rope = exports.ox_inventory:Search('count', 'rope')
+	if not IsEntityPlayingAnim(data.entity, "mp_arresting", "idle", 3) or IsPedDeadOrDying(data.entity) then
+	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'police' and handcuffs >= 1 or rope >= 1 and IsEntityPlayingAnim(data.entity, "missminuteman_1ig_2", "handsup_base", 3) then
 		TriggerServerEvent('esx_interact:handcuff', GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity)))
-	--else
-	--	lib.notify({
-	--		description = Config.RequiredItem,
-	--		style = {
-	--			backgroundColor = '#000000',
-	--			color = '#ffffff'
-	--		},
-	--		icon = 'people-robbery',
-	--		type = 'error'
-	--	})
-	--end
+		TriggerServerEvent('esx_interact:removemenotte')
+	else
+		lib.notify({
+			description = Config.RequiredItem,
+			style = {
+				backgroundColor = '#000000',
+				color = '#ffffff'
+			},
+			icon = 'people-robbery',
+			type = 'error'
+		})
+	end
+	else
+		lib.notify({
+			description = Config.dejamenotter,
+			style = {
+				backgroundColor = '#000000',
+				color = '#ffffff'
+			},
+			icon = 'people-robbery',
+			type = 'error'
+		})
+	end
+end)
+
+AddEventHandler('unhandcuff', function(data)	
+	local unhandcuffs = exports.ox_inventory:Search('count', 'clemenotte')
+    if IsEntityPlayingAnim(data.entity, "mp_arresting", "idle", 3) or IsPedDeadOrDying(data.entity) then
+		if unhandcuffs >= 1 then
+        TriggerServerEvent('esx_interact:unhandcuff', GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity)))
+        TriggerServerEvent('esx_interact:givemenotte')
+        else
+            lib.notify({
+                description = Config.pasdecle,
+                style = {
+                    backgroundColor = '#000000',
+                    color = '#ffffff'
+                },
+                icon = 'people-robbery',
+                type = 'error'
+            })
+		end
+    else
+        lib.notify({
+            description = Config.nonmenotter,
+            style = {
+                backgroundColor = '#000000',
+                color = '#ffffff'
+            },
+            icon = 'people-robbery',
+            type = 'error'
+        })
+    end
 end)
 
 RegisterNetEvent('esx_interact:handcuff')
@@ -43,17 +86,14 @@ AddEventHandler('esx_interact:handcuff', function()
 			end
 			StartHandcuffTimer()
 		end
-	else
-		dragStatus.isDragged = false
-		if Config.EnableHandcuffTimer and handcuffTimer.active then
-			ESX.ClearTimeout(handcuffTimer.task)
-		end
-		ClearPedSecondaryTask(playerPed)
-		SetEnableHandcuffs(playerPed, false)
-		DisablePlayerFiring(playerPed, false)
-		SetPedCanPlayGestureAnims(playerPed, true)
-		DisplayRadar(true)
 	end
+end)
+
+
+RegisterNetEvent('esx_interact:unhandcuff')
+AddEventHandler('esx_interact:unhandcuff', function()
+	TriggerEvent('esx_interact:unrestrain')
+		handcuffTimer.active = false
 end)
 
 RegisterNetEvent('esx_interact:unrestrain')
@@ -82,38 +122,48 @@ CreateThread(function()
 		local playerPed = PlayerPedId()
 
 		if isHandcuffed then
-			DisableControlAction(0, 1, true)
-			DisableControlAction(0, 2, true)
-			DisableControlAction(0, 24, true)
-			DisableControlAction(0, 257, true)
-			DisableControlAction(0, 25, true)
-			DisableControlAction(0, 263, true)
-			DisableControlAction(0, 45, true)
-			DisableControlAction(0, 22, true)
-			DisableControlAction(0, 44, true)
-			DisableControlAction(0, 37, true)
-			DisableControlAction(0, 23, true)
-			DisableControlAction(0, 288,  true)
-			DisableControlAction(0, 289, true)
-			DisableControlAction(0, 170, true)
-			DisableControlAction(0, 167, true)
-			DisableControlAction(0, 0, true)
-			DisableControlAction(0, 26, true)
-			DisableControlAction(0, 73, true)
-			DisableControlAction(2, 199, true)
-			DisableControlAction(0, 59, true)
-			DisableControlAction(0, 71, true)
-			DisableControlAction(0, 72, true)
-			DisableControlAction(2, 36, true)
-			DisableControlAction(0, 47, true)
-			DisableControlAction(0, 264, true)
-			DisableControlAction(0, 257, true)
-			DisableControlAction(0, 140, true)
-			DisableControlAction(0, 141, true)
-			DisableControlAction(0, 142, true)
-			DisableControlAction(0, 143, true)
-			DisableControlAction(0, 75, true)
-			DisableControlAction(27, 75, true)
+			DisableControlAction(0, 1, true) -- Disable pan
+			DisableControlAction(0, 2, true) -- Disable tilt
+			DisableControlAction(0, 24, true) -- Attack
+			DisableControlAction(0, 257, true) -- Attack 2
+			DisableControlAction(0, 25, true) -- Aim
+			DisableControlAction(0, 263, true) -- Melee Attack 1
+			--DisableControlAction(0, 32, true) -- W
+			--DisableControlAction(0, 34, true) -- A
+			--DisableControlAction(0, 31, true) -- S
+			--DisableControlAction(0, 30, true) -- D
+
+			DisableControlAction(0, 45, true) -- Reload
+			DisableControlAction(0, 22, true) -- Jump
+			DisableControlAction(0, 44, true) -- Cover
+			DisableControlAction(0, 37, true) -- Select Weapon
+			DisableControlAction(0, 23, true) -- Also 'enter'?
+
+			DisableControlAction(0, 288,  true) -- Disable phone
+			DisableControlAction(0, 289, true) -- Inventory
+			DisableControlAction(0, 170, true) -- Animations
+			DisableControlAction(0, 167, true) -- Job
+
+			DisableControlAction(0, 0, true) -- Disable changing view
+			DisableControlAction(0, 26, true) -- Disable looking behind
+			DisableControlAction(0, 73, true) -- Disable clearing animation
+			DisableControlAction(2, 199, true) -- Disable pause screen
+
+			DisableControlAction(0, 59, true) -- Disable steering in vehicle
+			DisableControlAction(0, 71, true) -- Disable driving forward in vehicle
+			DisableControlAction(0, 72, true) -- Disable reversing in vehicle
+
+			DisableControlAction(2, 36, true) -- Disable going stealth
+
+			DisableControlAction(0, 47, true)  -- Disable weapon
+			DisableControlAction(0, 264, true) -- Disable melee
+			DisableControlAction(0, 257, true) -- Disable melee
+			DisableControlAction(0, 140, true) -- Disable melee
+			DisableControlAction(0, 141, true) -- Disable melee
+			DisableControlAction(0, 142, true) -- Disable melee
+			DisableControlAction(0, 143, true) -- Disable melee
+			DisableControlAction(0, 75, true)  -- Disable exit vehicle
+			DisableControlAction(27, 75, true) -- Disable exit vehicle
 
 			if IsEntityPlayingAnim(playerPed, 'mp_arresting', 'idle', 3) ~= 1 then
 				ESX.Streaming.RequestAnimDict('mp_arresting', function()
@@ -131,19 +181,22 @@ AddEventHandler('escort', function(data)
 	TriggerServerEvent('esx_interact:escort', GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity)))
 end)
 
+
 RegisterNetEvent('esx_interact:escort')-- escort 
 AddEventHandler('esx_interact:escort', function(dragger)
 	if isHandcuffed or IsPedDeadOrDying(PlayerPedId(), true) then
+		escort()
 		dragStatus.isDragged = not dragStatus.isDragged
 		dragStatus.dragger = dragger
 	end
 end)
 
+function escort()
 CreateThread(function()
 	local wasDragged
 	while true do
 		if isHandcuffed then -- and (not IsEntityPlayingAnim(PlayerPedId(), 'mp_arresting', 'idle', 3)) then -- after falling player hands get detached the second and not detcting how it should 
-			TaskPlayAnim(PlayerPedId(), 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
+			--TaskPlayAnim(PlayerPedId(), 'mp_arresting', 'idle', 8.0, -8, -1, 49, 0, 0, 0, 0)
 		end
 		if dragStatus.isDragged then
 			Sleep = 50
@@ -179,7 +232,7 @@ CreateThread(function()
 		Wait(1500)
 	end
 end)
-
+end
 function StartHandcuffTimer()
 	if Config.EnableHandcuffTimer and handcuffTimer.active then
 		ESX.ClearTimeout(handcuffTimer.task)
@@ -302,109 +355,123 @@ exports.ox_target:addGlobalPlayer({
 		event = "search",
 		icon = Config.search_img,
 		label = Config.search,
-		num = 1
+		num = 1,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
 	},
 	{
 		event = "handcuff",
 		icon = Config.handcuff_img,
-		label = Config.handcuff,
-		num = 2
+		label = "Menotter",
+		num = 2,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "unhandcuff",
+		icon = Config.handcuff_img,
+		label = "Démenotter",
+		num = 3,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
 	},
 	{
 		event = "escort",
 		icon = Config.escort_img,
 		label = Config.escort,
-		num = 3
+		num = 4,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
 	},
 	{
 		event = "putveh",
 		icon = Config.putveh_img,
 		label = Config.putveh,
-		num = 4
-	},
-	{
-		event = "id",
-		icon = Config.ID_img,
-		label = Config.ID,
-		num = 5
-	},
-	{
-		event = "id-driver",
-		icon = Config.ID_driver_img,
-		label = Config.ID_driver,
-		num = 6
+		num = 5,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
 	},
 	{
 		event = "billing",
 		icon = Config.billing_img,
 		label = Config.billing,
-		num = 7
+		num = 8,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "esx_policejob:mettreamende",
+		icon = Config.vehplate_img,
+		label = 'Mettre une amende',
+		num = 9,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "esx_policejob:voirfacture",
+		icon = Config.vehplate_img,
+		label = 'Voir les impayés',
+		num = 10,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
 	},
 })
 
 exports.ox_target:addGlobalVehicle({
-            {
-                type = "client",
-                event = "request:CuffPed",
-                icon = "fas fa-hands",
-                label = "Cuff / Uncuff",
-                item = 'menotte',
-                --job = "police",
-            },
-            {
-                type = "client",
-                event = "request:CuffPed",
-                icon = "fas fa-hands",
-                label = "Cuff / Uncuff",
-                item = 'clemenotte',
-                --job = "police",
-            },
-})
-
---[[
-Citizen.CreateThread(function()
-	while true do
-	Citizen.Wait(0)
-	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'police' then
-        exports.ox_target:addGlobalVehicle({
-            {
-                event = "outveh",
-                icon = Config.outveh_img,
-                label = Config.outveh,
-                num = 1
-            },
-        })
-			print(123)
-                
-		else
-			print(1234)
-		end
-	end
-	Citizen.Wait(10000)
-end)
-]]
---[[
-exports.ox_target:addGlobalVehicle(
-	{
-
-	if ESX.PlayerData.job and ESX.PlayerData.job.name == 'police' then
 	{
 		event = "outveh",
 		icon = Config.outveh_img,
 		label = Config.outveh,
-		num = 1
-	},	
-
-	else
-	lib.notify({
-		description = Config.RequiredItem,
-		style = {
-			backgroundColor = '#000000',
-			color = '#ffffff'
+		num = 1,
+        groups = {
+			['police'] = 0
 		},
-		icon = 'people-robbery',
-		type = 'error'
-	})
-	end
+        distance = 1.5
+	},
+	{
+		event = "esx_policejob:vehicleinfo",
+		icon = Config.vehplate_img,
+		label = 'Info Véhicule',
+		num = 2,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "esx_policejob:vehicleopen",
+		icon = Config.vehplate_img,
+		label = 'Déverouiller les portes',
+		num = 3,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "esx_policejob:vehicleimpound",
+		icon = Config.vehplate_img,
+		label = 'Mettre en fourrière',
+		num = 4,
+        groups = {
+			['police'] = 0
+		},
+        distance = 1.5
+	},
 })
-]]
