@@ -359,7 +359,7 @@ exports.ox_target:addGlobalPlayer({
         groups = {
 			['police'] = 0
 		},
-        distance = 1.5
+        distance = 0.7
 	},
 	{
 		event = "handcuff",
@@ -369,7 +369,7 @@ exports.ox_target:addGlobalPlayer({
         groups = {
 			['police'] = 0
 		},
-        distance = 1.5
+        distance = 0.7
 	},
 	{
 		event = "unhandcuff",
@@ -379,7 +379,7 @@ exports.ox_target:addGlobalPlayer({
         groups = {
 			['police'] = 0
 		},
-        distance = 1.5
+        distance = 0.7
 	},
 	{
 		event = "escort",
@@ -389,7 +389,7 @@ exports.ox_target:addGlobalPlayer({
         groups = {
 			['police'] = 0
 		},
-        distance = 1.5
+        distance = 0.7
 	},
 	{
 		event = "putveh",
@@ -399,7 +399,7 @@ exports.ox_target:addGlobalPlayer({
         groups = {
 			['police'] = 0
 		},
-        distance = 1.5
+        distance = 0.7
 	},
 	{
 		event = "billing",
@@ -409,7 +409,7 @@ exports.ox_target:addGlobalPlayer({
         groups = {
 			['police'] = 0
 		},
-        distance = 1.5
+        distance = 0.7
 	},
 	{
 		event = "esx_policejob:mettreamende",
@@ -419,7 +419,7 @@ exports.ox_target:addGlobalPlayer({
         groups = {
 			['police'] = 0
 		},
-        distance = 1.5
+        distance = 0.7
 	},
 	{
 		event = "esx_policejob:voirfacture",
@@ -429,7 +429,7 @@ exports.ox_target:addGlobalPlayer({
         groups = {
 			['police'] = 0
 		},
-        distance = 1.5
+        distance = 0.7
 	},
 })
 
