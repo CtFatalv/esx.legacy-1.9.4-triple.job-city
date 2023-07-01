@@ -113,7 +113,7 @@ RegisterServerCallBack_('renzu_vehicleshop:buyvehicle', function (source, cb, mo
 RegisterServerCallBack_('renzu_vehicleshop:buyvehicle', function (source, cb, model, props, payment, job, type, garage, notregister)
     local source = source
 	local xPlayer = GetPlayerFromId(source)
-    if not job and type == 'car' and not notregister or job and type == 'car' and not notregister then
+    if not job and type == 'car' and not notregister or job == 'cardealer' or job == 'mechanic' then
         cb(Buy({[1] = Config.Vehicles[model]},xPlayer,model, props, payment, job, type , garage))
     elseif notregister then
         cb(Buy(true,xPlayer,model, props, payment or 'cash', job or 'civ', type or 'car' , garage or 'A' or false, notregister))

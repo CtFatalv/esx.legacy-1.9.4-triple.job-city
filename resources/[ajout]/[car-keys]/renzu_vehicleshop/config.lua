@@ -74,9 +74,9 @@ VehicleShop = {
         plateprefix = 'LSPD', -- carefull using this, maximum should be 4, recommended is 3, use this only for limited vehicles, if you use this parameter in other shop, you might have a limited plates available, ex. LSPD1234 (max char of plate is 8) it means you only have 9999 vehicles possible with this LSPD
         shop = { -- if not vehicle is setup in Database SQL, we will use this
             {shop='Police Vehicle Shop',brand='Police Sedan',stock=50,price=100000,model='police',name="Police Car", grade = 1},
-            {shop='Police Vehicle Shop',brand='Police Sedan',stock=50,price=100000,model='police2',name="Police 2", grade = 1},
+            {shop='Police Vehicle Shop',brand='Police Sedan',stock=50,price=100000,model='police2',name="Police 2", grade = 2},
             {shop='Police Vehicle Shop',brand='Police Sedan',stock=50,price=100000,model='police4',name="Police 4", grade = 3},
-            {shop='Police Vehicle Shop',brand='Police SUVs',stock=50,price=100000,model='police3',name="Police SUV",grade = 5},
+            {shop='Police Vehicle Shop',brand='Police SUVs',stock=50,price=100000,model='police3',name="Police SUV",grade = 4},
         },
     },
 
