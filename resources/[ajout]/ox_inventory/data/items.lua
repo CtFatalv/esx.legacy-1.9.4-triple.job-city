@@ -129,6 +129,18 @@ return {
 		}
 	},
 
+	['menotte'] = {
+		label = 'Menotte',
+		weight = 100,
+		stack = false,
+	},
+
+	['clemenotte'] = {
+		label = 'Clé de menotte',
+		weight = 100,
+		stack = false,
+	},
+
 	['weed'] = {
 		label = 'Weed',
 		stack = true,
