@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 20 juin 2023 à 07:36
+-- Généré le : dim. 02 juil. 2023 à 16:27
 -- Version du serveur : 10.11.4-MariaDB-1:10.11.4+maria~ubu2204
--- Version de PHP : 8.1.18
+-- Version de PHP : 8.1.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `es_extended`
+-- Base de données : `test`
 --
 
 -- --------------------------------------------------------
@@ -531,12 +531,13 @@ CREATE TABLE `licenses` (
 --
 
 INSERT INTO `licenses` (`type`, `label`) VALUES
-('boat', 'Boat License'),
-('dmv', 'Driving Permit'),
-('drive', 'Drivers License'),
-('drive_bike', 'Motorcycle License'),
-('drive_truck', 'Commercial Drivers License'),
-('weapon', 'Weapon License');
+('dmv', 'Code de la route'),
+('permis_aviation', 'Permis Aviation'),
+('permis_bateau', 'Permis Bateau'),
+('permis_camion', 'Permis Camion'),
+('permis_moto', 'Permis Moto'),
+('permis_voiture', 'Permis Voiture'),
+('weapon', 'Permis Arme');
 
 -- --------------------------------------------------------
 
