@@ -100,16 +100,6 @@ end)
 RegisterServerCallBack_('renzu_vehicleshop:GenPlate', function (source, cb, prefix)
     cb(GenPlate(prefix))
 end)
---[[
-RegisterServerCallBack_('renzu_vehicleshop:buyvehicle', function (source, cb, model, props, payment, job, type, garage, notregister)
-    local source = source
-	local xPlayer = GetPlayerFromId(source)
-    if not job and type == 'car' and not notregister then
-        cb(Buy({[1] = Config.Vehicles[model]},xPlayer,model, props, payment, job, type , garage))
-    elseif notregister then
-        cb(Buy(true,xPlayer,model, props, payment or 'cash', job or 'civ', type or 'car' , garage or 'A' or false, notregister))
-    else
-   ]]         
 RegisterServerCallBack_('renzu_vehicleshop:buyvehicle', function (source, cb, model, props, payment, job, type, garage, notregister)
     local source = source
 	local xPlayer = GetPlayerFromId(source)
@@ -117,7 +107,7 @@ RegisterServerCallBack_('renzu_vehicleshop:buyvehicle', function (source, cb, mo
         cb(Buy({[1] = Config.Vehicles[model]},xPlayer,model, props, payment, job, type , garage))
     elseif notregister then
         cb(Buy(true,xPlayer,model, props, payment or 'cash', job or 'civ', type or 'car' , garage or 'A' or false, notregister))
-    else
+    else     
         for k,v in pairs(VehicleShop) do
             local actualShop = v
             if v.job == job and v.shop then
