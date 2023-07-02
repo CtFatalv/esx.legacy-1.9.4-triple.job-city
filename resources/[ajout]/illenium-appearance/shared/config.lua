@@ -36,13 +36,19 @@ Config.EnablePedsForPlayerOutfitRooms = true
 Config.EnablePedMenu = true
 Config.PedMenuGroup = "group.admin"
 
+Config.EnableJobOutfitsCommand = false -- Enables /joboutfits and /gangoutfits commands
+
 Config.ShowNearestShopOnly = false
-Config.HideRadar = true -- Hides the minimap while the appearance menu is open
+Config.HideRadar = false -- Hides the minimap while the appearance menu is open
 Config.NearestShopBlipUpdateDelay = 10000
 
 Config.InvincibleDuringCustomization = true
 
 Config.PreventTrackerRemoval = true -- Disables "Scarf and Chains" section if the player has tracker
+Config.TrackerClothingOptions = {
+    drawable = 13,
+    texture = 0
+}
 
 Config.NewCharacterSections = {
     Ped = true,
@@ -115,7 +121,7 @@ Config.Blips = {
         Scale = 0.7,
         Name = "Tattoo Shop",
     }
---[[    ["surgeon"] = {
+    --[[["surgeon"] = {
         Show = true,
         Sprite = 102,
         Color = 4,
@@ -146,7 +152,7 @@ Config.TargetConfig = {
         label = "Open Tattoo Shop",
         distance = 3
     },
---[[    ["surgeon"] = {
+    --[[["surgeon"] = {
         model = "s_m_m_doctor_01",
         scenario = "WORLD_HUMAN_STAND_MOBILE",
         icon = "fas fa-scalpel",
@@ -170,22 +176,6 @@ Config.TargetConfig = {
 }
 
 Config.Stores = {
-    {
-        type = "clothing",
-        coords = vector3(-1610.52, 5256.97, 3.97),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false, -- false => uses the size + rotation to create the zone | true => uses points to create the zone
-        showBlip = true, -- overrides the blip visibilty configured above for the group
-        --targetModel = "s_m_m_doctor_01", -- overrides the target ped configured for the group
-        --targetScenario = "" -- overrides the target scenario configure for the group
-        points = {
-            vector3(1686.9018554688, 4829.8330078125, 42.07),
-            vector3(1698.8566894531, 4831.4604492188, 42.07),
-            vector3(1700.2448730469, 4817.7734375, 42.07),
-            vector3(1688.3682861328, 4816.2954101562, 42.07)
-        }
-    },
     {
         type = "clothing",
         coords = vector4(1693.2, 4828.11, 42.07, 188.66),
@@ -553,7 +543,7 @@ Config.Stores = {
             vector3(-294.1501159668, 6203.2700195312, 31.49)
         }
     }
---[[    {
+    --[[{
         type = "surgeon",
         coords = vector4(298.78, -572.81, 43.26, 114.27),
         size = vector3(4, 4, 4),
@@ -609,11 +599,11 @@ Config.ClothingRooms = {
     }
 }
 
---[[
+
 Config.PlayerOutfitRooms = {
     -- Sample outfit room config
-    {
-        job = "dzdzdz",
+--[[    {
+        job = "police",
         coords = vector4(287.28, -573.41, 43.16, 79.61),
         size = vector3(4, 4, 4),
         rotation = 45,
@@ -625,11 +615,11 @@ Config.PlayerOutfitRooms = {
             vector3(289.0, -574.75, 43.16)
         },
         citizenIDs = {
-            --"char1:3069bd0212b6d515f7464a32ee0084ee0222d130"
+            "BHH65156"
         }
-    }
+    }]]--
 }
-]]
+
 
 Config.Outfits = {
     ["police"] = {

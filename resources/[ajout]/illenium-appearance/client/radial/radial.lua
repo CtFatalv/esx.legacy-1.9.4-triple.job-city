@@ -5,11 +5,30 @@ Radial.MenuID = "open_clothing_menu"
 local radialOptionAdded = false
 
 function Radial.IsOX()
-    return GetResourceState("ox_lib") ~= "missing" and Config.UseOxRadial
+    local resName = "ox_lib"
+    if GetResourceState(resName) ~= "missing" and Config.UseOxRadial then
+        Radial.ResourceName = resName
+        return true
+    end
+    return false
 end
 
 function Radial.IsQB()
-    return GetResourceState("qb-radialmenu") ~= "missing"
+    local resName = "qb-radialmenu"
+    if GetResourceState(resName) ~= "missing" then
+        Radial.ResourceName = resName
+        return true
+    end
+    return false
+end
+
+function Radial.IsQBX()
+    local resName = "qbx-radialmenu"
+    if GetResourceState(resName) ~= "missing" then
+        Radial.ResourceName = resName
+        return true
+    end
+    return false
 end
 
 function Radial.AddOption(currentZone)
@@ -26,7 +45,7 @@ function Radial.AddOption(currentZone)
         clothing = {"illenium-appearance:client:openClothingShopMenu", _L("menu.clothingShopTitle")},
         barber = {"illenium-appearance:client:OpenBarberShop", _L("menu.barberShopTitle")},
         tattoo = {"illenium-appearance:client:OpenTattooShop", _L("menu.tattooShopTitle")},
-        surgeon = {"illenium-appearance:client:OpenSurgeonShop", _L("menu.surgeonShopTitle")},
+        --surgeon = {"illenium-appearance:client:OpenSurgeonShop", _L("menu.surgeonShopTitle")},
     }
     if zoneEvents[currentZone.name] then
         event, title = table.unpack(zoneEvents[currentZone.name])

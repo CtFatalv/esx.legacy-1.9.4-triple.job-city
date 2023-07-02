@@ -9,8 +9,8 @@ local function getMoneyForShop(shopType)
         money = Config.BarberCost
     elseif shopType == "tattoo" then
         money = Config.TattooCost
-    elseif shopType == "surgeon" then
-        money = Config.SurgeonCost
+    --elseif shopType == "surgeon" then
+        --money = Config.SurgeonCost
     end
 
     return money
@@ -330,6 +330,16 @@ if Config.EnablePedMenu then
             end
         end
         TriggerClientEvent("illenium-appearance:client:openClothingShopMenu", target, true)
+    end)
+end
+
+if Config.EnableJobOutfitsCommand then
+    lib.addCommand("joboutfits", { help = _L("commands.joboutfits.title"), }, function(source)
+        TriggerClientEvent("illenium-apearance:client:outfitsCommand", source, true)
+    end)
+
+    lib.addCommand("gangoutfits", { help = _L("commands.gangoutfits.title"), }, function(source)
+        TriggerClientEvent("illenium-apearance:client:outfitsCommand", source)
     end)
 end
 

@@ -104,8 +104,8 @@ local function SetupStoreTargets()
             end
         elseif v.type == "tattoo" then
             action = OpenTattooShop
-        elseif v.type == "surgeon" then
-            action = OpenSurgeonShop
+        --elseif v.type == "surgeon" then
+            --action = OpenSurgeonShop
         end
 
         if not (Config.RCoreTattoosCompatibility and v.type == "tattoo") then
@@ -118,7 +118,7 @@ local function SetupClothingRoomTargets()
     for k, v in pairs(Config.ClothingRooms) do
         local targetConfig = Config.TargetConfig["clothingroom"]
         local action = function()
-            local outfits = GetPlayerJobOutfits(v)
+            local outfits = GetPlayerJobOutfits(v.job)
             TriggerEvent("illenium-appearance:client:openJobOutfitsMenu", outfits)
         end
 
