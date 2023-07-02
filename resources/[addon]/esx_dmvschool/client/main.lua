@@ -215,7 +215,7 @@ Citizen.CreateThread(function()
 
 	SetBlipSprite (blip, 408)
 	SetBlipDisplay(blip, 4)
-	SetBlipScale  (blip, 0.5)
+	SetBlipScale  (blip, 0.7)
 	SetBlipAsShortRange(blip, true)
 
 	BeginTextCommandSetBlipName("STRING")
@@ -442,40 +442,10 @@ end)
 
 RegisterNetEvent('esx_dmvschool:permismotook')
 AddEventHandler('esx_dmvschool:permismotook', function()
-	local ownedLicenses = {}
-	checkLicense2()
-	checkLicensedmv()
-
-	for i=1, #Licenses, 1 do
-		ownedLicenses[Licenses[i].type] = true
-	end
-
-	Wait(500)
-	if not dmv then
-	ESX.ShowNotification("Vous devez obtenir votre ~r~code~s~!", "error", 3000)
-	elseif dmv and not pm then
-		StartDriveTest('permis_moto')
-	else
-	ESX.ShowNotification("Vous avez déjà passez votre permis ~r~moto~s~!", "error", 3000)
-	end
+	StartDriveTest('permis_moto')
 end)
 
 RegisterNetEvent('esx_dmvschool:permiscamionok')
 AddEventHandler('esx_dmvschool:permiscamionok', function()
-	local ownedLicenses = {}
-	checkLicense3()
-	checkLicensedmv()
-
-	for i=1, #Licenses, 1 do
-		ownedLicenses[Licenses[i].type] = true
-	end
-
-	Wait(500)
-	if not dmv then
-	ESX.ShowNotification("Vous devez obtenir votre ~r~code~s~!", "error", 3000)
-	elseif dmv and not pc then
-		StartDriveTest('permis_camion')
-	else
-	ESX.ShowNotification("Vous avez déjà passez votre permis ~r~camion~s~!", "error", 3000)
-	end
+	StartDriveTest('permis_camion')
 end)
