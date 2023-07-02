@@ -203,11 +203,12 @@ elseif ESX.GetConfig().Multichar == true then
         exports['um-idcard']:CreateMetaLicense(source, 'id_card')
     end)
 
-	AddEventHandler('esx_identity:completedRegistration', function(source, data)
-		TriggerEvent('esx:onPlayerJoined', source, PREFIX..awaitingRegistration[source], data)
-		awaitingRegistration[source] = nil
-		ESX.Players[GetIdentifier(source)] = true
-	end)
+    AddEventHandler('esx_identity:completedRegistration', function(source, data)
+        TriggerEvent('esx:onPlayerJoined', source, PREFIX..awaitingRegistration[source], data)
+        awaitingRegistration[source] = nil
+        ESX.Players[GetIdentifier(source)] = true
+        newCharacters[source] = true
+    end)
 
 	AddEventHandler('playerDropped', function(reason)
 		awaitingRegistration[source] = nil
