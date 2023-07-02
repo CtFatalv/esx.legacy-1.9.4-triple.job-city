@@ -1,26 +1,27 @@
-fx_version 'adamant'
-
-game 'gta5'
+resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
 description 'ESX DMV School'
 
-version '1.0'
-legacyversion '1.9.1'
-
-lua54 'yes'
-
-shared_script '@es_extended/imports.lua'
+version '1.0.4'
 
 server_scripts {
 	'@es_extended/locale.lua',
-	'locales/*.lua',
+	'locales/br.lua',
+	'locales/fi.lua',
+	'locales/fr.lua',
+	'locales/en.lua',
+	'locales/pl.lua',
 	'config.lua',
 	'server/main.lua'
 }
 
 client_scripts {
 	'@es_extended/locale.lua',
-	'locales/*.lua',
+	'locales/br.lua',
+	'locales/fi.lua',
+	'locales/fr.lua',
+	'locales/en.lua',
+	'locales/pl.lua',
 	'config.lua',
 	'client/main.lua'
 }
@@ -41,3 +42,5 @@ dependencies {
 	'es_extended',
 	'esx_license'
 }
+
+shared_script '@es_extended/imports.lua'

@@ -1,91 +1,71 @@
 var tableauQuestion = [
-	{
-		question:"Si vous roulez à 80 km/h et que vous vous approchez d'une zone résidentielle, vous devez:",
-		propositionA:"Vous accélérez",
-		propositionB:"Vous gardez votre vitesse si vous ne dépassez pas d'autres véhicules",
-		propositionC:"Tu ralentis",
-		propositionD:"Vous gardez votre vitesse",
-		reponse:"C"
-	},
+    {   question : "Si vous conduisez à 80km/h, que vous approchez d'un lieu de résidence, cela veut dire que :",
+        propositionA : "Vous devez accélérer",
+        propositionB : "Vous pouvez garder votre vitesse, si vous ne croisez pas d'autres véhicules",
+        propositionC : "Vous devez ralentir",
+        propositionD : "Vous pouvez garder votre vitesse",
+        reponse : "C"},
+		
+    {   question : "Vous vous apprétez à tourner à droite au feu vert, mais vous voyez un piéton qui traverse :",
+        propositionA : "Vous passez avant le piéton",
+        propositionB : "Vous vérifiez qu'il n'y a pas d'autre véhicule et vous passez",
+        propositionC : "Vous attendez que le piéton est terminé",
+        propositionD : "Vous shoutez le piéton pour passer",
+        reponse : "C"},
+		
+    {   question : "Sans aucune indication : La vitesse dans une zone résidentielle est de : __ km/h",
+        propositionA : "50",
+        propositionB : "55",
+        propositionC : "65",
+        propositionD : "70",
+        reponse : "A"},
 	
-	{
-		question:"Si vous tournez à droite à un feu de circulation, mais que vous voyez un passage pour piétons, que faites-vous:",
-		propositionA:"Vous dépassez le piéton",
-		propositionB:"Vous vérifiez qu'il n'y a pas d'autres véhicules dans les environs",
-		propositionC:"Vous attendez que le piéton ait traversé",
-		propositionD:"Vous tirez sur le piéton et continuez à conduire",
-		reponse:"C"
-	},
+	{   question : "Avant chaque changement de file vous devez :",
+        propositionA : "Vérifiez vos rétroviseurs",
+        propositionB : "Vérifiez vos angles morts",
+        propositionC : "Signalez vos intentions",
+        propositionD : "Tout cela",
+        reponse : "D"},
+		
+	{   question : "What blood alcohol level is classified as driving while intoxicated?",
+        propositionA : "0.05%",
+        propositionB : "0.18%",
+        propositionC : "0.08%",
+        propositionD : "0.06%",
+        reponse : "C"},
+		
+	{   question : "A quel moment vous pouvez passer aux feux ?",
+        propositionA : "Quand il est vert",
+        propositionB : "Quand il n'y a personne sur l'intersection",
+        propositionC : "Vous êtes dans une zone d'école",
+        propositionD : "Quand il est vert et/ou rouge et que je tourne à droite",
+        reponse : "D"},
 	
-	{
-		question:"Sans indication préalable, la vitesse dans une zone résidentielle est de:__ km/h",
-		propositionA:"30 km/h",
-		propositionB:"50 km/h",
-		propositionC:"40 km/h",
-		propositionD:"60 km/h",
-		reponse:"B"
-	},
-	
-	{
-		question:"Avant chaque changement de voie, vous devez :",
-		propositionA:"Vérifiez vos rétroviseurs",
-		propositionB:"Vérifiez vos angles morts",
-		propositionC:"Signalez vos intentions",
-		propositionD:"Tout ce qui précède",
-		reponse:"D"
-	},
-	
-	{
-		question:"Quel taux d'alcoolémie est classé comme conduite en état d'ébriété ?",
-		propositionA:"0,05 %",
-		propositionB:"0,18 %",
-		propositionC:"0,08 %",
-		propositionD:"0,06 %",
-		reponse:"C"
-	},
-
-	{
-		question:"Quand pouvez-vous continuer à conduire à un feu ?",
-		propositionA:"Quand c'est vert",
-		propositionB:"Quand il n'y a personne au carrefour",
-		propositionC:"Vous êtes en zone scolaire",
-		propositionD:"Quand c'est vert et/ou rouge et que tu tournes à droite",
-		reponse:"D"
-	},
-
-	{
-		question:"Un piéton a un signal interdit de traverser, que faites-vous ?",
-		propositionA:"Vous les avez laissés passer",
-		propositionB:"Vous observez avant de continuer",
-		propositionC:"Vous faites signe pour leur dire de traverser",
-		propositionD:"Vous continuez car votre feu est vert",
-		reponse:"D"
-	},
-
-	{
-		question: "Ce qui est autorisé lors du dépassement d'un autre véhicule",
-		propositionA:"Vous le suivez de près pour le passer plus vite",
-		propositionB:"Vous le dépassez sans quitter la chaussée",
-		propositionC:"Vous roulez à l'opposé de la route pour passer",
-		propositionD:"Vous dépassez la limite de vitesse pour les dépasser",
-		reponse:"C"
-	},
-
-	{
-		question:"Vous roulez sur une autoroute qui indique une vitesse maximale de 120 km/h. Mais la plupart des trafiquants roulent à 125 km/h, vous ne devez donc pas rouler plus vite que :",
-		propositionA:"120 km/h",
-		propositionB:"125 km/h",
-		propositionC:"130 km/h",
-		propositionD:"110 km/h",
-		reponse:"A"
-	},
-
-	{
-		question:" Lorsque vous êtes dépassé par un autre véhicule, il est important de NE PAS:",
-		propositionA:"Ralentir",
-		propositionB:"Vérifiez vos rétroviseurs",
-		propositionC:"Regardez les autres conducteurs",
-		propositionD:"Augmentez votre vitesse",
-		reponse:"D"
-	},
+	{   question : "Un piéton est au feu rouge pour les piétons",
+        propositionA : "Vous le laissez passer",
+        propositionB : "Vous observez avant de continuer",
+        propositionC : "Vous lui faite un signe de la main",
+        propositionD : "Vous continuez votre chemin car votre feu est vert",
+        reponse : "D"},
+		
+	{   question : "Qu'est ce qui est permit quand vous dépassez un autre véhicule",
+        propositionA : "Le suivre de près pour le doubler plus vite",
+        propositionB : "Le doubler en quittant la route",
+        propositionC : "Conduire sur la route opposé pour le dépasser",
+        propositionD : "Dépasser la vitesse limite",
+        reponse : "C"},
+		
+	{   question : "Vous conduisez sur une rocade qui indique une vitesse maximum de 110 km/h. La plupart du traffic roule à 120 km/h, alors vous ne devriez pas conduire plus vite que :",
+        propositionA : "80 kmh",
+        propositionB : "40 kmh",
+        propositionC : "50 kmh",
+        propositionD : "110 kmh",
+        reponse : "D"},
+		
+	{   question : "Quand vous êtes dépassé par un autre véhicule il est important de ne PAS :",
+        propositionA : "Ralentir",
+        propositionB : "Vérifiez vos rétroviseurs",
+        propositionC : "Regarder les autres conducteurs",
+        propositionD : "Augmenter votre vitesse",
+        reponse : "D"},
 ]
