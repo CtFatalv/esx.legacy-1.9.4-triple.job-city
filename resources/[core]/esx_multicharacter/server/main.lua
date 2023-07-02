@@ -195,6 +195,14 @@ elseif ESX.GetConfig().Multichar == true then
 		end
 	end)
 
+    local newCharacters = {}
+    AddEventHandler('esx:playerLoaded', function(source, xPlayer)
+        if not newCharacters[source] then return end
+        newCharacters[source] = nil
+        Wait(5000)
+        exports['um-idcard']:CreateMetaLicense(source, 'id_card')
+    end)
+
 	AddEventHandler('esx_identity:completedRegistration', function(source, data)
 		TriggerEvent('esx:onPlayerJoined', source, PREFIX..awaitingRegistration[source], data)
 		awaitingRegistration[source] = nil
