@@ -1,4 +1,39 @@
 return {
+	['id_card'] = {
+        label = 'ID Card',
+        weight = 0,
+        stack = false,
+        close = true,
+    },
+
+    ['driver_license_voiture'] = {
+        label = 'Permis Voiture',
+        weight = 0,
+        stack = false,
+        close = true,
+    },
+
+    ['driver_license_moto'] = {
+        label = 'Permis Moto',
+        weight = 0,
+        stack = false,
+        close = true,
+    },
+
+    ['driver_license_camion'] = {
+        label = 'Permis Camion',
+        weight = 0,
+        stack = false,
+        close = true,
+    },
+
+    ['weaponlicense'] = {
+        label = 'Permis Arme',
+        weight = 0,
+        stack = false,
+        close = true,
+    },
+
 	['bandage'] = {
 		label = 'Bandage',
 		weight = 115,
