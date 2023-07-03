@@ -1,481 +1,406 @@
-local firstSpawn = true
-
-isDead, isSearched, medic = false, false, 0
+local CurrentAction, CurrentActionMsg, CurrentActionData = nil, '', {}
+local HasAlreadyEnteredMarker, LastHospital, LastPart, LastPartNum
+local isBusy, deadPlayers, deadPlayerBlips, isOnDuty = false, {}, {}, false
+isInShopMenu = false
 
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
-  ESX.PlayerLoaded = true
+	ESX.PlayerData = xPlayer
+	ESX.PlayerLoaded = true
 end)
 
-RegisterNetEvent('esx:onPlayerLogout')
-AddEventHandler('esx:onPlayerLogout', function()
-  ESX.PlayerLoaded = false
-  firstSpawn = true
+function OpenMobileAmbulanceActionsMenu()
+	local elements = {
+		{unselectable = true, icon = "fas fa-ambulance", title = TranslateCap('ambulance')},
+		{icon = "fas fa-ambulance", title = TranslateCap('ems_menu'), value = "citizen_interaction"}
+	}
+
+	ESX.OpenContext("right", elements, function(menu,element)
+		if element.value == "citizen_interaction" then
+			local elements2 = {
+				{unselectable = true, icon = "fas fa-ambulance", title = element.title},
+				--{icon = "fas fa-syringe", title = TranslateCap('ems_menu_revive'), value = "revive"},
+				--{icon = "fas fa-bandage", title = TranslateCap('ems_menu_small'), value = "small"},
+				--{icon = "fas fa-bandage", title = TranslateCap('ems_menu_big'), value = "big"},
+				--{icon = "fas fa-car", title = TranslateCap('ems_menu_putincar'), value = "put_in_vehicle"},
+				--{icon = "fas fa-syringe", title = TranslateCap('ems_menu_search'), value = "search"},
+			}
+
+			ESX.OpenContext("right", elements2, function(menu2,element2)
+				if isBusy then return end
+				local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+
+				if element2.value == 'search' then
+					TriggerServerEvent('esx_ambulancejob:svsearch')
+				elseif closestPlayer == -1 or closestDistance > 1.0 then
+					ESX.ShowNotification(TranslateCap('no_players'))
+				else
+					if element2.value == 'revive' then
+						revivePlayer(closestPlayer)
+					elseif element2.value == 'small' then
+						ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+							if quantity > 0 then
+								local closestPlayerPed = GetPlayerPed(closestPlayer)
+								local health = GetEntityHealth(closestPlayerPed)
+
+								if health > 0 then
+									local playerPed = PlayerPedId()
+
+									isBusy = true
+									ESX.ShowNotification(TranslateCap('heal_inprogress'))
+									TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+									Wait(10000)
+									ClearPedTasks(playerPed)
+
+									TriggerServerEvent('esx_ambulancejob:removeItem', 'bandage')
+									TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(closestPlayer), 'small')
+									ESX.ShowNotification(TranslateCap('heal_complete', GetPlayerName(closestPlayer)))
+									isBusy = false
+								else
+									ESX.ShowNotification(TranslateCap('player_not_conscious'))
+								end
+							else
+								ESX.ShowNotification(TranslateCap('not_enough_bandage'))
+							end
+						end, 'bandage')
+
+					elseif element2.value == 'big' then
+						ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+							if quantity > 0 then
+								local closestPlayerPed = GetPlayerPed(closestPlayer)
+								local health = GetEntityHealth(closestPlayerPed)
+
+								if health > 0 then
+									local playerPed = PlayerPedId()
+
+									isBusy = true
+									ESX.ShowNotification(TranslateCap('heal_inprogress'))
+									TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+									Wait(10000)
+									ClearPedTasks(playerPed)
+
+									TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+									TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(closestPlayer), 'big')
+									ESX.ShowNotification(TranslateCap('heal_complete', GetPlayerName(closestPlayer)))
+									isBusy = false
+								else
+									ESX.ShowNotification(TranslateCap('player_not_conscious'))
+								end
+							else
+								ESX.ShowNotification(TranslateCap('not_enough_medikit'))
+							end
+						end, 'medikit')
+					elseif element2.value == 'put_in_vehicle' then
+						TriggerServerEvent('esx_ambulancejob:putInVehicle', GetPlayerServerId(closestPlayer))
+					end
+				end
+			end)
+		end
+	end)
+end
+
+function revivePlayer(closestPlayer)
+	isBusy = true
+
+	ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+		if quantity > 0 then
+			local closestPlayerPed = GetPlayerPed(closestPlayer)
+
+			if IsPedDeadOrDying(closestPlayerPed, 1) then
+				local playerPed = PlayerPedId()
+				local lib, anim = 'mini@cpr@char_a@cpr_str', 'cpr_pumpchest'
+				ESX.ShowNotification(TranslateCap('revive_inprogress'))
+
+				for i=1, 15 do
+					Wait(900)
+
+					ESX.Streaming.RequestAnimDict(lib, function()
+						TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, -1, 0, 0.0, false, false, false)
+						RemoveAnimDict(lib)
+					end)
+				end
+
+				TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+				TriggerServerEvent('esx_ambulancejob:revive', GetPlayerServerId(closestPlayer))
+			else
+				ESX.ShowNotification(TranslateCap('player_not_unconscious'))
+			end
+		else
+			ESX.ShowNotification(TranslateCap('not_enough_medikit'))
+		end
+		isBusy = false
+	end, 'medikit')
+end
+
+function FastTravel(coords, heading)
+	local playerPed = PlayerPedId()
+
+	DoScreenFadeOut(800)
+
+	while not IsScreenFadedOut() do
+		Wait(500)
+	end
+
+	ESX.Game.Teleport(playerPed, coords, function()
+		DoScreenFadeIn(800)
+
+		if heading then
+			SetEntityHeading(playerPed, heading)
+		end
+	end)
+end
+
+RegisterNetEvent('esx_ambulancejob:heal')
+AddEventHandler('esx_ambulancejob:heal', function(healType, quiet)
+	local playerPed = PlayerPedId()
+	local maxHealth = GetEntityMaxHealth(playerPed)
+
+	if healType == 'small' then
+		local health = GetEntityHealth(playerPed)
+		local newHealth = math.min(maxHealth, math.floor(health + maxHealth / 8))
+		SetEntityHealth(playerPed, newHealth)
+	elseif healType == 'big' then
+		SetEntityHealth(playerPed, maxHealth)
+	end
+
+	if Config.Debug then 
+		print("[^2INFO^7] Healing Player - ^5" .. tostring(healType).. "^7")
+	end
+	if not quiet then
+		ESX.ShowNotification(TranslateCap('healed'))
+	end
 end)
 
-AddEventHandler('esx:onPlayerSpawn', function()
-  isDead = false
-  ClearTimecycleModifier()
-  SetPedMotionBlur(PlayerPedId(), false)
-  ClearExtraTimecycleModifier()
-  EndDeathCam()
-  if firstSpawn then
-    firstSpawn = false
+RegisterNetEvent('esx:setJob')
+AddEventHandler('esx:setJob', function(job)
+	if isOnDuty and job.name ~= 'ambulance' then
+		for playerId,v in pairs(deadPlayerBlips) do
+			if Config.Debug then 
+				print("[^2INFO^7] Removing dead blip - ^5" .. tostring(playerId).. "^7")
+			end
+			RemoveBlip(v)
+			deadPlayerBlips[playerId] = nil
+		end
 
-    if Config.SaveDeathStatus then
-      while not ESX.PlayerLoaded do
-        Wait(1000)
-      end
+		isOnDuty = false
+	end
+end)
 
-      ESX.TriggerServerCallback('esx_ambulancejob:getDeathStatus', function(shouldDie)
-        if shouldDie then
-          Wait(1000)
-          SetEntityHealth(PlayerPedId(), 0)
+RegisterNetEvent('esx_ambulancejob:PlayerDead')
+AddEventHandler('esx_ambulancejob:PlayerDead', function(Player)
+	if Config.Debug then 
+		print("[^2INFO^7] Player Dead | ^5" .. tostring(Player) .. "^7")
+	end
+	deadPlayers[Player] = "dead"
+end)
+
+RegisterNetEvent('esx_ambulancejob:PlayerNotDead')
+AddEventHandler('esx_ambulancejob:PlayerNotDead', function(Player)
+	if deadPlayerBlips[Player] then
+		RemoveBlip(deadPlayerBlips[Player])
+		deadPlayerBlips[Player] = nil
+	end
+	if Config.Debug then 
+		print("[^2INFO^7] Player Alive | ^5" .. tostring(Player) .. "^7")
+	end
+	deadPlayers[Player] = nil
+end)
+
+RegisterNetEvent('esx_ambulancejob:setDeadPlayers')
+AddEventHandler('esx_ambulancejob:setDeadPlayers', function(_deadPlayers)
+	deadPlayers = _deadPlayers
+
+	if isOnDuty then
+		for playerId,v in pairs(deadPlayerBlips) do
+			RemoveBlip(v)
+			deadPlayerBlips[playerId] = nil
+		end
+
+		for playerId,status in pairs(deadPlayers) do
+			if Config.Debug then 
+				print("[^2INFO^7] Player Dead | ^5" .. tostring(playerId) .. "^7")
+			end
+			if status == 'distress' then
+				if Config.Debug then 
+					print("[^2INFO^7] Creating Distress Blip for Player - ^5" .. tostring(playerId) .. "^7")
+				end
+				local player = GetPlayerFromServerId(playerId)
+				local playerPed = GetPlayerPed(player)
+				local blip = AddBlipForEntity(playerPed)
+
+				SetBlipSprite(blip, 303)
+				SetBlipColour(blip, 1)
+				SetBlipFlashes(blip, true)
+				SetBlipCategory(blip, 7)
+
+				BeginTextCommandSetBlipName('STRING')
+				AddTextComponentSubstringPlayerName(TranslateCap('blip_dead'))
+				EndTextCommandSetBlipName(blip)
+
+				deadPlayerBlips[playerId] = blip
+			end
+		end
+	end
+end)
+
+
+RegisterNetEvent('esx_ambulancejob:PlayerDistressed')
+AddEventHandler('esx_ambulancejob:PlayerDistressed', function(Player)
+	deadPlayers[Player] = 'distress'
+
+	if isOnDuty then
+		if Config.Debug then 
+			print("[^2INFO^7] Player Distress Recived - ID:^5" .. tostring(Player) .. "^7")
+		end
+				ESX.ShowNotification("[DISPATCH]: An Unconscious Person Has Been Reported", "error", 10000)
+				deadPlayerBlips[Player] = nil
+				local player = GetPlayerFromServerId(Player)
+				local playerPed = GetPlayerPed(player)
+				local blip = AddBlipForEntity(playerPed)
+
+				SetBlipSprite(blip, Config.DistressBlip.Sprite)
+				SetBlipColour(blip, Config.DistressBlip.Color)
+				SetBlipScale(blip, Config.DistressBlip.Scale)
+				SetBlipFlashes(blip, true)
+
+				BeginTextCommandSetBlipName('STRING')
+				AddTextComponentSubstringPlayerName(TranslateCap('blip_dead'))
+				EndTextCommandSetBlipName(blip)
+
+				deadPlayerBlips[Player] = blip
+	end
+end)
+
+AddEventHandler('esx_ambulancejob:factureems', function()	
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'ambulance' then
+local elements = {
+    {unselectable = true, icon = "fas fa-scroll", title = TranslateCap('ambulance')},
+    {icon = "fas fa-scroll", title = TranslateCap('billing'), value = "billing"},
+}
+ESX.OpenContext("right", elements, function(menu,element)
+    if element.value == "billing" then
+        local elements2 = {
+            {unselectable = true, icon = "fas fa-scroll", title = element.title},
+            {title = "Amount", input = true, inputType = "number", inputMin = 1, inputMax = 200000, inputPlaceholder = "Amount to bill.."},
+            {icon = "fas fa-check-double", title = "Confirm", value = "confirm"}
+        }
+
+        ESX.OpenContext("right", elements2, function(menu2,element2)
+            local amount = tonumber(menu2.eles[2].inputValue)
+            if amount == nil then
+                ESX.ShowNotification(TranslateCap('amount_invalid'))
+            else
+                ESX.CloseContext()
+                local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+                if closestPlayer == -1 or closestDistance > 3.0 then
+                    ESX.ShowNotification(TranslateCap('no_players_near'))
+                else
+                    TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(closestPlayer), 'society_ambulance',
+                        'ambulance', amount)
+                    ESX.ShowNotification(TranslateCap('billing_sent'))
+                end
+            end
+        end)
+    end
+end)
+end
+end)
+
+exports.ox_target:addBoxZone({
+    coords =  vector3(231.61, -1368.27, 39.43),
+    size = vec3(0.6, 0.2, 0.1),
+    rotation = 261,
+    debug = false,
+    options = {
+        {
+            name = 'Gestion',
+            event = 'bossMenu',
+            event = 'esx_ambulancejob:bossMenu',
+            icon = 'fa-solid fa-computer',
+            label = 'Gestion',
+        }
+    }
+})
+
+AddEventHandler('esx_ambulancejob:bossMenu', function()
+    if ESX.PlayerData.job and ESX.PlayerData.job.name == 'ambulance' then
+    TriggerEvent('esx_society:openBossMenu', 'ambulance', function(data, menu)
+    end, {wash = false})
+	end
+end)
+
+AddEventHandler('esx_ambulancejob:actionMenu', function()
+	OpenMobileAmbulanceActionsMenu()
+end)
+
+AddEventHandler('ambulance:reanimation', function(player)
+    print("jojo")
+	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+    if closestPlayer == -1 or closestDistance > 1.5 then
+    	ESX.ShowNotification(TranslateCap('no_players'))
+    else
+    	revivePlayer(closestPlayer)
+    end
+end)
+
+AddEventHandler('ambulance:soinleger', function()
+    ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+    local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+    if quantity > 0 then
+        local closestPlayerPed = GetPlayerPed(closestPlayer)
+        local health = GetEntityHealth(closestPlayerPed)
+
+        if health > 0 then
+            local playerPed = PlayerPedId()
+
+            isBusy = true
+            ESX.ShowNotification(TranslateCap('heal_inprogress'))
+            TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+            Wait(10000)
+            ClearPedTasks(playerPed)
+
+            TriggerServerEvent('esx_ambulancejob:removeItem', 'bandage')
+            TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(closestPlayer), 'small')
+            ESX.ShowNotification(TranslateCap('heal_complete', GetPlayerName(closestPlayer)))
+            isBusy = false
+        else
+            ESX.ShowNotification(TranslateCap('player_not_conscious'))
         end
-      end)
+    else
+        ESX.ShowNotification(TranslateCap('not_enough_bandage'))
     end
-  end
+    end, 'bandage')
 end)
 
--- Create blips
-CreateThread(function()
-  for k, v in pairs(Config.Hospitals) do
-    local blip = AddBlipForCoord(v.Blip.coords)
+AddEventHandler('ambulance:soingrave', function()
+    ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+    local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+    if quantity > 0 then
+        local closestPlayerPed = GetPlayerPed(closestPlayer)
+        local health = GetEntityHealth(closestPlayerPed)
 
-    SetBlipSprite(blip, v.Blip.sprite)
-    SetBlipScale(blip, v.Blip.scale)
-    SetBlipColour(blip, v.Blip.color)
-    SetBlipAsShortRange(blip, true)
+        if health > 0 then
+            local playerPed = PlayerPedId()
 
-    BeginTextCommandSetBlipName('STRING')
-    AddTextComponentSubstringPlayerName(TranslateCap('blip_hospital'))
-    EndTextCommandSetBlipName(blip)
-  end
+            isBusy = true
+            ESX.ShowNotification(TranslateCap('heal_inprogress'))
+            TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+            Wait(10000)
+            ClearPedTasks(playerPed)
 
-  while true do
-    local Sleep = 1500
-
-    if isDead then
-      Sleep = 0
-      DisableAllControlActions(0)
-      EnableControlAction(0, 47, true) -- G 
-      EnableControlAction(0, 245, true) -- T
-      EnableControlAction(0, 38, true) -- E
-
-      ProcessCamControls()
-      if isSearched then
-        local playerPed = PlayerPedId()
-        local ped = GetPlayerPed(GetPlayerFromServerId(medic))
-        isSearched = false
-
-        AttachEntityToEntity(playerPed, ped, 11816, 0.54, 0.54, 0.0, 0.0, 0.0, 0.0, false, false, false, false, 2, true)
-        Wait(1000)
-        DetachEntity(playerPed, true, false)
-        ClearPedTasksImmediately(playerPed)
-      end
-    end
-
-    Wait(Sleep)
-  end
-end)
-
-RegisterNetEvent('esx_ambulancejob:clsearch')
-AddEventHandler('esx_ambulancejob:clsearch', function(medicId)
-  local playerPed = PlayerPedId()
-
-  if isDead then
-    local coords = GetEntityCoords(playerPed)
-    local playersInArea = ESX.Game.GetPlayersInArea(coords, 50.0)
-
-    for i = 1, #playersInArea, 1 do
-      local player = playersInArea[i]
-      if player == GetPlayerFromServerId(medicId) then
-        medic = tonumber(medicId)
-        isSearched = true
-        break
-      end
-    end
-  end
-end)
-
-function OnPlayerDeath()
-  isDead = true
-  ESX.CloseContext()
-  ClearTimecycleModifier()
-  SetTimecycleModifier("REDMIST_blend")
-  SetTimecycleModifierStrength(0.7)
-  SetExtraTimecycleModifier("fp_vig_red")
-  SetExtraTimecycleModifierStrength(1.0)
-  SetPedMotionBlur(PlayerPedId(), true)
-  TriggerServerEvent('esx_ambulancejob:setDeathStatus', true)
-  StartDeathTimer()
-  StartDeathCam()
-  StartDistressSignal()
-end
-
-RegisterNetEvent('esx_ambulancejob:useItem')
-AddEventHandler('esx_ambulancejob:useItem', function(itemName)
-  ESX.CloseContext()
-
-  if itemName == 'medikit' then
-    local lib, anim = 'anim@heists@narcotics@funding@gang_idle', 'gang_chatting_idle01' -- TODO better animations
-    local playerPed = PlayerPedId()
-
-    ESX.Streaming.RequestAnimDict(lib, function()
-      TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
-      RemoveAnimDict(lib)
-
-      Wait(500)
-      while IsEntityPlayingAnim(playerPed, lib, anim, 3) do
-        Wait(0)
-        DisableAllControlActions(0)
-      end
-
-      TriggerEvent('esx_ambulancejob:heal', 'big', true)
-      ESX.ShowNotification(TranslateCap('used_medikit'))
-    end)
-
-  elseif itemName == 'bandage' then
-    local lib, anim = 'anim@heists@narcotics@funding@gang_idle', 'gang_chatting_idle01' -- TODO better animations
-    local playerPed = PlayerPedId()
-
-    ESX.Streaming.RequestAnimDict(lib, function()
-      TaskPlayAnim(playerPed, lib, anim, 8.0, -8.0, -1, 0, 0, false, false, false)
-      RemoveAnimDict(lib)
-
-      Wait(500)
-      while IsEntityPlayingAnim(playerPed, lib, anim, 3) do
-        Wait(0)
-        DisableAllControlActions(0)
-      end
-
-      TriggerEvent('esx_ambulancejob:heal', 'small', true)
-      ESX.ShowNotification(TranslateCap('used_bandage'))
-    end)
-  end
-end)
-
-function StartDistressSignal()
-  CreateThread(function()
-    local timer = Config.BleedoutTimer
-
-    while timer > 0 and isDead do
-      Wait(0)
-      timer = timer - 30
-
-      SetTextFont(4)
-      SetTextScale(0.5, 0.5)
-      SetTextColour(200, 50, 50, 255)
-      SetTextDropshadow(0.1, 3, 27, 27, 255)
-      BeginTextCommandDisplayText('STRING')
-      AddTextComponentSubstringPlayerName(TranslateCap('distress_send'))
-      EndTextCommandDisplayText(0.43, 0.77)
-
-      if IsControlJustReleased(0, 47) then
-        SendDistressSignal()
-        break
-      end
-    end
-  end)
-end
-
-function SendDistressSignal()
-  local playerPed = PlayerPedId()
-  local coords = GetEntityCoords(playerPed)
-
-  ESX.ShowNotification(TranslateCap('distress_sent'))
-  TriggerServerEvent('esx_ambulancejob:onPlayerDistress')
-end
-
-function DrawGenericTextThisFrame()
-  SetTextFont(4)
-  SetTextScale(0.0, 0.5)
-  SetTextColour(255, 255, 255, 255)
-  SetTextDropshadow(0, 0, 0, 0, 255)
-  SetTextDropShadow()
-  SetTextOutline()
-  SetTextCentre(true)
-end
-
-function secondsToClock(seconds)
-  local seconds, hours, mins, secs = tonumber(seconds), 0, 0, 0
-
-  if seconds <= 0 then
-    return 0, 0
-  else
-    local hours = string.format('%02.f', math.floor(seconds / 3600))
-    local mins = string.format('%02.f', math.floor(seconds / 60 - (hours * 60)))
-    local secs = string.format('%02.f', math.floor(seconds - hours * 3600 - mins * 60))
-
-    return mins, secs
-  end
-end
-
-function StartDeathTimer()
-  local canPayFine = false
-
-  if Config.EarlyRespawnFine then
-    ESX.TriggerServerCallback('esx_ambulancejob:checkBalance', function(canPay)
-      canPayFine = canPay
-    end)
-  end
-
-  local earlySpawnTimer = ESX.Math.Round(Config.EarlyRespawnTimer / 1000)
-  local bleedoutTimer = ESX.Math.Round(Config.BleedoutTimer / 1000)
-
-  CreateThread(function()
-    -- early respawn timer
-    while earlySpawnTimer > 0 and isDead do
-      Wait(1000)
-
-      if earlySpawnTimer > 0 then
-        earlySpawnTimer = earlySpawnTimer - 1
-      end
-    end
-
-    -- bleedout timer
-    while bleedoutTimer > 0 and isDead do
-      Wait(1000)
-
-      if bleedoutTimer > 0 then
-        bleedoutTimer = bleedoutTimer - 1
-      end
-    end
-  end)
-
-  CreateThread(function()
-    local text, timeHeld
-
-    -- early respawn timer
-    while earlySpawnTimer > 0 and isDead do
-      Wait(0)
-      text = TranslateCap('respawn_available_in', secondsToClock(earlySpawnTimer))
-
-      DrawGenericTextThisFrame()
-      BeginTextCommandDisplayText('STRING')
-      AddTextComponentSubstringPlayerName(text)
-      EndTextCommandDisplayText(0.5, 0.8)
-    end
-
-    -- bleedout timer
-    while bleedoutTimer > 0 and isDead do
-      Wait(0)
-      text = TranslateCap('respawn_bleedout_in', secondsToClock(bleedoutTimer))
-
-      if not Config.EarlyRespawnFine then
-        text = text .. TranslateCap('respawn_bleedout_prompt')
-
-        if IsControlPressed(0, 38) and timeHeld > 120 then
-          RemoveItemsAfterRPDeath()
-          break
+            TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+            TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(closestPlayer), 'big')
+            ESX.ShowNotification(TranslateCap('heal_complete', GetPlayerName(closestPlayer)))
+            isBusy = false
+        else
+            ESX.ShowNotification(TranslateCap('player_not_conscious'))
         end
-      elseif Config.EarlyRespawnFine and canPayFine then
-        text = text .. TranslateCap('respawn_bleedout_fine', ESX.Math.GroupDigits(Config.EarlyRespawnFineAmount))
-
-        if IsControlPressed(0, 38) and timeHeld > 120 then
-          TriggerServerEvent('esx_ambulancejob:payFine')
-          RemoveItemsAfterRPDeath()
-          break
-        end
-      end
-
-      if IsControlPressed(0, 38) then
-        timeHeld += 1
-      else
-        timeHeld = 0
-      end
-
-      DrawGenericTextThisFrame()
-
-      BeginTextCommandDisplayText('STRING')
-      AddTextComponentSubstringPlayerName(text)
-      EndTextCommandDisplayText(0.5, 0.8)
+    else
+        ESX.ShowNotification(TranslateCap('not_enough_medikit'))
     end
-
-    if bleedoutTimer < 1 and isDead then
-      RemoveItemsAfterRPDeath()
-    end
-  end)
-end
-
-function GetClosestRespawnPoint()
-  local PlyCoords = GetEntityCoords(PlayerPedId())
-  local ClosestDist, ClosestHospital, ClosestCoord = 10000, {}, nil
-
-  for k, v in pairs(Config.RespawnPoints) do
-    local Distance = #(PlyCoords - vector3(v.coords.x, v.coords.y, v.coords.z))
-    if Distance <= ClosestDist then
-      ClosestDist = Distance
-      ClosestHospital = v
-      ClosestCoord = vector3(v.coords.x, v.coords.y, v.coords.z)
-    end
-  end
-
-  return ClosestCoord, ClosestHospital
-end
-
-function RemoveItemsAfterRPDeath()
-  TriggerServerEvent('esx_ambulancejob:setDeathStatus', false)
-
-  CreateThread(function()
-    ESX.TriggerServerCallback('esx_ambulancejob:removeItemsAfterRPDeath', function()
-      local RespawnCoords, ClosestHospital = GetClosestRespawnPoint()
-
-      ESX.SetPlayerData('loadout', {})
-
-      DoScreenFadeOut(800)
-      RespawnPed(PlayerPedId(), RespawnCoords, ClosestHospital.heading)
-      while not IsScreenFadedOut() do
-        Wait(0)
-      end
-      DoScreenFadeIn(800)
-    end)
-  end)
-end
-
-function RespawnPed(ped, coords, heading)
-  SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false)
-  NetworkResurrectLocalPlayer(coords.x, coords.y, coords.z, heading, true, false)
-  SetPlayerInvincible(ped, false)
-  ClearPedBloodDamage(ped)
-
-  TriggerServerEvent('esx:onPlayerSpawn')
-  TriggerEvent('esx:onPlayerSpawn')
-  TriggerEvent('playerSpawned') -- compatibility with old scripts, will be removed soon
-end
-
-RegisterNetEvent('esx_phone:loaded')
-AddEventHandler('esx_phone:loaded', function(phoneNumber, contacts)
-  local specialContact = {name = 'Ambulance', number = 'ambulance',
-                          base64Icon = 'data:image/png;base64,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'}
-
-  TriggerEvent('esx_phone:addSpecialContact', specialContact.name, specialContact.number, specialContact.base64Icon)
+    end, 'medikit')
 end)
 
-AddEventHandler('esx:onPlayerDeath', function(data)
-  OnPlayerDeath()
+AddEventHandler('ambulance:cherche', function()
+	TriggerServerEvent('esx_ambulancejob:svsearch')
 end)
-
-RegisterNetEvent('esx_ambulancejob:revive')
-AddEventHandler('esx_ambulancejob:revive', function()
-  local playerPed = PlayerPedId()
-  local coords = GetEntityCoords(playerPed)
-  TriggerServerEvent('esx_ambulancejob:setDeathStatus', false)
-
-  DoScreenFadeOut(800)
-
-  while not IsScreenFadedOut() do
-    Wait(50)
-  end
-
-  local formattedCoords = {x = ESX.Math.Round(coords.x, 1), y = ESX.Math.Round(coords.y, 1), z = ESX.Math.Round(coords.z, 1)}
-
-  RespawnPed(playerPed, formattedCoords, 0.0)
-  isDead = false
-  ClearTimecycleModifier()
-  SetPedMotionBlur(playerPed, false)
-  ClearExtraTimecycleModifier()
-  EndDeathCam()
-  DoScreenFadeIn(800)
-end)
-
--- Load unloaded IPLs
-if Config.LoadIpl then
-  RequestIpl('Coroner_Int_on') -- Morgue
-end
-
-local cam = nil
-
-local isDead = false
-
-local angleY = 0.0
-
-local angleZ = 0.0
-
--------------------------------------------------------
-
------------------DEATH CAMERA FUNCTIONS ---------------
-
---------------------------------------------------------
-
--- initialize camera
-
-function StartDeathCam()
-  ClearFocus()
-  local playerPed = PlayerPedId()
-  cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", GetEntityCoords(playerPed), 0, 0, 0, GetGameplayCamFov())
-  SetCamActive(cam, true)
-  RenderScriptCams(true, true, 1000, true, false)
-end
-
--- destroy camera
-
-function EndDeathCam()
-  ClearFocus()
-  RenderScriptCams(false, false, 0, true, false)
-  DestroyCam(cam, false)
-  cam = nil
-end
--- process camera controls
-function ProcessCamControls()
-  local playerPed = PlayerPedId()
-  local playerCoords = GetEntityCoords(playerPed)
-  -- disable 1st person as the 1st person camera can cause some glitches
-  DisableFirstPersonCamThisFrame()
-  -- calculate new position
-  local newPos = ProcessNewPosition()
-  SetFocusArea(newPos.x, newPos.y, newPos.z, 0.0, 0.0, 0.0)
-  -- set coords of cam
-  SetCamCoord(cam, newPos.x, newPos.y, newPos.z)
-  -- set rotation
-  PointCamAtCoord(cam, playerCoords.x, playerCoords.y, playerCoords.z + 0.5)
-end
-
-function ProcessNewPosition()
-  local mouseX = 0.0
-  local mouseY = 0.0
-  -- keyboard
-  if (IsInputDisabled(0)) then
-    -- rotation
-    mouseX = GetDisabledControlNormal(1, 1) * 8.0
-
-    mouseY = GetDisabledControlNormal(1, 2) * 8.0
-    -- controller
-  else
-    mouseX = GetDisabledControlNormal(1, 1) * 1.5
-
-    mouseY = GetDisabledControlNormal(1, 2) * 1.5
-  end
-
-  angleZ = angleZ - mouseX -- around Z axis (left / right)
-
-  angleY = angleY + mouseY -- up / down
-  -- limit up / down angle to 90°
-
-  if (angleY > 89.0) then
-    angleY = 89.0
-  elseif (angleY < -89.0) then
-    angleY = -89.0
-  end
-  local pCoords = GetEntityCoords(PlayerPedId())
-  local behindCam = {x = pCoords.x + ((Cos(angleZ) * Cos(angleY)) + (Cos(angleY) * Cos(angleZ))) / 2 * (5.5 + 0.5),
-
-                     y = pCoords.y + ((Sin(angleZ) * Cos(angleY)) + (Cos(angleY) * Sin(angleZ))) / 2 * (5.5 + 0.5),
-
-                     z = pCoords.z + ((Sin(angleY))) * (5.5 + 0.5)}
-  local rayHandle = StartShapeTestRay(pCoords.x, pCoords.y, pCoords.z + 0.5, behindCam.x, behindCam.y, behindCam.z, -1, PlayerPedId(), 0)
-
-  local a, hitBool, hitCoords, surfaceNormal, entityHit = GetShapeTestResult(rayHandle)
-
-  local maxRadius = 1.9
-  if (hitBool and Vdist(pCoords.x, pCoords.y, pCoords.z + 0.5, hitCoords) < 5.5 + 0.5) then
-    maxRadius = Vdist(pCoords.x, pCoords.y, pCoords.z + 0.5, hitCoords)
-  end
-
-  local offset = {x = ((Cos(angleZ) * Cos(angleY)) + (Cos(angleY) * Cos(angleZ))) / 2 * maxRadius,
-                  y = ((Sin(angleZ) * Cos(angleY)) + (Cos(angleY) * Sin(angleZ))) / 2 * maxRadius, z = ((Sin(angleY))) * maxRadius}
-
-  local pos = {x = pCoords.x + offset.x, y = pCoords.y + offset.y, z = pCoords.z + offset.z}
-
-  return pos
-end

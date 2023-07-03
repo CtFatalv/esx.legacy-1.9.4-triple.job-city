@@ -351,6 +351,7 @@ RegisterNetEvent('billing', function(data)
 end)
 
 exports.ox_target:addGlobalPlayer({
+-- police
 	{
 		event = "search",
 		icon = Config.search_img,
@@ -440,6 +441,47 @@ exports.ox_target:addGlobalPlayer({
 			['police'] = 0
 		},
         distance = 0.7
+	},
+-- EMS
+	{
+		event = "ambulance:reanimation",
+		icon = Config.search_img,
+		label = 'Réanimer le patient',
+		num = 1,
+        groups = {
+			['ambulance'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "ambulance:soinleger",
+		icon = Config.search_img,
+		label = 'Soigner petites blessures',
+		num = 2,
+        groups = {
+			['ambulance'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "ambulance:soingrave",
+		icon = Config.search_img,
+		label = 'Soigner blessures graves',
+		num = 3,
+        groups = {
+			['ambulance'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "billing",
+		icon = Config.billing_img,
+		label = Config.billing,
+		num = 5,
+        groups = {
+			['ambulance'] = 0
+		},
+        distance = 1.5
 	},
 })
 
