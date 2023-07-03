@@ -402,6 +402,16 @@ exports.ox_target:addGlobalPlayer({
         distance = 0.7
 	},
 	{
+		event = "esx_policejob:voirlicence",
+		icon = Config.licence_img,
+		label = 'Voir les licences',
+		num = 8,
+        groups = {
+			['police'] = 0
+		},
+        distance = 0.7
+	},
+	{
 		event = "billing",
 		icon = Config.billing_img,
 		label = Config.billing,

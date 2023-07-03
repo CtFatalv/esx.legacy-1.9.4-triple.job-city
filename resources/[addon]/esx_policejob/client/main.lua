@@ -962,23 +962,17 @@ AddEventHandler('esx_policejob:vehicleimpound', function()
 	end)
 end)
 
-AddEventHandler('esx_policejob:voirfacture', function(player)
+AddEventHandler('esx_policejob:voirlicence', function(player)
 	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-		OpenPoliceActionsMenu2(closestPlayer)
+	ShowPlayerLicense(closestPlayer)
 end)
 
-function OpenPoliceActionsMenu2(player)
+AddEventHandler('esx_policejob:voirfacture', function(player)
 	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 	OpenUnpaidBillsMenu(closestPlayer)
-end 
+end)
 
 AddEventHandler('esx_policejob:mettreamende', function(player)
 	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-		OpenPoliceActionsMenu3(closestPlayer)
-
-end)
-
-function OpenPoliceActionsMenu3(player)
-	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
 	OpenFineMenu(closestPlayer)
-end 
+end)

@@ -8,7 +8,7 @@ Config.MarkerColor                = {r = 50, g = 50, b = 204}
 Config.EnablePlayerManagement     = true -- Enable if you want society managing.
 Config.EnableESXIdentity          = true -- Enable if you're using esx_identity.
 Config.EnableESXOptionalneeds     = false -- Enable if you're using esx_optionalneeds
-Config.EnableLicenses             = false -- Enable if you're using esx_license.
+Config.EnableLicenses             = true -- Enable if you're using esx_license.
 
 Config.EnableJobBlip              = false -- Enable blips for cops on duty, requires esx_society.
 
