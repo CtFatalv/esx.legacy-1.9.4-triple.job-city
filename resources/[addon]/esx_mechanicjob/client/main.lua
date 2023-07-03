@@ -3,6 +3,7 @@ local CurrentAction, CurrentActionMsg, CurrentActionData = nil, '', {}
 local CurrentlyTowedVehicle, Blips, NPCOnJob, NPCTargetTowable, NPCTargetTowableZone = nil, {}, false, nil, nil
 local NPCHasSpawnedTowable, NPCLastCancel, NPCHasBeenNextToTowable, NPCTargetDeleterZone = false, GetGameTimer() - 5 * 60000, false, false
 local isDead, isBusy = false, false
+local fixkit = true
 
 function SelectRandomTowable()
 	local index = GetRandomIntInRange(1,  #Config.Towables)
@@ -621,28 +622,82 @@ RegisterNetEvent('esx_mechanicjob:onFixkit')
 AddEventHandler('esx_mechanicjob:onFixkit', function()
 	local playerPed = PlayerPedId()
 	local coords = GetEntityCoords(playerPed)
-
+	if fixkit then
 	if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
-		local vehicle
-
-		if IsPedInAnyVehicle(playerPed, false) then
-			vehicle = GetVehiclePedIsIn(playerPed, false)
-		else
-			vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
-		end
-
-		if DoesEntityExist(vehicle) then
-			TaskStartScenarioInPlace(playerPed, 'PROP_HUMAN_BUM_BIN', 0, true)
-			CreateThread(function()
-				Wait(20000)
-				SetVehicleFixed(vehicle)
-				SetVehicleDeformationFixed(vehicle)
-				SetVehicleUndriveable(vehicle, false)
-				ClearPedTasksImmediately(playerPed)
-				ESX.ShowNotification(TranslateCap('veh_repaired'))
-			end)
-		end
+	local vehicle
+	if IsPedInAnyVehicle(playerPed, false) then
+		vehicle = GetVehiclePedIsIn(playerPed, false)
+	else
+		vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
 	end
+
+	local levelOfDamageToKillThisBitch = 1000.00
+	local damage = GetVehicleEngineHealth( vehicle )
+		print(damage)
+	if DoesEntityExist(vehicle) and damage < levelOfDamageToKillThisBitch then
+		fixkit = false
+		print(damage)
+		local levelOfDamageToKillThisBitch = 1000.00
+		local damage = GetVehicleEngineHealth( vehicle )
+		TaskStartScenarioInPlace(playerPed, 'PROP_HUMAN_BUM_BIN', 0, true)
+		CreateThread(function()
+		TriggerServerEvent('esx_mechanicjob:removefixkit')
+		Wait(10000)
+		SetVehicleEngineHealth(vehicle, 1000.00)
+		SetVehicleFixed(vehicle)
+		--SetVehicleEngineOn( vehicle, false, true )
+		ClearPedTasksImmediately(playerPed)
+		ESX.ShowNotification(TranslateCap('veh_repaired'))
+		fixkit = true
+		end)
+    else
+		ESX.ShowNotification("Le véhicule n'est pas assez endommagé!", "error", 3000)
+	end
+                
+	end
+    else
+		ESX.ShowNotification("Une action est déjà en cours!", "error", 3000)
+	end
+end)
+
+RegisterNetEvent('esx_mechanicjob:onCarokit')
+AddEventHandler('esx_mechanicjob:onCarokit', function()local playerPed = PlayerPedId()
+    local coords = GetEntityCoords(playerPed)
+    if fixkit then
+    if IsAnyVehicleNearPoint(coords.x, coords.y, coords.z, 5.0) then
+    local vehicle
+    if IsPedInAnyVehicle(playerPed, false) then
+        vehicle = GetVehiclePedIsIn(playerPed, false)
+    else
+        vehicle = GetClosestVehicle(coords.x, coords.y, coords.z, 5.0, 0, 71)
+    end
+
+    local levelOfDamageToKillThisBitch = 10.00
+    local damage = GetVehicleEngineHealth( vehicle )
+        print(damage)
+    if DoesEntityExist(vehicle) and damage < levelOfDamageToKillThisBitch then
+        fixkit = false
+        print(damage)
+        local levelOfDamageToKillThisBitch = 10.00
+        local damage = GetVehicleEngineHealth( vehicle )
+        TaskStartScenarioInPlace(playerPed, 'PROP_HUMAN_BUM_BIN', 0, true)
+        CreateThread(function()
+        TriggerServerEvent('esx_mechanicjob:usefixtool')
+        Wait(10000)
+		SetVehicleEngineHealth(vehicle, 364.83)
+        --SetVehicleEngineOn( vehicle, false, true )
+        ClearPedTasksImmediately(playerPed)
+        ESX.ShowNotification(TranslateCap('veh_repaired'))
+        fixkit = true
+        end)
+    else
+        ESX.ShowNotification("Le véhicule n'est pas assez endommagé!", "error", 3000)
+    end
+
+    end
+    else
+        ESX.ShowNotification("Une action est déjà en cours!", "error", 3000)
+    end
 end)
 
 RegisterNetEvent('esx:playerLoaded')
@@ -996,4 +1051,141 @@ AddEventHandler('esx_mechanicjob:Jobinteraction', function()
     if ESX.PlayerData.job and ESX.PlayerData.job.name == 'mechanic' then
 		StartNPCJob()
 	end
+end)
+
+AddEventHandler('esx_mechanicjob:reparation', function()
+	TriggerServerEvent('esx_mechanicjob:onFixkitverif')
+end)
+
+AddEventHandler('esx_mechanicjob:crochetter', function()
+	TriggerServerEvent('esx_mechanicjob:crochetterverif')
+end)
+
+RegisterNetEvent('esx_mechanicjob:crochetterok')
+AddEventHandler('esx_mechanicjob:crochetterok', function()
+    local playerPed = PlayerPedId()
+    local vehicle = ESX.Game.GetVehicleInDirection()
+    local coords = GetEntityCoords(playerPed)
+	if fixkit then
+        if IsPedSittingInAnyVehicle(playerPed) then
+            ESX.ShowNotification(TranslateCap('inside_vehicle'))
+            return
+        end
+
+        if DoesEntityExist(vehicle) then
+            isBusy = true
+            fixkit = false
+            TaskStartScenarioInPlace(playerPed, 'WORLD_HUMAN_WELDING', 0, true)
+            CreateThread(function()
+                TriggerServerEvent('esx_mechanicjob:removechalumeau')
+                Wait(10000)
+
+                SetVehicleDoorsLocked(vehicle, 1)
+                SetVehicleDoorsLockedForAllPlayers(vehicle, false)
+                ClearPedTasksImmediately(playerPed)
+
+                ESX.ShowNotification(TranslateCap('vehicle_unlocked'))
+                isBusy = false
+                fixkit = true
+            end)
+        else
+            ESX.ShowNotification(TranslateCap('no_vehicle_nearby'))
+        end
+	end
+end)
+
+AddEventHandler('esx_mechanicjob:clean', function()
+    local playerPed = PlayerPedId()
+    local vehicle   = ESX.Game.GetVehicleInDirection()
+    local coords    = GetEntityCoords(playerPed)
+
+    if IsPedSittingInAnyVehicle(playerPed) then
+        ESX.ShowNotification(TranslateCap('inside_vehicle'))
+        return
+    end
+
+    if DoesEntityExist(vehicle) then
+        isBusy = true
+        TaskStartScenarioInPlace(playerPed, 'WORLD_HUMAN_MAID_CLEAN', 0, true)
+        CreateThread(function()
+            Wait(10000)
+
+            SetVehicleDirtLevel(vehicle, 0)
+            ClearPedTasksImmediately(playerPed)
+
+            ESX.ShowNotification(TranslateCap('vehicle_cleaned'))
+            isBusy = false
+        end)
+    else
+        ESX.ShowNotification(TranslateCap('no_vehicle_nearby'))
+    end
+
+end)
+
+AddEventHandler('esx_mechanicjob:mettreplateau', function()
+    local playerPed = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(playerPed, true)
+
+    local towmodel = `flatbed`
+    local isVehicleTow = IsVehicleModel(vehicle, towmodel)
+
+    if isVehicleTow then
+        local targetVehicle = ESX.Game.GetVehicleInDirection()
+
+        if CurrentlyTowedVehicle == nil then
+            if targetVehicle ~= 0 then
+                if not IsPedInAnyVehicle(playerPed, true) then
+                    if vehicle ~= targetVehicle then
+                        AttachEntityToEntity(targetVehicle, vehicle, 20, -0.5, -5.0, 1.0, 0.0, 0.0, 0.0, false, false, false, false, 20, true)
+                        CurrentlyTowedVehicle = targetVehicle
+                        ESX.ShowNotification(TranslateCap('vehicle_success_attached'))
+
+                        if NPCOnJob then
+                            if NPCTargetTowable == targetVehicle then
+                                ESX.ShowNotification(TranslateCap('please_drop_off'))
+                                Config.Zones.VehicleDelivery.Type = 1
+
+                                if Blips['NPCTargetTowableZone'] then
+                                    RemoveBlip(Blips['NPCTargetTowableZone'])
+                                    Blips['NPCTargetTowableZone'] = nil
+                                end
+
+                                Blips['NPCDelivery'] = AddBlipForCoord(Config.Zones.VehicleDelivery.Pos.x, Config.Zones.VehicleDelivery.Pos.y, Config.Zones.VehicleDelivery.Pos.z)
+                                SetBlipRoute(Blips['NPCDelivery'], true)
+                            end
+                        end
+                    else
+                        ESX.ShowNotification(TranslateCap('cant_attach_own_tt'))
+                    end
+                end
+            else
+                ESX.ShowNotification(TranslateCap('no_veh_att'))
+            end
+        else
+            AttachEntityToEntity(CurrentlyTowedVehicle, vehicle, 20, -0.5, -12.0, 1.0, 0.0, 0.0, 0.0, false, false, false, false, 20, true)
+            DetachEntity(CurrentlyTowedVehicle, true, true)
+
+            if NPCOnJob then
+                if NPCTargetDeleterZone then
+
+                    if CurrentlyTowedVehicle == NPCTargetTowable then
+                        ESX.Game.DeleteVehicle(NPCTargetTowable)
+                        TriggerServerEvent('esx_mechanicjob:onNPCJobMissionCompleted')
+                        StopNPCJob()
+                        NPCTargetDeleterZone = false
+                    else
+                        ESX.ShowNotification(TranslateCap('not_right_veh'))
+                    end
+
+                else
+                    ESX.ShowNotification(TranslateCap('not_right_place'))
+                end
+            end
+
+            CurrentlyTowedVehicle = nil
+            ESX.ShowNotification(TranslateCap('veh_det_succ'))
+        end
+    else
+        ESX.ShowNotification(TranslateCap('imp_flatbed'))
+    end
 end)

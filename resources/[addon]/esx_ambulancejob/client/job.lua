@@ -19,11 +19,11 @@ function OpenMobileAmbulanceActionsMenu()
 		if element.value == "citizen_interaction" then
 			local elements2 = {
 				{unselectable = true, icon = "fas fa-ambulance", title = element.title},
-				{icon = "fas fa-syringe", title = TranslateCap('ems_menu_revive'), value = "revive"},
-				{icon = "fas fa-bandage", title = TranslateCap('ems_menu_small'), value = "small"},
-				{icon = "fas fa-bandage", title = TranslateCap('ems_menu_big'), value = "big"},
-				{icon = "fas fa-car", title = TranslateCap('ems_menu_putincar'), value = "put_in_vehicle"},
-				{icon = "fas fa-syringe", title = TranslateCap('ems_menu_search'), value = "search"},
+				--{icon = "fas fa-syringe", title = TranslateCap('ems_menu_revive'), value = "revive"},
+				--{icon = "fas fa-bandage", title = TranslateCap('ems_menu_small'), value = "small"},
+				--{icon = "fas fa-bandage", title = TranslateCap('ems_menu_big'), value = "big"},
+				--{icon = "fas fa-car", title = TranslateCap('ems_menu_putincar'), value = "put_in_vehicle"},
+				--{icon = "fas fa-syringe", title = TranslateCap('ems_menu_search'), value = "search"},
 			}
 
 			ESX.OpenContext("right", elements2, function(menu2,element2)
@@ -330,5 +330,77 @@ AddEventHandler('esx_ambulancejob:bossMenu', function()
 end)
 
 AddEventHandler('esx_ambulancejob:actionMenu', function()
-OpenMobileAmbulanceActionsMenu()
+	OpenMobileAmbulanceActionsMenu()
+end)
+
+AddEventHandler('ambulance:reanimation', function(player)
+    print("jojo")
+	local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+    if closestPlayer == -1 or closestDistance > 1.5 then
+    	ESX.ShowNotification(TranslateCap('no_players'))
+    else
+    	revivePlayer(closestPlayer)
+    end
+end)
+
+AddEventHandler('ambulance:soinleger', function()
+    ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+    local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+    if quantity > 0 then
+        local closestPlayerPed = GetPlayerPed(closestPlayer)
+        local health = GetEntityHealth(closestPlayerPed)
+
+        if health > 0 then
+            local playerPed = PlayerPedId()
+
+            isBusy = true
+            ESX.ShowNotification(TranslateCap('heal_inprogress'))
+            TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+            Wait(10000)
+            ClearPedTasks(playerPed)
+
+            TriggerServerEvent('esx_ambulancejob:removeItem', 'bandage')
+            TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(closestPlayer), 'small')
+            ESX.ShowNotification(TranslateCap('heal_complete', GetPlayerName(closestPlayer)))
+            isBusy = false
+        else
+            ESX.ShowNotification(TranslateCap('player_not_conscious'))
+        end
+    else
+        ESX.ShowNotification(TranslateCap('not_enough_bandage'))
+    end
+    end, 'bandage')
+end)
+
+AddEventHandler('ambulance:soingrave', function()
+    ESX.TriggerServerCallback('esx_ambulancejob:getItemAmount', function(quantity)
+    local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
+    if quantity > 0 then
+        local closestPlayerPed = GetPlayerPed(closestPlayer)
+        local health = GetEntityHealth(closestPlayerPed)
+
+        if health > 0 then
+            local playerPed = PlayerPedId()
+
+            isBusy = true
+            ESX.ShowNotification(TranslateCap('heal_inprogress'))
+            TaskStartScenarioInPlace(playerPed, 'CODE_HUMAN_MEDIC_TEND_TO_DEAD', 0, true)
+            Wait(10000)
+            ClearPedTasks(playerPed)
+
+            TriggerServerEvent('esx_ambulancejob:removeItem', 'medikit')
+            TriggerServerEvent('esx_ambulancejob:heal', GetPlayerServerId(closestPlayer), 'big')
+            ESX.ShowNotification(TranslateCap('heal_complete', GetPlayerName(closestPlayer)))
+            isBusy = false
+        else
+            ESX.ShowNotification(TranslateCap('player_not_conscious'))
+        end
+    else
+        ESX.ShowNotification(TranslateCap('not_enough_medikit'))
+    end
+    end, 'medikit')
+end)
+
+AddEventHandler('ambulance:cherche', function()
+	TriggerServerEvent('esx_ambulancejob:svsearch')
 end)

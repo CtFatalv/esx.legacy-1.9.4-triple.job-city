@@ -508,36 +508,30 @@ Config.JobInteractions = {
     ["police"] = {
         {
             id = 'policeinteraction',
-            title = 'Police Actions',
+            title = 'Vérifier une plaque',
             icon = 'tasks',
             type = 'client',
-            event = 'esx_policejob:policeaction',
+            event = 'esx_policejob:vehicleinfoplate',
             shouldClose = true
         }
         },
     ["mechanic"] = {
         {
-            id = 'mechanicinteraction',
-            title = 'Mecano',
-            icon = 'list',
-            type = 'client',
-            event = 'esx_mechanicjob:mechanicinteraction',
-            shouldClose = true
-        } ,{
             id = 'mechanicvehiculeinteraction',
             title = 'Custom',
             icon = 'car',
             type = 'client',
             event = 'esx_mechanicjob:vehicleinteraction',
             shouldClose = true
-		   },{
+		},
+        {
 			id = 'mechanicjobinteraction',
             title = 'Job dépannage',
             icon = 'exclamation-triangle',
             type = 'client',
             event = 'esx_mechanicjob:Jobinteraction',
             shouldClose = true
-		   },
+		},
         },
     ["taxi"] = {
         {
@@ -547,25 +541,18 @@ Config.JobInteractions = {
             type = 'client',
             event = 'esx_taxijob:jobmoldutaxi',
             shouldClose = true
-        } ,{
-            id = 'taxifacturation',
-            title = 'Facturation',
-            icon = 'list',
-            type = 'client',
-            event = 'esx_taxijob:facturetaxi',
-            shouldClose = true
-		   },
+        } ,
         },
-    ["ambulance"] = {
-        {
-            id = 'emsrecherchecorp',
-            title = 'Chercher le patient',
-            icon = 'child',
-            type = 'client',
-            event = 'ambulance:cherche',
-            shouldClose = true
-		   },
-        },
+    --["ambulance"] = {
+     --   {
+      --      id = 'emsrecherchecorp',
+      --      title = 'Chercher le patient',
+      --      icon = 'child',
+      --      type = 'client',
+      --      event = 'ambulance:cherche',
+      --      shouldClose = true
+		--   },
+        --},
     -- ["hotdog"] = {
     --     {
     --         id = 'togglesell',

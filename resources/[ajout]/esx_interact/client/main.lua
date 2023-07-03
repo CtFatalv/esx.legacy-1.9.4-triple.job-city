@@ -483,9 +483,43 @@ exports.ox_target:addGlobalPlayer({
 		},
         distance = 1.5
 	},
+-- Mechanic
+	{
+		event = "billing",
+		icon = Config.billing_img,
+		label = Config.billing,
+		num = 5,
+        groups = {
+			['mechanic'] = 0
+		},
+        distance = 0.7
+	},
+-- Concessionnaire
+	{
+		event = "billing",
+		icon = Config.billing_img,
+		label = Config.billing,
+		num = 5,
+        groups = {
+			['cardealer'] = 0
+		},
+        distance = 0.7
+	},
+-- Taxi
+	{
+		event = "billing",
+		icon = Config.billing_img,
+		label = Config.billing,
+		num = 5,
+        groups = {
+			['taxi'] = 0
+		},
+        distance = 0.7
+	},
 })
 
 exports.ox_target:addGlobalVehicle({
+-- Police
 	{
 		event = "outveh",
 		icon = Config.outveh_img,
@@ -523,6 +557,57 @@ exports.ox_target:addGlobalVehicle({
 		num = 4,
         groups = {
 			['police'] = 0
+		},
+        distance = 1.5
+	},
+-- Mechanic
+	{
+		event = "esx_mechanicjob:clean",
+		icon = Config.vehplate_img,
+		label = 'Nettoyer le véhicule',
+		num = 1,
+        groups = {
+			['mechanic'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "esx_mechanicjob:reparation",
+		icon = Config.vehplate_img,
+		label = 'Réparer le véhicule',
+		num = 2,
+        groups = {
+			['mechanic'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "esx_mechanicjob:mettreplateau",
+		icon = Config.vehplate_img,
+		label = 'Mettre/Sortir du plateau',
+		num = 3,
+        groups = {
+			['mechanic'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "esx_mechanicjob:crochetter",
+		icon = Config.vehplate_img,
+		label = 'Crochetter le véhicule',
+		num = 4,
+        groups = {
+			['mechanic'] = 0
+		},
+        distance = 1.5
+	},
+	{
+		event = "esx_policejob:vehicleimpound",
+		icon = Config.vehplate_img,
+		label = 'Mettre en fourrière',
+		num = 5,
+        groups = {
+			['mechanic'] = 0
 		},
         distance = 1.5
 	},

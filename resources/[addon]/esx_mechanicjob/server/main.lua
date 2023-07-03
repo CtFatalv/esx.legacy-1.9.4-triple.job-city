@@ -218,34 +218,68 @@ AddEventHandler('esx_mechanicjob:onNPCJobMissionCompleted', function()
 	TriggerClientEvent("esx:showNotification", source, TranslateCap('your_comp_earned').. total)
 end)
 
-ESX.RegisterUsableItem('blowpipe', function(source)
-	local source = source
-	local xPlayer  = ESX.GetPlayerFromId(source)
-
-	xPlayer.removeInventoryItem('blowpipe', 1)
-
-	TriggerClientEvent('esx_mechanicjob:onHijack', source)
-	TriggerClientEvent('esx:showNotification', source, TranslateCap('you_used_blowtorch'))
+RegisterServerEvent('esx_mechanicjob:crochetterverif')
+AddEventHandler('esx_mechanicjob:crochetterverif', function()
+    _source = source
+    xPlayer = ESX.GetPlayerFromId(_source)
+    local itemamt = xPlayer.getInventoryItem('chalumeau').count
+    if itemamt >= 1 then
+		TriggerClientEvent('esx_mechanicjob:crochetterok', source)        
+    else
+        TriggerClientEvent('esx:showNotification', source, '~r~Il vous faut un chalumeau crochetter le véhicule!', 'error', 5000)
+    end
 end)
 
+RegisterServerEvent('esx_mechanicjob:removechalumeau')
+AddEventHandler('esx_mechanicjob:removechalumeau', function()
+    _source = source
+    xPlayer = ESX.GetPlayerFromId(_source)
+
+	xPlayer.removeInventoryItem('chalumeau', 1)
+	TriggerClientEvent('esx:showNotification', source, TranslateCap('you_used_blowtorch'))
+end)
+--[[
 ESX.RegisterUsableItem('fixkit', function(source)
 	local source = source
 	local xPlayer  = ESX.GetPlayerFromId(source)
 
-	xPlayer.removeInventoryItem('fixkit', 1)
-
 	TriggerClientEvent('esx_mechanicjob:onFixkit', source)
-	TriggerClientEvent('esx:showNotification', source, TranslateCap('you_used_repair_kit'))
 end)
-
-ESX.RegisterUsableItem('carokit', function(source)
+]]
+ESX.RegisterUsableItem('fixtool', function(source)
 	local source = source
 	local xPlayer  = ESX.GetPlayerFromId(source)
 
-	xPlayer.removeInventoryItem('carokit', 1)
-
 	TriggerClientEvent('esx_mechanicjob:onCarokit', source)
-	TriggerClientEvent('esx:showNotification', source, TranslateCap('you_used_body_kit'))
+end)
+
+RegisterServerEvent('esx_mechanicjob:removefixkit')
+AddEventHandler('esx_mechanicjob:removefixkit', function()
+    _source = source
+    xPlayer = ESX.GetPlayerFromId(_source)
+	xPlayer.removeInventoryItem('fixkit', 1)
+	TriggerClientEvent('esx:showNotification', source, TranslateCap('you_used_repair_kit'))
+end)
+
+RegisterServerEvent('esx_mechanicjob:onFixkitverif')
+AddEventHandler('esx_mechanicjob:onFixkitverif', function()
+    _source = source
+    xPlayer = ESX.GetPlayerFromId(_source)
+    local itemamt = xPlayer.getInventoryItem('fixkit').count
+    if itemamt >= 1 then
+		TriggerClientEvent('esx_mechanicjob:onFixkit', source)        
+    else
+        TriggerClientEvent('esx:showNotification', source, '~r~Il vous faut un kit de réparation pour réparer le véhicule!', 'error', 5000)
+    end
+end)
+
+RegisterServerEvent('esx_mechanicjob:usefixtool')
+AddEventHandler('esx_mechanicjob:usefixtool', function()
+    _source = source
+    xPlayer = ESX.GetPlayerFromId(_source)
+
+	xPlayer.removeInventoryItem('fixtool', 1)
+	TriggerClientEvent('esx:showNotification', source, TranslateCap('you_used_repair_kit'))
 end)
 
 RegisterServerEvent('esx_mechanicjob:getStockItem')
