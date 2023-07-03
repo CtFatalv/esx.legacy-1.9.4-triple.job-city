@@ -133,7 +133,9 @@ CreateThread(function()
 			--DisableControlAction(0, 31, true) -- S
 			--DisableControlAction(0, 30, true) -- D
 
+
 			DisableControlAction(0, 45, true) -- Reload
+			DisableControlAction(0, 21, true) -- Jump
 			DisableControlAction(0, 22, true) -- Jump
 			DisableControlAction(0, 44, true) -- Cover
 			DisableControlAction(0, 37, true) -- Select Weapon
