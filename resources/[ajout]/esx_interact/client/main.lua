@@ -543,7 +543,7 @@ exports.ox_target:addGlobalVehicle({
         distance = 1.5
 	},
 	{
-		event = "esx_policejob:vehicleopen",
+		event = "esx_mechanicjob:crochetter",
 		icon = Config.vehplate_img,
 		label = 'Déverouiller les portes',
 		num = 3,
