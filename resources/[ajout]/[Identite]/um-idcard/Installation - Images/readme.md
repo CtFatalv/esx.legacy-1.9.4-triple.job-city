@@ -78,6 +78,23 @@ ALTER TABLE `licenses`
   ADD PRIMARY KEY (`type`);
 COMMIT;
 ==================================================================================================
+MULTICHAR SERVEUR
+==================================================================================================
+    local newCharacters = {}
+    AddEventHandler('esx:playerLoaded', function(source, xPlayer)
+        if not newCharacters[source] then return end
+        newCharacters[source] = nil
+        Wait(5000)
+        exports['um-idcard']:CreateMetaLicense(source, 'id_card')
+    end)
+
+    AddEventHandler('esx_identity:completedRegistration', function(source, data)
+        TriggerEvent('esx:onPlayerJoined', source, PREFIX..awaitingRegistration[source], data)
+        awaitingRegistration[source] = nil
+        ESX.Players[GetIdentifier(source)] = true
+        newCharacters[source] = true
+    end)
+==================================================================================================
  _______ _________ _       
 (  ____ \\__   __/( (    /|
 | (    \/   ) (   |  \  ( |
