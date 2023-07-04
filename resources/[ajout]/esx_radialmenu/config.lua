@@ -543,16 +543,16 @@ Config.JobInteractions = {
             shouldClose = true
         } ,
         },
-    --["ambulance"] = {
-     --   {
-      --      id = 'emsrecherchecorp',
-      --      title = 'Chercher le patient',
-      --      icon = 'child',
-      --      type = 'client',
-      --      event = 'ambulance:cherche',
-      --      shouldClose = true
-		--   },
-        --},
+    ["ambulance"] = {
+        {
+            id = 'emsrecherchecorp',
+            title = 'Chercher le patient',
+            icon = 'child',
+            type = 'client',
+            event = 'ambulance:cherche',
+            shouldClose = true
+		   },
+        },
     -- ["hotdog"] = {
     --     {
     --         id = 'togglesell',
