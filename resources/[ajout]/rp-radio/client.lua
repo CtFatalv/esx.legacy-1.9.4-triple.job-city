@@ -468,9 +468,7 @@ Citizen.CreateThread(function()
 		local isPlayingBroadcastAnim = IsEntityPlayingAnim(playerPed, broadcastDictionary, broadcastAnimation, 3)
 
 		-- Open radio settings
-		if isActivatorPressed and isSecondaryPressed and not isFalling and Radio.Enabled and Radio.Has and not isDead then
-			Radio:Toggle(not Radio.Open)
-		elseif (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
+		if (Radio.Open or Radio.On) and ((not Radio.Enabled) or (not Radio.Has) or isDead) then
 			Radio:Remove()
 			exports["pma-voice"]:setVoiceProperty("radioEnabled", false)
 			Radio:Toggle(false)
