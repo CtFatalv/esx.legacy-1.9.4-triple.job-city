@@ -263,7 +263,7 @@ Config.Stores = {
             vector3(81.500122070312, -1387.3002929688, 29.38)
         }
     },
--- Boutique 7 
+-- Boutique 7
     {
         type = "clothing",
         coords = vector4(-827.39, -1075.93, 11.33, 294.31),
