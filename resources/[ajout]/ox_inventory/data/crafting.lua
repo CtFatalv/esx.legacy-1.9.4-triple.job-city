@@ -58,6 +58,7 @@ return {
 			},
 		},
 		blip = { id = 566, colour = 31, scale = 0.5 },
+		groups = {['mechanic'] = 0},
 	},
 	{
 		items = {
