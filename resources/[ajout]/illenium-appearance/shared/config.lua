@@ -176,9 +176,10 @@ Config.TargetConfig = {
 }
 
 Config.Stores = {
+-- Boutique 1
     {
         type = "clothing",
-        coords = vector4(1693.2, 4828.11, 42.07, 188.66),
+        coords = vector4(1693.2, 4828.11, 42.04, 188.66),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false, -- false => uses the size + rotation to create the zone | true => uses points to create the zone
@@ -186,15 +187,16 @@ Config.Stores = {
         --targetModel = "s_m_m_doctor_01", -- overrides the target ped configured for the group
         --targetScenario = "" -- overrides the target scenario configure for the group
         points = {
-            vector3(1686.9018554688, 4829.8330078125, 42.07),
-            vector3(1698.8566894531, 4831.4604492188, 42.07),
-            vector3(1700.2448730469, 4817.7734375, 42.07),
-            vector3(1688.3682861328, 4816.2954101562, 42.07)
+            vector3(1686.9018554688, 4829.8330078125, 42.06),
+            vector3(1698.8566894531, 4831.4604492188, 42.06),
+            vector3(1700.2448730469, 4817.7734375, 42.06),
+            vector3(1688.3682861328, 4816.2954101562, 42.06)
         }
     },
+-- Boutique 2
     {
         type = "clothing",
-        coords = vector4(-705.5, -149.22, 37.42, 122),
+        coords = vector4(-714.69, -147.43, 37.42, 124.27),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -205,9 +207,10 @@ Config.Stores = {
             vector3(-710.68774414062, -163.64665222168, 37.42)
         }
     },
+-- Boutique 3
     {
         type = "clothing",
-        coords = vector4(-1192.61, -768.4, 17.32, 216.6),
+        coords = vector4(-1186.82, -767.90, 17.33, 121.85),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -218,6 +221,7 @@ Config.Stores = {
             vector3(-1199.24609375, -783.07928466797, 17.32)
         }
     },
+-- Boutique 4
     {
         type = "clothing",
         coords = vector4(425.91, -801.03, 29.49, 177.79),
@@ -231,9 +235,10 @@ Config.Stores = {
             vector3(419.140625, -812.03594970703, 29.49)
         }
     },
+-- Boutique 5
     {
         type = "clothing",
-        coords = vector4(-168.73, -301.41, 39.73, 238.67),
+        coords = vector4(-164.89, -310.37, 39.73, 252.46),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -244,6 +249,7 @@ Config.Stores = {
             vector3(-154.84906005859, -296.51647949219, 39.73)
         }
     },
+-- Boutique 6
     {
         type = "clothing",
         coords = vector4(75.39, -1398.28, 29.38, 6.73),
@@ -257,6 +263,7 @@ Config.Stores = {
             vector3(81.500122070312, -1387.3002929688, 29.38)
         }
     },
+-- Boutique 7
     {
         type = "clothing",
         coords = vector4(-827.39, -1075.93, 11.33, 294.31),
@@ -270,9 +277,10 @@ Config.Stores = {
             vector3(-814.08953857422, -1076.1878662109, 11.33)
         }
     },
+-- Boutique 8
     {
         type = "clothing",
-        coords = vector4(-1445.86, -240.78, 49.82, 36.17),
+        coords = vector4(-1445.86, -231.13, 49.81, 52.34),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -283,6 +291,7 @@ Config.Stores = {
             vector3(-1460.7554931641, -240.02815246582, 49.82)
         }
     },
+-- Boutique 9
     {
         type = "clothing",
         coords = vector4(9.22, 6515.74, 31.88, 131.27),
@@ -296,9 +305,10 @@ Config.Stores = {
             vector3(-3.5187695026398, 6513.1538085938, 31.88)
         }
     },
+-- Boutique 10
     {
         type = "clothing",
-        coords = vector4(615.35, 2762.72, 42.09, 170.51),
+        coords = vector4(617.62, 2768.44, 42.09, 187.96),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -309,6 +319,7 @@ Config.Stores = {
             vector3(623.66833496094, 2749.5180664062, 42.09)
         }
     },
+-- Boutique 11
     {
         type = "clothing",
         coords = vector4(1191.61, 2710.91, 38.22, 269.96),
@@ -322,9 +333,10 @@ Config.Stores = {
             vector3(1202.3558349609, 2703.9294433594, 38.22)
         }
     },
+-- Boutique 12
     {
         type = "clothing",
-        coords = vector4(-3171.32, 1043.56, 20.86, 334.3),
+        coords = vector4(-3176.18, 1040.29, 20.86, 328.10),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -335,6 +347,7 @@ Config.Stores = {
             vector3(-3172.7292480469, 1059.8623046875, 20.86)
         }
     },
+-- Boutique 13
     {
         type = "clothing",
         coords = vector4(-1105.52, 2707.79, 19.11, 317.19),
@@ -348,22 +361,10 @@ Config.Stores = {
             vector3(-1093.1976318359, 2709.7365722656, 19.11)
         }
     },
+-- Boutique 14
     {
         type = "clothing",
-        coords = vector4(-1119.24, -1440.6, 5.23, 300.5),
-        size = vector3(4, 4, 4),
-        rotation = 45,
-        usePoly = false,
-        points = {
-            vector3(-1124.5535888672, -1444.5367431641, 5.23),
-            vector3(-1118.7023925781, -1441.0450439453, 5.23),
-            vector3(-1121.2891845703, -1434.8474121094, 5.23),
-            vector3(-1128.4727783203, -1439.8254394531, 5.23)
-        }
-    },
-    {
-        type = "clothing",
-        coords = vector4(124.82, -224.36, 54.56, 335.41),
+        coords = vector4(120.41, -227.60, 54.56, 335.14),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -428,7 +429,7 @@ Config.Stores = {
     },
     {
         type = "barber",
-        coords = vector4(1212.8, -472.9, 65.2, 60.94),
+        coords = vector4(1213.31, -473.05, 66.21, 75.78),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -441,7 +442,7 @@ Config.Stores = {
     },
     {
         type = "barber",
-        coords = vector4(-32.9, -152.3, 56.1, 335.22),
+        coords = vector4(-33.02, -152.81, 57.08, 346.63),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -454,7 +455,7 @@ Config.Stores = {
     },
     {
         type = "barber",
-        coords = vector4(-278.1, 6228.5, 30.7, 49.32),
+        coords = vector4(-277.62, 6228.15, 31.70, 53.84),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -467,7 +468,7 @@ Config.Stores = {
     },
     {
         type = "tattoo",
-        coords = vector4(1322.6, -1651.9, 51.2, 42.47),
+        coords = vector4(1321.15, -1653.23, 52.28, 312.55),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -480,7 +481,7 @@ Config.Stores = {
     },
     {
         type = "tattoo",
-        coords = vector4(-1154.01, -1425.31, 4.95, 23.21),
+        coords = vector4(-1156.09, -1426.55, 4.95, 300.42),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -493,7 +494,7 @@ Config.Stores = {
     },
     {
         type = "tattoo",
-        coords = vector4(322.62, 180.34, 103.59, 156.2),
+        coords = vector4(324.44, 179.27, 103.59, 66.75),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
@@ -506,7 +507,7 @@ Config.Stores = {
     },
     {
         type = "tattoo",
-        coords = vector4(-3169.52, 1074.86, 20.83, 253.29),
+        coords = vector4(-3168.63, 1077.36, 20.83, 154.57),
         size = vector3(4, 4, 4),
         rotation = 45,
         usePoly = false,
