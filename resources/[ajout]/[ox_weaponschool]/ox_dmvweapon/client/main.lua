@@ -129,7 +129,7 @@ exports.ox_target:addBoxZone({
     coords =  vector3(9.83, -1107.12, 30.1),
     size = vec3(2.5, 0.4, 1.8),
     rotation = 255,
-    debug = true,
+    debug = false,
     options = {
         {
             name = 'licence',
