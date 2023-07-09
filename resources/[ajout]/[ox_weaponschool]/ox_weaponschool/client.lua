@@ -198,10 +198,10 @@ Zone:onPlayerInOut(function (isPointInside)
 		end
 	end
 	else  
+	inout = false
 	Wait(500)
 	if tw then
 		if not pw then
-		inout = false
 		TriggerServerEvent('rWeaponSchool:removeweapon', source)
 		end
 	end
