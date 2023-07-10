@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : dim. 02 juil. 2023 à 16:27
+-- Généré le : lun. 10 juil. 2023 à 15:07
 -- Version du serveur : 10.11.4-MariaDB-1:10.11.4+maria~ubu2204
 -- Version de PHP : 8.1.20
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `test`
+-- Base de données : `es_extended`
 --
 
 -- --------------------------------------------------------
@@ -537,6 +537,7 @@ INSERT INTO `licenses` (`type`, `label`) VALUES
 ('permis_camion', 'Permis Camion'),
 ('permis_moto', 'Permis Moto'),
 ('permis_voiture', 'Permis Voiture'),
+('t_weapon', 'Licence Théorique Arme'),
 ('weapon', 'Permis Arme');
 
 -- --------------------------------------------------------
