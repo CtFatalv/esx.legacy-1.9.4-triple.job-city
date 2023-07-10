@@ -2,9 +2,7 @@ Config = {
 
     -- ↓ PPA ↓ --
     posPermis = vector3(13.34, -1097.74, 28.87),
-    pricePermis = 100,
-    priceCode = 50,
-    weaponTest = "weapon_pistol",
+    weaponTest = "weapon_pistol_mk2",
     pedModel = "cs_jimmyboston",
     PedHeading = 158.79,
     PosPed = {
@@ -35,26 +33,5 @@ Config = {
         {ligne = 4, poste = 4, x = 21.16, y = -1073.24, z = 29.8},
         {ligne = 4, poste = 5, x = 19.37, y = -1072.49, z = 29.8},
         {ligne = 4, poste = 6, x = 17.34, y = -1071.6, z = 29.8},
-    },
-
-    -- ↓ Ammu-Nation ↓ --
-
-    posAmmu = {
-        vector3(-3171.70, 1087.66, 19.83),
-        vector3(2567.6, 294.3, 108.7),
-        vector3(22.0, -1107.2, 29.8),
-        vector3(252.3, -50.0, 69.9),
-        vector3(252.3, -50.0, 69.9),
-        vector3(-330.2, 6083.8, 31.4),
-        vector3(1693.4, 3759.5, 34.7),
-        vector3(-662.1, -935.3, 21.8),
-    },
-    weaponInAmmuAvecPPA = {
-        {name = 'weapon_pistol', label = "Pistolet", price = 200, ammo = 200},
-    },
-    weaponInAmmuSansPPA = {
-        {name = 'weapon_knife', label = "Couteau", price = 200, ammo = 1},
-        {name = 'weapon_bat', label = "Batte de baseball", price = 200, ammo = 1},
-        {name = 'weapon_machete', label = "Machette", price = 200, ammo = 200},
     },
 }

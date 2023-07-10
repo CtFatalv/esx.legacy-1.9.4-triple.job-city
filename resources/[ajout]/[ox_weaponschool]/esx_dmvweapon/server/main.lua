@@ -26,6 +26,5 @@ AddEventHandler('esx_dmvweapon:pay', function()
             elseif xPlayer.getMoney() >= 3000 then
                 xPlayer.removeMoney(3000)
                 TriggerClientEvent('esx_dmvweapon:codeok',source)
-                TriggerClientEvent('esx:showNotification', _source, _U('you_paid', 3000))
             end
 end)

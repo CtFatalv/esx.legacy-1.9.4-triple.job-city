@@ -74,7 +74,7 @@ function startTest(nb)
                                 RequestModel(Spawnpedname)
                                 Wait(60)
                             end
-                            local Spawnped = CreatePed(9, Spawnpedname, v.x, v.y, v.z - 1, Config.PedHeading, true, false)
+                            local Spawnped = CreatePed(9, Spawnpedname, v.x, v.y, v.z - 1, Config.PedHeading, false, true)
                             all_ped = all_ped + 1
                             table.insert(ped, Spawnped)
                             SetBlockingOfNonTemporaryEvents(Spawnped, true)
@@ -110,10 +110,17 @@ function Stat()
     pourcentage = ( ped_kill * 100) / ammo_use
     pourcentage = math.round(pourcentage)
     if pourcentage > 0 then
-		TriggerServerEvent('rWeaponSchool:removeweapon', source)
+		start = false
         ESX.ShowNotification("~g~Vous avez réussi le test !")
         TriggerServerEvent('rWeaponSchool:addLicence', "weapon")
-		start = false
+        	local unarmed = `WEAPON_UNARMED`
+        	local player = PlayerId()
+			local plyPed = GetPlayerPed(player)
+		TriggerServerEvent('rWeaponSchool:removeweapon', source)
+	Wait(100)
+        	SetCurrentPedWeapon(plyPed, unarmed, true)
+	Wait(100)
+        	SetCurrentPedWeapon(plyPed, unarmed, true)
     else
         ESX.ShowNotification("~r~Vous avez raté le test !")
     end
@@ -198,11 +205,20 @@ Zone:onPlayerInOut(function (isPointInside)
 		end
 	end
 	else  
+		local player = PlayerId()
+		SetPlayerInvincible(player, false)
 	inout = false
-	Wait(500)
+	Wait(100)
 	if tw then
 		if not pw then
-		TriggerServerEvent('rWeaponSchool:removeweapon', source)
+        	local unarmed = `WEAPON_UNARMED`
+        	local player = PlayerId()
+			local plyPed = GetPlayerPed(player)
+			TriggerServerEvent('rWeaponSchool:removeweapon', source)
+			Wait(100)
+        	SetCurrentPedWeapon(plyPed, unarmed, true)
+			Wait(100)
+        	SetCurrentPedWeapon(plyPed, unarmed, true)
 		end
 	end
 	end
@@ -211,8 +227,10 @@ end)
 
 Citizen.CreateThread(function()
     while true do
-    Citizen.Wait(100)
+    Citizen.Wait(0)
         if inout then
+			local player = PlayerId()
+            SetPlayerInvincible(player, true)
     	    exports.ox_inventory:closeInventory()
         end
     end

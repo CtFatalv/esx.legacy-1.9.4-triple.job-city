@@ -1,5 +1,5 @@
 fx_version 'cerulean'
-game 'gta5'
+games { 'gta5' }
 
 shared_script 'config.lua'
 
@@ -18,3 +18,5 @@ server_scripts {
 }
 
 shared_script '@es_extended/imports.lua'
+
+dependencies { 'ox_lib' }
