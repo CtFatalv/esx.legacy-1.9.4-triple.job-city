@@ -63,6 +63,24 @@ return {
 	{
 		items = {
 			{
+				name = 'poudrecharbon',
+				ingredients = {
+					m_charbon = 1,
+					WEAPON_HAMMER = 0.05
+				},
+				duration = 5000,
+				count = 5,
+			},
+			{
+				name = 'pochecharbon',
+				ingredients = {
+					m_charbon = 5,
+					WEAPON_HAMMER = 0.05
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
 				name = 'lingotcuivre',
 				ingredients = {
 					m_cuivre = 5,
