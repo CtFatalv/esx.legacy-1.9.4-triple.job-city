@@ -447,6 +447,27 @@ return {
 		weight = 10,
 	},
 
+	['m_charbon'] = {
+		label = 'Minerai de charbon',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+   	['pochecharbon'] = {
+		label = 'Poudre de charbon',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
+   	['poudrecharbon'] = {
+		label = 'Poche de charbon',
+		weight = 450,
+		stack = true,
+		close = false,
+	},
+
    	['m_cuivre'] = {
 		label = 'Minerai de cuivre',
 		weight = 450,
