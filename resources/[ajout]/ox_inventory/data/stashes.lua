@@ -106,4 +106,79 @@ return {
 		weight = 70000,
 		groups = {['taxi'] = 4}
 	},
+
+	{
+		coords = vec3(92.07, -1291.26, 28.27),
+		target = {
+			loc = vec3(92.07, -1291.26, 28.27),
+			length = 0.8,
+			width = 0.65,
+			heading = 30,
+            minZ=28.27,
+            maxZ=29.82,
+			label = 'Coffre Patron'
+		},
+		name = 'Nightclubpatronlocker',
+		label = 'Coffre Patron',
+		owner = true,
+		slots = 70,
+		weight = 70000,
+		groups = {['nightclub'] = 3}
+	},
+
+	{
+		coords = vec3(106.19, -1298.87, 27.77),
+		target = {
+			loc = vec3(106.19, -1298.87, 27.77),
+			length = 1.0,
+			width = 2.6,
+			heading = 30,
+            minZ=27.77,
+            maxZ=30.37,
+			label = 'Coffre personnel'
+		},
+		name = 'nightclubpersonnellocker',
+		label = 'Coffre personnel',
+		owner = true,
+		slots = 30,
+		weight = 70000,
+		groups = {['nightclub'] = 0}
+	},
+
+	{
+		coords = vec3(127.86, -1281.91, 28.27),
+		target = {
+			loc = vec3(127.86, -1281.91, 28.27),
+			length = 1.2,
+			width = 0.85,
+			heading = 300,
+            minZ=28.27,
+            maxZ=29.32,
+			label = 'Réfrigirateur'
+		},
+		name = 'Nightclubfrigolocker',
+		label = 'Réfrigirateur',
+		owner = false,
+		slots = 100,
+		weight = 100000,
+		groups = {['nightclub'] = 0}
+	},
+
+	{
+        coords = vec3(128.13, -1283.45, 28.47),
+        target = {
+            loc = vec3(128.13, -1283.45, 28.47),
+            length = 0.6,
+            width = 1.6,
+            heading = 65,
+            minZ=28.07,
+            maxZ=29.47,
+            label = 'Bar'
+        },
+        name = 'Nightclubbarlocker',
+        label = 'Bar',
+        owner = false,
+        slots = 2,
+        weight = 500
+    },
 }

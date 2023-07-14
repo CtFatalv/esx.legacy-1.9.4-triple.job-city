@@ -597,6 +597,16 @@ Config.ClothingRooms = {
         points = {
             vector3(266.91, -1362.16, 24.54)
         }
+    },
+    {
+        job = "nightclub",
+        coords = vector4(104.85, -1303.51, 28.77, 297.54),
+        size = vector3(4, 4, 4),
+        rotation = 300,
+        usePoly = false,
+        points = {
+            vector3(104.85, -1303.51, 28.77)
+        }
     }
 }
 
@@ -958,7 +968,302 @@ Config.Outfits = {
                 grades = {3, 4},
             }
         }
-    }
+    },
+    ["nightclub"] = {
+        ["Male"] = {
+            {
+                -- Outfits
+                name = "Barman",
+                outfitData = {
+                    ["pants"]       = { item = 28, texture = 2},  -- Pants
+                    ["arms"]        = { item = 40, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 15, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 40, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 38, texture = 4},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = -1},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 118, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_1",
+                outfitData = {
+                    ["pants"]       = { item = 61, texture = 9},  -- Pants
+                    ["arms"]        = { item = 40, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 15, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 15, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 16, texture = 9},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 118, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_2",
+                outfitData = {
+                    ["pants"]       = { item = 4, texture = 0},  -- Pants
+                    ["arms"]        = { item = 14, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 15, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 62, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 34, texture = 0},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 118, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_3",
+                outfitData = {
+                    ["pants"]       = { item = 4, texture = 0},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 15, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 15, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 34, texture = 0},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 118, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_4",
+                outfitData = {
+                    ["pants"]       = { item = 61, texture = 5},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 15, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 15, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 34, texture = 0},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 118, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_5",
+                outfitData = {
+                    ["pants"]       = { item = 15, texture = 0},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 15, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 15, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 34, texture = 0},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 118, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_6",
+                outfitData = {
+                    ["pants"]       = { item = 81, texture = 0},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 15, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 34, texture = 0},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 118, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_7",
+                outfitData = {
+                    ["pants"]       = { item = 61, texture = 9},  -- Pants
+                    ["arms"]        = { item = 40, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 15, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 15, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 16, texture = 9},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 118, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            }
+        },
+        ["Female"] = {
+            {
+                name = "Barman",
+                outfitData = {
+                    ["pants"]       = { item = 44, texture = 4},  -- Pants
+                    ["arms"]        = { item = 5, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 8, texture = 2},  -- Jacket
+                    ["shoes"]       = { item = 0, texture = 0},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 0, texture = 2},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+			{
+                name = "Danceur/se_1",
+                outfitData = {
+                    ["pants"]       = { item = 22, texture = 0},  -- Pants
+                    ["arms"]        = { item = 4, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 22, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 18, texture = 0},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 61, texture = 1},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_2",
+                outfitData = {
+                    ["pants"]       = { item = 20, texture = 2},  -- Pants
+                    ["arms"]        = { item = 4, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 22, texture = 2},  -- Jacket
+                    ["shoes"]       = { item = 18, texture = 2},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 0, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_3",
+                outfitData = {
+                    ["pants"]       = { item = 19, texture = 1},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 2},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 22, texture = 1},  -- Jacket
+                    ["shoes"]       = { item = 19, texture = 3},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 0, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_4",
+                outfitData = {
+                    ["pants"]       = { item = 63, texture = 11},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 82, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 41, texture = 11},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 0, texture = 0},  -- Chain
+                },
+                grades = {0,1,2,3},
+            },
+            {
+                name = "Danceur/se_5",
+                outfitData = {
+                    ["pants"]       = { item = 63, texture = 2},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 15, texture = 0},  -- Jacket
+                    ["shoes"]       = { item = 41, texture = 2},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 0, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_6",
+                outfitData = {
+                    ["pants"]       = { item = 63, texture = 10},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 18, texture = 3},  -- Jacket
+                    ["shoes"]       = { item = 41, texture = 10},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 0, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            },
+            {
+                name = "Danceur/se_7",
+                outfitData = {
+                    ["pants"]       = { item = 63, texture = 6},  -- Pants
+                    ["arms"]        = { item = 15, texture = 0},  -- Arms
+                    ["t-shirt"]     = { item = 3, texture = 0},  -- T Shirt
+                    ["vest"]        = { item = 0, texture = 0},  -- Body Vest
+                    ["torso2"]      = { item = 111, texture = 6},  -- Jacket
+                    ["shoes"]       = { item = 41, texture = 6},  -- Shoes
+                    ["accessory"]   = { item = 0, texture = 0},  -- Neck Accessory
+                    ["bag"]         = { item = 0, texture = 0},  -- Bag
+                    ["hat"]         = { item = 0, texture = 0},  -- Hat
+                    ["glass"]       = { item = 0, texture = 0},  -- Glasses
+                    ["mask"]        = { item = 0, texture = 0},  -- Mask
+                    ["chain_1"]     = { item = 0, texture = 0},  -- Chain
+                },
+                grades = {0, 1, 2, 3},
+            }
+        }
+    },
 }
 
 Config.InitialPlayerClothes = {

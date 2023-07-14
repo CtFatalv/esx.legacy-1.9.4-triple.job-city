@@ -676,6 +676,126 @@ return {
 		stack = true,
 		weight = 10,
 	},
+
+	['drpepper'] = {
+		label = 'Dr. Pepper',
+		stack = true,
+		weight = 10,
+	},
+
+	['limonade'] = {
+		label = 'Limonade',
+		stack = true,
+		weight = 10,
+	},
+
+	['glace'] = {
+		label = 'Glaçon',
+		stack = true,
+		weight = 10,
+	},
+
+	['vodka'] = {
+		label = 'vodka',
+		stack = true,
+		weight = 10,
+	},
+
+	['whisky'] = {
+		label = 'whisky',
+		stack = true,
+		weight = 10,
+	},
+
+	['rhum'] = {
+		label = 'Rhum',
+		stack = true,
+		weight = 10,
+	},
+
+	['tequila'] = {
+		label = 'Tequila',
+		stack = true,
+		weight = 10,
+	},
+
+	['menthe'] = {
+		label = 'Feuille de menthe',
+		stack = true,
+		weight = 10,
+	},
+
+	['jager'] = {
+		label = 'Jager',
+		stack = true,
+		weight = 10,
+	},
+
+	['jagerbomb'] = {
+		label = 'Jägerbomb',
+		stack = true,
+		weight = 10,
+	},
+
+	['golem'] = {
+		label = 'Golem',
+		stack = true,
+		weight = 10,
+	},
+
+	['whiskycoca'] = {
+		label = 'Whisky-coca',
+		stack = true,
+		weight = 10,
+	},
+
+	['rhumcoca'] = {
+		label = 'Rhum-coca',
+		stack = true,
+		weight = 10,
+	},
+
+	['vodkaenergy'] = {
+		label = 'Vodka-energy',
+		stack = true,
+		weight = 10,
+	},
+
+	['vodkafruit'] = {
+		label = 'Vodka-fruits',
+		stack = true,
+		weight = 10,
+	},
+
+	['rhumfruit'] = {
+		label = 'Rhumfruits',
+		stack = true,
+		weight = 10,
+	},
+
+	['teqpaf'] = {
+		label = 'Teq paf',
+		stack = true,
+		weight = 10,
+	},
+
+	['mojito'] = {
+		label = 'Mojito',
+		stack = true,
+		weight = 10,
+	},
+
+	['metreshooter'] = {
+		label = 'Mètre de shooter',
+		stack = true,
+		weight = 10,
+	},
+
+	['jagercerbere'] = {
+		label = 'Jäger Cerbère',
+		stack = true,
+		weight = 10,
+	},
     -- SHOP PLAYER
     ['shop01'] = {
       label = 'Epicerie N°1',

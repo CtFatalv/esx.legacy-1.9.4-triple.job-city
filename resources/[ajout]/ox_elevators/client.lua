@@ -60,7 +60,7 @@ CreateThread(function()
 					{
 						name = string,
 						icon = "fas fa-hand-point-up",
-						label = "Use Elevator From " .. floor.level,
+						label = "" .. floor.level,
 						onSelect = function()
 						TriggerEvent("angelicxs_elevator:showFloors",info)
 						end
@@ -80,7 +80,7 @@ CreateThread(function()
 						{
 							event = "angelicxs_elevator:showFloors",
 							icon = "fas fa-hand-point-up",
-							label = "Use Elevator From " .. floor.level,
+							label = "Aller vers " .. floor.level,
 							elevator = elevatorName,
 							level = index
 						},
@@ -187,7 +187,7 @@ RegisterNetEvent("angelicxs_elevator:showFloors", function(data)
 	elseif Config.OXLib then
 		lib.registerMenu({
 			id = 'elevator_ox',
-			title = 'Elevator Floor Selector',
+			title = 'Selection',
 			options = elevator,
 			position = 'top-right',
 		}, function(selected, scrollIndex, args)
@@ -274,7 +274,7 @@ function NotifyHint()
 end
 
 function NotifyNoAccess()
-	AddTextEntry('elevatorHelp', 'You cannot use this!')
+	AddTextEntry('elevatorHelp', 'Vous ne pouvez pas accéder à cette endroit!')
 	BeginTextCommandDisplayHelp('elevatorHelp')
 	EndTextCommandDisplayHelp(0, false, true, -1)
 end

@@ -13,8 +13,8 @@ Config.OXLib = true						-- Use the OX_lib (Ignored if Config.NHInput or Config.
 Config.ElevatorWaitTime = 2					-- How many seconds until the player arrives at their floor
 
 Config.Notify = {
-	enabled = true,							-- Display hint notification?
-	distance = 3.0,							-- Distance from elevator that the hint will show
+	enabled = false,							-- Display hint notification?
+	distance = 1.0,							-- Distance from elevator that the hint will show
 	message = "Les etages "	-- Text of the hint notification
 }
 
@@ -252,6 +252,21 @@ Config.Elevators = {
 			jobs = {
 				["police"] = 0,
 				["ambulance"] = 2,
+			},
+		},
+	},
+
+	NightClubUnicorn = {
+		{
+			coords = vector3(133.16, -1293.69, 29.27), heading = 300.00, level = "Unicorn", label = "Porte d'entrée",
+			jobs = {
+				["nightclub"] = 0,
+			},
+		},
+		{
+			coords = vector3(127.13, -1279.14, 29.27), heading = 222.00, level = "Unicorn", label = "Accéder au bar",
+			jobs = {
+				["nightclub"] = 0,
 			},
 		},
 	},

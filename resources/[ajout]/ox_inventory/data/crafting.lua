@@ -364,4 +364,138 @@ return {
 		},
 		blip = { id = 269, colour = 16, scale = 0.5 },
 	},
+	{
+		items = {
+			{
+				name = 'jusfruit',
+				ingredients = {
+					jusorange = 1,
+					jusraisin = 1,
+					juspomme = 1,
+				},
+				duration = 5000,
+				count = 2,
+			},			
+			{
+				name = 'jagerbomb',
+				ingredients = {
+					drpepper = 2,
+					jager = 2,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'golem',
+				ingredients = {
+					limonade = 2,
+					vodka = 2,
+					glace = 1,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'whiskycoca',
+				ingredients = {
+					cola = 2,
+					whisky = 2,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'rhumcoca',
+				ingredients = {
+					cola = 2,
+					rhum = 2,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'vodkaenergy',
+				ingredients = {
+					drpepper = 2,
+					vodka = 2,
+					glace = 1,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'vodkafruit',
+				ingredients = {
+					jusfruit = 2,
+					vodka = 2,
+					glace = 1,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'rhumfruit',
+				ingredients = {
+					jusfruit = 2,
+					rhum = 2,
+					glace = 1,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'teqpaf',
+				ingredients = {
+					limonade = 2,
+					tequila = 2,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'mojito',
+				ingredients = {
+					rhum = 2,
+					limonade = 2,
+					menthe = 2,
+					glace = 1,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'metreshooter',
+				ingredients = {
+					jager = 2,
+					vodka = 2,
+					whisky = 2,
+					tequila = 2,
+				},
+				duration = 5000,
+				count = 1,
+			},
+			{
+				name = 'jagercerbere',
+				ingredients = {
+					jagerbomb = 1,
+					vodka = 2,
+					tequila = 2,
+				},
+				duration = 5000,
+				count = 1,
+			},
+		},
+		points = {
+			 vec3(128.68, -1284.35, 29.27),
+		},
+		zones = {
+			{
+				coords = vec3(128.68, -1284.35, 29.27),
+				size = vec3(1.0, 0.8, 0.5),
+				distance = 1.5,
+				rotation = 30.0,
+			},
+		},
+		blip = { id = 267, colour = 16, scale = 0.5 },
+	},
 }
