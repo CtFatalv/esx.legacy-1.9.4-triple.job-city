@@ -164,7 +164,7 @@ return {
 		groups = {['nightclub'] = 0}
 	},
 
-	{
+{
         coords = vec3(128.13, -1283.45, 28.47),
         target = {
             loc = vec3(128.13, -1283.45, 28.47),

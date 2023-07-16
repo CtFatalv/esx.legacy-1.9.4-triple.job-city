@@ -295,7 +295,7 @@ Config.Garages = { -- Garages Config
       
     },
     Groups = {
-      
+      {'taxi'}
     },
     SpawnPoint = {
       { Pos = vector3(915.82, -170.75, 74.00), Heading = 100.00 },

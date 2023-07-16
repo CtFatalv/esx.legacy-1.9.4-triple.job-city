@@ -289,7 +289,7 @@ CreateThread(function() -- Framework
 		Wait(10)
 	end 
   
-	while ESX.GetPlayerData().job == nil and ESX.GetPlayerData() == nil do
+	while ESX.GetPlayerData().job == nil or ESX.GetPlayerData().job2 == nil or ESX.GetPlayerData().job3 == nil and ESX.GetPlayerData() == nil do
 		Citizen.Wait(10)
 	end
 	ESX.PlayerData = ESX.GetPlayerData()
@@ -494,6 +494,16 @@ end)
 RegisterNetEvent("esx:setJob")
 AddEventHandler("esx:setJob", function(job)
   ESX.PlayerData.job = job
+end)
+
+RegisterNetEvent("esx:setJob2")
+AddEventHandler("esx:setJob2", function(job2)
+  ESX.PlayerData.job2 = job2
+end)
+
+RegisterNetEvent("esx:setJob3")
+AddEventHandler("esx:setJob3", function(job3)
+  ESX.PlayerData.job3 = job3
 end)
 
 AddEventHandler('esx:onPlayerDeath', function(data) 
@@ -765,7 +775,7 @@ function GetVehInImpound(data, key)
             PlayAnim(Config.UseAnim)
             local foundSpawn, SpawnPoint = GetAvailableVehicleSpawnPoint(data.spawnPoints)
             if foundSpawn then
-              if Config.SpawnVehicleInAnyGarage and not string.match(vehData[i].parking, 'Jobs') then
+              if Config.SpawnVehicleInAnyGarage and not string.match(vehData[i].parking, 'Jobs',  'Jobs2') then
                 TriggerServerEvent('kc_garage:vehicleChecking', spawnData)
               else
                 if vehData[i].parking == data.parkingKey then
@@ -899,7 +909,7 @@ function HasGroups(garage)
   if Groups then
     for i = 1, #Groups, 1 do
       local Group = Groups[i]
-      if ESX.PlayerData.job.name == Group then
+      if ESX.PlayerData.job.name == Group or ESX.PlayerData.job2.name == Group or ESX.PlayerData.job3.name == Group then
         return true
       end
     end

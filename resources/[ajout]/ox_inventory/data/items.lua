@@ -404,7 +404,6 @@ return {
 		weight = 10,
 	},
 
-
     ['champagne'] = {
 		label = 'Champagne',
 		stack = true,

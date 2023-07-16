@@ -364,7 +364,7 @@ return {
 		},
 		blip = { id = 269, colour = 16, scale = 0.5 },
 	},
-	{
+    {
 		items = {
 			{
 				name = 'jusfruit',
@@ -375,8 +375,7 @@ return {
 				},
 				duration = 5000,
 				count = 2,
-			},			
-			{
+			},			{
 				name = 'jagerbomb',
 				ingredients = {
 					drpepper = 2,
@@ -388,7 +387,7 @@ return {
 			{
 				name = 'golem',
 				ingredients = {
-					limonade = 2,
+                    limonade = 2,
 					vodka = 2,
 					glace = 1,
 				},
@@ -398,7 +397,7 @@ return {
 			{
 				name = 'whiskycoca',
 				ingredients = {
-					cola = 2,
+                    cola = 2,
 					whisky = 2,
 				},
 				duration = 5000,
@@ -407,7 +406,7 @@ return {
 			{
 				name = 'rhumcoca',
 				ingredients = {
-					cola = 2,
+                    cola = 2,
 					rhum = 2,
 				},
 				duration = 5000,
@@ -416,7 +415,7 @@ return {
 			{
 				name = 'vodkaenergy',
 				ingredients = {
-					drpepper = 2,
+                    drpepper = 2,
 					vodka = 2,
 					glace = 1,
 				},
@@ -426,7 +425,7 @@ return {
 			{
 				name = 'vodkafruit',
 				ingredients = {
-					jusfruit = 2,
+                    jusfruit = 2,
 					vodka = 2,
 					glace = 1,
 				},
@@ -436,7 +435,7 @@ return {
 			{
 				name = 'rhumfruit',
 				ingredients = {
-					jusfruit = 2,
+                    jusfruit = 2,
 					rhum = 2,
 					glace = 1,
 				},
@@ -446,7 +445,7 @@ return {
 			{
 				name = 'teqpaf',
 				ingredients = {
-					limonade = 2,
+                    limonade = 2,
 					tequila = 2,
 				},
 				duration = 5000,
@@ -455,7 +454,7 @@ return {
 			{
 				name = 'mojito',
 				ingredients = {
-					rhum = 2,
+                    rhum = 2,
 					limonade = 2,
 					menthe = 2,
 					glace = 1,
@@ -466,7 +465,7 @@ return {
 			{
 				name = 'metreshooter',
 				ingredients = {
-					jager = 2,
+                    jager = 2,
 					vodka = 2,
 					whisky = 2,
 					tequila = 2,
@@ -477,7 +476,7 @@ return {
 			{
 				name = 'jagercerbere',
 				ingredients = {
-					jagerbomb = 1,
+                    jagerbomb = 1,
 					vodka = 2,
 					tequila = 2,
 				},
@@ -496,6 +495,6 @@ return {
 				rotation = 30.0,
 			},
 		},
-		blip = { id = 267, colour = 16, scale = 0.5 },
+		--blip = { id = 267, colour = 16, scale = 0.5 },
 	},
 }
