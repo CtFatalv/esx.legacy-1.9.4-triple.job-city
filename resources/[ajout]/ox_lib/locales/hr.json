@@ -1,10 +1,10 @@
 {
-  "language": "English",
+  "language": "Hrvatski",
   "ui": {
-    "cancel": "Cancel",
-    "close": "Close",
-    "confirm": "Confirm",
-    "more": "More..."
+    "cancel": "Odustani",
+    "close": "Zatvori",
+    "confirm": "Potvrdi",
+    "more": "Više..."
   },
   "txadmin_announcement": "Server announcement by %s",
   "txadmin_dm": "Direct Message from %s",
